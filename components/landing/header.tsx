@@ -75,7 +75,7 @@ export default function Header() {
           </div>
           <div className='grow flex justify-center'>
             <div className='me'>
-              <Image src={profile} alt='me' />
+              <Image src={profile} alt='me' priority />
             </div>
           </div>
           <div className='flex flex-col items-center justify-end gap-4 transform'>
