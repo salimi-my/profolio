@@ -50,7 +50,7 @@ export default function Header() {
               aria-label='Facebook'
               target='_blank'
               rel='noopener noreferrer'
-              className='bg-primary dark:bg-secondary p-1 rounded-md hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors duration-300 ease-in-out'
+              className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
             >
               <Facebook className='text-white dark:text-zinc-950 w-4 h-4' />
             </Link>
@@ -59,7 +59,7 @@ export default function Header() {
               aria-label='LinkedIn'
               target='_blank'
               rel='noopener noreferrer'
-              className='bg-primary dark:bg-secondary p-1 rounded-md hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors duration-300 ease-in-out'
+              className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
             >
               <Linkedin className='text-white dark:text-zinc-950 w-4 h-4' />
             </Link>
@@ -68,7 +68,7 @@ export default function Header() {
               aria-label='GitHub'
               target='_blank'
               rel='noopener noreferrer'
-              className='bg-primary dark:bg-secondary p-1 rounded-md hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors duration-300 ease-in-out'
+              className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
             >
               <Github className='text-white dark:text-zinc-950 w-4 h-4' />
             </Link>
