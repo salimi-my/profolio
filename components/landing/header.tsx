@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header id='home' className='h-screen pt-28 overflow-hidden max-h-[900px]'>
-      <div className='container mx-auto text-center h-full relative'>
+      <div className='text-center h-full relative'>
         <h1 className='text-sm text-muted-foreground'>Hello, I am</h1>
         <Link href='/'>
           <h2 className='text-[2.5rem] font-medium leading-7 py-6'>
@@ -74,7 +74,7 @@ export default function Header() {
             </Link>
           </div>
           <div className='grow flex justify-center'>
-            <div className='me'>
+            <div className='me w-72 h-96 md:w-[22rem] md:h-[30rem]'>
               <Image src={profile} alt='me' priority />
             </div>
           </div>
