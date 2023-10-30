@@ -91,8 +91,6 @@
 
 .me {
   background: linear-gradient(hsl(var(--primary)), transparent);
-  width: 22rem;
-  height: 30rem;
   margin-top: 4rem;
   border-radius: 12rem 12rem 0 0;
   overflow: hidden;
