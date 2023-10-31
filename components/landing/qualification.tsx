@@ -54,10 +54,10 @@ const data_experience = [
 export default function Qualification() {
   return (
     <section id='qualification' className='mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground'>
+      <h1 className='text-center text-sm text-muted-foreground font-medium'>
         My Personal Journey
       </h1>
-      <h2 className='text-center text-2xl pt-1'>Qualification</h2>
+      <h2 className='text-center text-2xl font-medium pt-1'>Qualification</h2>
       <div className='w-full max-w-[810px] mx-auto pt-8'>
         <Tabs defaultValue='education' className='w-full'>
           <TabsList className='grid w-full grid-cols-2'>

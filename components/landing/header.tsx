@@ -20,7 +20,9 @@ export default function Header() {
       className='h-screen pt-28 overflow-hidden min-h-[900px] max-h-[900px]'
     >
       <div className='text-center h-full relative'>
-        <h1 className='text-sm text-muted-foreground'>Hello, I am</h1>
+        <h1 className='text-sm text-muted-foreground font-medium'>
+          Hello, I am
+        </h1>
         <Link href='/'>
           <h2 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
             Mohamad Salimi

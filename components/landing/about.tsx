@@ -8,8 +8,10 @@ import profileBg from '@/public/web-developer-bg.jpg';
 export default function About() {
   return (
     <section id='about' className='md:mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground'>Get To Know</h1>
-      <h2 className='text-center text-2xl pt-1'>About Me</h2>
+      <h1 className='text-center text-sm text-muted-foreground font-medium'>
+        Get To Know
+      </h1>
+      <h2 className='text-center text-2xl font-medium pt-1'>About Me</h2>
       <div className='grid lg:grid-cols-7 gap-12 md:gap-24 lg:gap-48 pt-12'>
         <div className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'>
           <div className='rounded-2xl overflow-hidden rotate-[10deg] transition duration-300 ease-in-out hover:rotate-0 relative'>
