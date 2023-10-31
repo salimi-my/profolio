@@ -93,7 +93,7 @@ export default function Experience() {
         What Skills I have
       </h1>
       <h2 className='text-center text-2xl pt-1'>Technical Level</h2>
-      <div className='grid lg:grid-cols-2 gap-8 pt-12'>
+      <div className='grid lg:grid-cols-2 gap-8 pt-8'>
         <div className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground border border-primary py-9 px-6 md:py-9 md:px-20'>
           <h3 className='text-lg md:text-xl text-primary-foreground group-hover:text-primary pb-8'>
             Frontend Development
