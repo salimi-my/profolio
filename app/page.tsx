@@ -3,6 +3,7 @@ import Header from '@/components/landing/header';
 import { ModeToggle } from '@/components/mode-toggle';
 import Expertise from '@/components/landing/expertise';
 import Experience from '@/components/landing/experience';
+import Qualification from '@/components/landing/qualification';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <About />
         <Experience />
         <Expertise />
+        <Qualification />
       </main>
     </>
   );
