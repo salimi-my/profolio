@@ -53,7 +53,7 @@ const data_experience = [
 
 export default function Qualification() {
   return (
-    <section id='qualification' className='my-32'>
+    <section id='qualification' className='mt-32'>
       <h1 className='text-center text-sm text-muted-foreground'>
         My Personal Journey
       </h1>
