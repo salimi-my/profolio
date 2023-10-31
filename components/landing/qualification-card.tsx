@@ -20,7 +20,7 @@ export default function QualificationCard({
   data
 }: QualificationCardProps) {
   return (
-    <article className='w-full rounded-2xl bg-primary group hover:bg-primary-foreground border border-primary py-9 px-6 md:px-10'>
+    <article className='w-full rounded-2xl bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:px-10'>
       <div className='flex justify-center items-center space-x-3 pb-6'>
         <Icon className='text-primary-foreground group-hover:text-primary w-7 h-7' />
         <h3 className='text-center text-lg font-medium text-primary-foreground group-hover:text-primary'>

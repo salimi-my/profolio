@@ -18,7 +18,7 @@ export default function About() {
         </div>
         <div className='lg:col-span-4 flex flex-col gap-8'>
           <div className='grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-7'>
-            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground border border-primary py-6 px-0 md:p-8'>
+            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-6 px-0 md:p-8'>
               <Briefcase className='w-6 h-6 text-primary-foreground group-hover:text-primary mb-4' />
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Experience
@@ -27,7 +27,7 @@ export default function About() {
                 4+ Years Working
               </small>
             </article>
-            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground border border-primary py-6 px-0 md:p-8'>
+            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-6 px-0 md:p-8'>
               <FolderGit2 className='w-6 h-6 text-primary-foreground group-hover:text-primary mb-4' />
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Projects
@@ -36,7 +36,7 @@ export default function About() {
                 15+ Completed
               </small>
             </article>
-            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground border border-primary py-6 px-0 md:p-8'>
+            <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-6 px-0 md:p-8'>
               <Laptop className='w-6 h-6 text-primary-foreground group-hover:text-primary mb-4' />
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Worlwide
