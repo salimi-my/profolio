@@ -2,6 +2,7 @@ import About from '@/components/landing/about';
 import Header from '@/components/landing/header';
 import { ModeToggle } from '@/components/mode-toggle';
 import Expertise from '@/components/landing/expertise';
+import Portfolio from '@/components/landing/portfolio';
 import Experience from '@/components/landing/experience';
 import Qualification from '@/components/landing/qualification';
 
@@ -17,6 +18,7 @@ export default function Home() {
         <Experience />
         <Expertise />
         <Qualification />
+        <Portfolio />
       </main>
     </>
   );
