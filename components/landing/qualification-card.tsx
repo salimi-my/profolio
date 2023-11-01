@@ -1,5 +1,6 @@
-import { cn } from '@/lib/utils';
 import { Calendar, LucideIcon } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
 
 interface QualificationCardProps {
   icon: LucideIcon;
