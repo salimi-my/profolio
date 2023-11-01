@@ -29,7 +29,9 @@ export default function Header() {
           </h2>
         </Link>
         <div className='pl-[0.1rem] tracking-[0.4rem]'>
-          <span className='text-gradient xs:text-base sm:text-lg'>{text}</span>
+          <span className='text-gradient xs:text-base sm:text-lg font-medium'>
+            {text}
+          </span>
           <Cursor cursorColor='#444444' cursorStyle='|' />
         </div>
         <div className='inline-flex space-x-3 pt-9'>
