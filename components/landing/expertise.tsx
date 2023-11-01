@@ -52,7 +52,7 @@ export default function Expertise() {
           </ul>
         </article>
 
-        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:px-10'>
+        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 lg:px-10'>
           <div className='absolute -top-6 left-0 right-0 mx-auto w-fit rounded-full bg-primary-foreground px-4 py-2 border-2 border-primary shadow-md'>
             <h3 className='text-base font-medium text-primary'>
               Web Development
@@ -70,7 +70,7 @@ export default function Expertise() {
           </ul>
         </article>
 
-        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:px-10'>
+        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:lg-10'>
           <div className='absolute -top-6 left-0 right-0 mx-auto w-fit rounded-full bg-primary-foreground px-4 py-2 border-2 border-primary shadow-md'>
             <h3 className='text-base font-medium text-primary'>
               Content Creation
