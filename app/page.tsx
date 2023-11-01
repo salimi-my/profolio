@@ -1,3 +1,4 @@
+import Tool from '@/components/landing/tool';
 import About from '@/components/landing/about';
 import Header from '@/components/landing/header';
 import { ModeToggle } from '@/components/mode-toggle';
@@ -19,6 +20,7 @@ export default function Home() {
         <Expertise />
         <Qualification />
         <Portfolio />
+        <Tool />
       </main>
     </>
   );
