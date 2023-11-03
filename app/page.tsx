@@ -13,11 +13,11 @@ import Nav from '@/components/landing/nav';
 export default function Home() {
   return (
     <>
-      <div className='absolute top-5 right-5'>
+      <div className='sticky z-30 top-5 w-full flex justify-end px-5'>
         <ModeToggle />
       </div>
       <Nav />
-      <main className='container px-4 md:px-8 mx-auto relative'>
+      <main className='container px-4 md:px-8 mx-auto relative -mt-14'>
         <Header />
         <About />
         <Experience />
