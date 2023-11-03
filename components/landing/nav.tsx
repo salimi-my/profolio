@@ -9,26 +9,53 @@ import {
   User
 } from 'lucide-react';
 
+import { useAnchor } from '@/hooks/use-anchor';
 import NavButton from '@/components/landing/nav-button';
 
 export default function Nav() {
+  const currentAnchor = useAnchor();
+
   return (
     <nav className='bg-black bg-opacity-30 w-max py-3 px-7 fixed bottom-8 z-30 mx-auto inset-x-0 flex gap-3 rounded-full backdrop-blur-lg'>
-      <NavButton name='Home' anchor='#home' icon={Home} />
-      <NavButton name='About' anchor='#about' icon={User} />
-      <NavButton name='Experience' anchor='#experience' icon={Book} />
+      <NavButton
+        name='Home'
+        anchor='#home'
+        icon={Home}
+        active={
+          currentAnchor === '#home' || currentAnchor === '' ? true : false
+        }
+      />
+      <NavButton
+        name='About'
+        anchor='#about'
+        icon={User}
+        active={currentAnchor === '#about' ? true : false}
+      />
+      <NavButton
+        name='Experience'
+        anchor='#experience'
+        icon={Book}
+        active={currentAnchor === '#experience' ? true : false}
+      />
       <NavButton
         name='Expertise'
         anchor='#expertise'
         icon={ClipboardCheck}
+        active={currentAnchor === '#expertise' ? true : false}
         hideMobile
       />
       <NavButton
         name='Qualification'
         anchor='#qualification'
         icon={GraduationCap}
+        active={currentAnchor === '#qualification' ? true : false}
       />
-      <NavButton name='Contact' anchor='#contact' icon={MessageCircle} />
+      <NavButton
+        name='Contact'
+        anchor='#contact'
+        icon={MessageCircle}
+        active={currentAnchor === '#contact' ? true : false}
+      />
     </nav>
   );
 }

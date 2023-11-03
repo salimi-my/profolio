@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { LucideIcon } from 'lucide-react';
 
@@ -14,6 +16,7 @@ interface NavButtonProps {
   name: string;
   anchor: string;
   icon: LucideIcon;
+  active: boolean;
   hideMobile?: boolean;
 }
 
@@ -21,6 +24,7 @@ export default function NavButton({
   name,
   anchor,
   icon: Icon,
+  active,
   hideMobile
 }: NavButtonProps) {
   return (
@@ -32,7 +36,8 @@ export default function NavButton({
             size='sm'
             className={cn(
               'rounded-full text-white px-0 w-8 h-8 xs:w-11 xs:h-11',
-              hideMobile && 'hidden md:flex'
+              hideMobile && 'hidden md:flex',
+              active && 'bg-primary-foreground text-primary'
             )}
             asChild
           >
