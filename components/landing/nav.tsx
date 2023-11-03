@@ -3,6 +3,7 @@
 import {
   Book,
   ClipboardCheck,
+  FolderGit2,
   GraduationCap,
   Home,
   MessageCircle,
@@ -50,6 +51,12 @@ export default function Nav() {
           anchor='#qualification'
           icon={GraduationCap}
           active={currentAnchor === '#qualification' ? true : false}
+        />
+        <NavButton
+          name='Portfolio'
+          anchor='#portfolio'
+          icon={FolderGit2}
+          active={currentAnchor === '#portfolio' ? true : false}
         />
         <NavButton
           name='Contact'
