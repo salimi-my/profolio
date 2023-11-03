@@ -9,6 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
 import {
   Form,
   FormControl,
@@ -27,6 +28,7 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,9 +49,21 @@ export default function ContactForm() {
 
       if (response.data.success) {
         form.reset();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Your message has been successfully sent.'
+        });
       }
     } catch (error: any) {
       console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
     } finally {
       setLoading(false);
     }
