@@ -1,6 +1,7 @@
 import Tool from '@/components/landing/tool';
 import About from '@/components/landing/about';
 import Header from '@/components/landing/header';
+import Footer from '@/components/landing/footer';
 import Contact from '@/components/landing/contact';
 import { ModeToggle } from '@/components/mode-toggle';
 import Expertise from '@/components/landing/expertise';
@@ -24,6 +25,7 @@ export default function Home() {
         <Tool />
         <Contact />
       </main>
+      <Footer />
     </>
   );
 }

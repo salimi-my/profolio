@@ -6,7 +6,7 @@ import ContactForm from '@/components/landing/contact-form';
 
 export default function Contact() {
   return (
-    <section id='contact' className='my-32'>
+    <section id='contact' className='mt-32'>
       <h1 className='text-center text-sm text-muted-foreground font-medium'>
         Get in Touch
       </h1>
