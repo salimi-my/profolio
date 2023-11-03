@@ -1,6 +1,8 @@
 'use client';
 
 import * as z from 'zod';
+import axios from 'axios';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -15,6 +17,7 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
+import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Please enter your name.' }),
@@ -24,6 +27,8 @@ const formSchema = z.object({
 });
 
 export default function ContactForm() {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -34,9 +39,21 @@ export default function ContactForm() {
     }
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/send', values);
+
+      if (response.data.success) {
+        form.reset();
+      }
+    } catch (error: any) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -102,8 +119,19 @@ export default function ContactForm() {
           )}
         />
         <div>
-          <Button type='submit' variant='default' className='mt-2'>
-            Send Message
+          <Button
+            disabled={loading}
+            type='submit'
+            variant='default'
+            className='mt-2'
+          >
+            {loading && (
+              <>
+                <Loader2 className='animate-spin mr-2' size={18} />
+                Sending...
+              </>
+            )}
+            {!loading && <>Send Message</>}
           </Button>
         </div>
       </form>
