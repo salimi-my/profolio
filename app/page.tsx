@@ -8,6 +8,7 @@ import Expertise from '@/components/landing/expertise';
 import Portfolio from '@/components/landing/portfolio';
 import Experience from '@/components/landing/experience';
 import Qualification from '@/components/landing/qualification';
+import Nav from '@/components/landing/nav';
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <div className='absolute top-5 right-5'>
         <ModeToggle />
       </div>
+      <Nav />
       <main className='container px-4 md:px-8 mx-auto relative'>
         <Header />
         <About />
