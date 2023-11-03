@@ -79,7 +79,7 @@ export default function Footer() {
           </Button>
           <Button variant='secondary' size='icon' asChild>
             <Link
-              href='https://twitter.com/mysalim'
+              href='https://twitter.com/mysalimi'
               target='_blank'
               rel='noopener noreferrer'
             >
