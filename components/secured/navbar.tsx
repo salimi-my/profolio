@@ -1,4 +1,5 @@
 import UserNav from '@/components/secured/user-nav';
+import { ModeToggle } from '@/components/mode-toggle';
 import PageTitle from '@/components/secured/page-title';
 
 export default function Navbar() {
@@ -9,6 +10,7 @@ export default function Navbar() {
           <PageTitle />
         </div>
         <div className='flex flex-1 items-center space-x-2 justify-end'>
+          <ModeToggle />
           <UserNav />
         </div>
       </div>
