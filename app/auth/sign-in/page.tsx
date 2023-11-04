@@ -47,7 +47,7 @@ export default function SignInPage() {
   return (
     <Card className='w-full max-w-md'>
       <CardHeader>
-        <CardTitle className='text-2xl'>Sign In</CardTitle>
+        <CardTitle className='text-2xl'>Sign in</CardTitle>
         <CardDescription>to continue to Dashboard</CardDescription>
       </CardHeader>
       <CardContent>
@@ -95,7 +95,7 @@ export default function SignInPage() {
                   Signing in...
                 </>
               )}
-              {!loading && <>Sign In</>}
+              {!loading && <>Sign in</>}
             </Button>
           </form>
         </Form>
