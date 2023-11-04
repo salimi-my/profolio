@@ -26,12 +26,7 @@ export default async function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={poppins.className}>
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='system'
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
           {children}
           <ToastProvider />
         </ThemeProvider>
