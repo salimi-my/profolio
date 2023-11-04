@@ -3,6 +3,7 @@ import { LayoutTemplate } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import useStore from '@/hooks/use-store';
+import Menu from '@/components/secured/menu';
 import { Button } from '@/components/ui/button';
 import useSidebarToggle from '@/hooks/use-sidebar-toggle';
 import SidebarToggle from '@/components/secured/sidebar-toggle';
@@ -43,6 +44,7 @@ export default function Sidebar() {
             </h1>
           </Link>
         </Button>
+        <Menu isOpen={sidebar?.isOpen} />
       </div>
     </aside>
   );
