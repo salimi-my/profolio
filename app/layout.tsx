@@ -8,7 +8,7 @@ import './globals.css';
 
 const poppins = Poppins({
   style: ['normal'],
-  weight: ['400', '500'],
+  weight: ['400', '500', '600'],
   subsets: ['latin']
 });
 
