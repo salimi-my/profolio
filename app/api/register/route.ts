@@ -43,15 +43,11 @@ export async function POST(req: Request) {
       );
     }
 
-    const existingUser = await prismadb.user.findUnique({
-      where: {
-        email
-      }
-    });
+    const userCount = await prismadb.user.count();
 
-    if (existingUser) {
+    if (userCount > 0) {
       return NextResponse.json(
-        { success: false, error: 'Email is already taken.' },
+        { success: false, error: 'Cannot register.' },
         { status: 400 }
       );
     }

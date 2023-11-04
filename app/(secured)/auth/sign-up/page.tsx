@@ -99,11 +99,11 @@ export default function SignUpPage() {
           type: 'manual',
           message: error.response.data.error
         });
-      } else if (error.response.data.error === 'Email is already taken.') {
+      } else if (error.response.data.error === 'Cannot register.') {
         toast({
           variant: 'destructive',
-          title: 'Email already taken.',
-          description: 'Please use other email address.'
+          title: 'Uh oh! Sorry.',
+          description: 'Cannot register. There can only be one user.'
         });
       } else {
         console.log(error);
