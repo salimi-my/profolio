@@ -13,5 +13,5 @@ export default async function AdminLayout({
     redirect('/api/auth/signin');
   }
 
-  return <main>{children}</main>;
+  return <>{children}</>;
 }
