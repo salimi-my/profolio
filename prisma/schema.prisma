@@ -19,6 +19,8 @@ model User {
   updatedAt       DateTime    @updatedAt
   accounts        Account[]
   sessions        Session[]
+
+  about           About?
 }
 
 model Account {
@@ -62,9 +64,17 @@ model VerificationToken {
 }
 
 model About {
-  id          String  @id @default(cuid())
+  id          String    @id @default(cuid())
   experience  String
   project     String
   worldwide   String
-  summary     String  @db.Text
+  summary     String    @db.Text
+
+  userId      String    @unique
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
 }
