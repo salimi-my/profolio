@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
-import { getServerSession } from 'next-auth';
 
 import ToastProvider from '@/providers/toast-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
-import SessionProvider from '@/providers/session-provider';
 
 import './globals.css';
 
@@ -25,22 +23,18 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession();
-
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={poppins.className}>
-        <SessionProvider session={session}>
-          <ThemeProvider
-            attribute='class'
-            defaultTheme='system'
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            <ToastProvider />
-          </ThemeProvider>
-        </SessionProvider>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='system'
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <ToastProvider />
+        </ThemeProvider>
       </body>
     </html>
   );
