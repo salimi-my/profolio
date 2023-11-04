@@ -22,13 +22,13 @@ export default function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
-          <Avatar className='h-9 w-9'>
+        <Button variant='outline' className='relative h-8 w-8 rounded-full'>
+          <Avatar className='h-8 w-8'>
             <AvatarImage
               src={session?.user?.image as string}
               alt={session?.user?.name as string}
             />
-            <AvatarFallback>
+            <AvatarFallback className='bg-transparent'>
               <User className='w-5 h-5' />
             </AvatarFallback>
           </Avatar>
