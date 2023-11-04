@@ -4,6 +4,7 @@ import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -69,6 +70,12 @@ export default function SignUpPage() {
           variant: 'default',
           title: 'Success!',
           description: 'User successfully registered.'
+        });
+
+        await signIn('credentials', {
+          email: values.email,
+          password: values.password,
+          callbackUrl: '/admin'
         });
       }
     } catch (error: any) {
