@@ -3,6 +3,7 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
+import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -18,7 +19,6 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import { Loader2 } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(1, { message: 'Please enter your name.' }),
