@@ -149,7 +149,7 @@ export default function AboutForm({ about }: AboutFormProps) {
             {loading && (
               <>
                 <Loader2 className='animate-spin mr-2' size={18} />
-                Savibg...
+                Saving...
               </>
             )}
             {!loading && <p className='px-4'>Save</p>}
