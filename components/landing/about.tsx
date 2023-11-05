@@ -2,10 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
+import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import profileBg from '@/public/web-developer-bg.jpg';
 
-export default function About() {
+export default function About({ about }: Awaited<ReturnType<typeof getData>>) {
   return (
     <section id='about' className='md:mt-32'>
       <h1 className='text-center text-sm text-muted-foreground font-medium'>
@@ -26,7 +27,7 @@ export default function About() {
                 Experience
               </h3>
               <small className='text-xs font-normal text-muted-foreground'>
-                4+ Years Working
+                {about?.experience}
               </small>
             </article>
             <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-6 px-0 md:p-8'>
@@ -35,7 +36,7 @@ export default function About() {
                 Projects
               </h3>
               <small className='text-xs font-normal text-muted-foreground'>
-                15+ Completed
+                {about?.project}
               </small>
             </article>
             <article className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-6 px-0 md:p-8'>
@@ -44,15 +45,11 @@ export default function About() {
                 Worlwide
               </h3>
               <small className='text-xs font-normal text-muted-foreground'>
-                Remotely Available
+                {about?.worldwide}
               </small>
             </article>
           </div>
-          <p className='text-muted-foreground font-normal'>
-            I am an enthusiastic and passionate web developer based in Malaysia
-            with nearly half a decade of experience dedicated to deliver
-            top-notch solutions and facilitate project success.
-          </p>
+          <p className='text-muted-foreground font-normal'>{about?.summary}</p>
           <div>
             <Button variant='default' asChild>
               <Link href='#contact'>Let&apos;s Talk</Link>
