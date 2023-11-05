@@ -2,8 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
-import BackendForm from '@/components/secured/backend-form';
-import FrontendForm from '@/components/secured/frontend-form';
+import ExperienceForm from '@/components/secured/experience-form';
 import {
   Card,
   CardContent,
@@ -45,7 +44,10 @@ export default async function ExperiencePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FrontendForm frontendItems={frontendItems} />
+          <ExperienceForm
+            experienceType='frontend'
+            experienceItems={frontendItems}
+          />
         </CardContent>
       </Card>
       <Card className='rounded-lg border-none'>
@@ -58,7 +60,10 @@ export default async function ExperiencePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <BackendForm backendItems={backendItems} />
+          <ExperienceForm
+            experienceType='backend'
+            experienceItems={backendItems}
+          />
         </CardContent>
       </Card>
     </div>
