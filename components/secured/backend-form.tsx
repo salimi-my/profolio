@@ -28,8 +28,8 @@ import {
   SelectValue
 } from '@/components/ui/select';
 
-interface FrontendFormProps {
-  frontendItems: Experience[];
+interface BackendFormProps {
+  backendItems: Experience[];
 }
 
 const formSchema = z.object({
@@ -42,14 +42,14 @@ const formSchema = z.object({
   )
 });
 
-export default function FrontendForm({ frontendItems }: FrontendFormProps) {
+export default function BackendForm({ backendItems }: BackendFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const initialValues =
-    frontendItems.length > 0
-      ? frontendItems.map((item) => ({
+    backendItems.length > 0
+      ? backendItems.map((item) => ({
           skill: item.skill,
           level: item.level,
           type: item.type
@@ -58,7 +58,7 @@ export default function FrontendForm({ frontendItems }: FrontendFormProps) {
           {
             skill: '',
             level: '',
-            type: 'frontend'
+            type: 'backend'
           }
         ];
 
@@ -190,7 +190,7 @@ export default function FrontendForm({ frontendItems }: FrontendFormProps) {
             variant='outline'
             size='sm'
             className='mt-2'
-            onClick={() => append({ type: 'frontend', skill: '', level: '' })}
+            onClick={() => append({ type: 'backend', skill: '', level: '' })}
           >
             Add skill
           </Button>

@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import BackendForm from '@/components/secured/backend-form';
 import FrontendForm from '@/components/secured/frontend-form';
 import {
   Card,
@@ -22,6 +23,13 @@ export default async function ExperiencePage() {
     where: {
       userId: session?.user?.id!,
       type: 'frontend'
+    }
+  });
+
+  const backendItems = await prismadb.experience.findMany({
+    where: {
+      userId: session?.user?.id!,
+      type: 'backend'
     }
   });
 
@@ -49,7 +57,9 @@ export default async function ExperiencePage() {
             Manage your backend development section informations.
           </CardDescription>
         </CardHeader>
-        <CardContent>BackendDevelopment</CardContent>
+        <CardContent>
+          <BackendForm backendItems={backendItems} />
+        </CardContent>
       </Card>
     </div>
   );
