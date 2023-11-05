@@ -5,8 +5,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import type { About } from '@prisma/client';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,6 +22,10 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
+interface AboutFormProps {
+  about: About | null;
+}
+
 const formSchema = z.object({
   experience: z.string().min(1, { message: 'Please enter experience.' }),
   project: z.string().min(1, { message: 'Please enter project.' }),
@@ -27,21 +33,48 @@ const formSchema = z.object({
   summary: z.string().min(1, { message: 'Please enter summary.' })
 });
 
-export default function AboutForm() {
+export default function AboutForm({ about }: AboutFormProps) {
+  const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      experience: '',
-      project: '',
-      worldwide: '',
-      summary: ''
+      experience: about !== null ? about.experience : '',
+      project: about !== null ? about.project : '',
+      worldwide: about !== null ? about.worldwide : '',
+      summary: about !== null ? about.summary : ''
     }
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/about', values);
+
+      if (response.data.success) {
+        router.refresh();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Data has been successfully saved.'
+        });
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>

@@ -6,8 +6,23 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+import { auth } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
+import { redirect } from 'next/navigation';
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const session = await auth();
+
+  if (!session || !session.user) {
+    redirect('/api/auth/signin');
+  }
+
+  const about = await prismadb.about.findFirst({
+    where: {
+      userId: session?.user?.id!
+    }
+  });
+
   return (
     <Card className='rounded-lg border-none'>
       <CardHeader className='mx-[1px] pb-9'>
@@ -17,7 +32,7 @@ export default function AboutPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <AboutForm />
+        <AboutForm about={about} />
       </CardContent>
     </Card>
   );
