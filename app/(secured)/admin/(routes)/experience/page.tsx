@@ -1,3 +1,7 @@
+import { redirect } from 'next/navigation';
+
+import { auth } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
 import FrontendForm from '@/components/secured/frontend-form';
 import {
   Card,
@@ -8,6 +12,19 @@ import {
 } from '@/components/ui/card';
 
 export default async function ExperiencePage() {
+  const session = await auth();
+
+  if (!session || !session.user) {
+    redirect('/api/auth/signin');
+  }
+
+  const frontendItems = await prismadb.experience.findMany({
+    where: {
+      userId: session?.user?.id!,
+      type: 'frontend'
+    }
+  });
+
   return (
     <div className='grid lg:grid-cols-2 gap-4'>
       <Card className='rounded-lg border-none'>
@@ -20,7 +37,7 @@ export default async function ExperiencePage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <FrontendForm />
+          <FrontendForm frontendItems={frontendItems} />
         </CardContent>
       </Card>
       <Card className='rounded-lg border-none'>

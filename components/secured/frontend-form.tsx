@@ -3,13 +3,14 @@
 import * as z from 'zod';
 import axios from 'axios';
 import { useState } from 'react';
-import { Loader2, Trash } from 'lucide-react';
-import { useFieldArray, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { Loader2, Trash } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useFieldArray, useForm } from 'react-hook-form';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import type { Experience } from '@prisma/client';
 import { useToast } from '@/components/ui/use-toast';
 import {
   Form,
@@ -27,32 +28,43 @@ import {
   SelectValue
 } from '@/components/ui/select';
 
+interface FrontendFormProps {
+  frontendItems: Experience[];
+}
+
 const formSchema = z.object({
-  items: z
-    .array(
-      z.object({
-        skill: z.string().min(1, { message: 'Please enter skill.' }),
-        level: z.string().min(1, { message: 'Please select level.' }),
-        type: z.string().min(1, { message: 'Please enter type.' })
-      })
-    )
-    .optional()
+  items: z.array(
+    z.object({
+      skill: z.string().min(1, { message: 'Please enter skill.' }),
+      level: z.string().min(1, { message: 'Please select level.' }),
+      type: z.string().min(1, { message: 'Please enter type.' })
+    })
+  )
 });
-export default function FrontendForm() {
+export default function FrontendForm({ frontendItems }: FrontendFormProps) {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
+  const initialValues =
+    frontendItems.length > 0
+      ? frontendItems.map((item) => ({
+          skill: item.skill,
+          level: item.level,
+          type: item.type
+        }))
+      : [
+          {
+            skill: '',
+            level: '',
+            type: 'frontend'
+          }
+        ];
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      items: [
-        {
-          skill: '',
-          level: '',
-          type: 'frontend'
-        }
-      ]
+      items: initialValues
     },
     mode: 'onChange'
   });
@@ -62,8 +74,32 @@ export default function FrontendForm() {
     control: form.control
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/experience', values);
+
+      if (response.data.success) {
+        router.refresh();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Data has been successfully saved.'
+        });
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -82,7 +118,7 @@ export default function FrontendForm() {
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className='flex items-center gap-2 sm:gap-3 justify-between'
+            className='flex items-start gap-2 sm:gap-3 justify-between'
           >
             <div className='grow grid grid-cols-2 gap-2 sm:gap-3'>
               <FormField
