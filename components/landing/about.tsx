@@ -6,7 +6,9 @@ import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import profileBg from '@/public/web-developer-bg.jpg';
 
-export default function About({ about }: Awaited<ReturnType<typeof getData>>) {
+export default function About({
+  about
+}: Partial<Awaited<ReturnType<typeof getData>>>) {
   return (
     <section id='about' className='md:mt-32'>
       <h1 className='text-center text-sm text-muted-foreground font-medium'>

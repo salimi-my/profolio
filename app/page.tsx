@@ -12,7 +12,7 @@ import Experience from '@/components/landing/experience';
 import Qualification from '@/components/landing/qualification';
 
 export default async function Home() {
-  const { about } = await getData();
+  const { about, frontend, backend } = await getData();
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function Home() {
       <main className='container px-4 md:px-8 mx-auto relative -mt-14'>
         <Header />
         <About about={about} />
-        <Experience />
+        <Experience frontend={frontend} backend={backend} />
         <Expertise />
         <Qualification />
         <Portfolio />
