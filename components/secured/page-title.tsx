@@ -11,7 +11,7 @@ export default function PageTitle() {
     pageTitle = 'Dashboard';
   } else if (pathname === '/admin/about') {
     pageTitle = 'About';
-  } else if (pathname.includes('/admin/experience/')) {
+  } else if (pathname.includes('/admin/experience')) {
     pageTitle = 'Experience';
   } else if (pathname === '/admin/expertise') {
     pageTitle = 'Expertise';
