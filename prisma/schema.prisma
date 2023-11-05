@@ -21,6 +21,7 @@ model User {
   sessions        Session[]
 
   about           About?
+  experience      Experience[]
 }
 
 model Account {
@@ -75,6 +76,26 @@ model About {
 
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+enum SkillType {
+  frontend
+  backend
+}
+
+model Experience {
+  id          String     @id @default(cuid())
+  skill       String
+  level       String
+  type        SkillType  @default(frontend)
+
+  userId      String    
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@index([userId])
 }
