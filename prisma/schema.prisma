@@ -13,7 +13,7 @@ model User {
   name            String?
   image           String?
   email           String?     @unique
-  emailVerified   DateTime?
+  emailVerified   DateTime    @default(now())
   hashedPassword  String?
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
