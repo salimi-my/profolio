@@ -1,3 +1,4 @@
+import FrontendForm from '@/components/secured/frontend-form';
 import {
   Card,
   CardContent,
@@ -18,7 +19,9 @@ export default async function ExperiencePage() {
             Manage your frontend development section informations.
           </CardDescription>
         </CardHeader>
-        <CardContent>FrontendDevelopment</CardContent>
+        <CardContent>
+          <FrontendForm />
+        </CardContent>
       </Card>
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
