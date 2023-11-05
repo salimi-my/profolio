@@ -12,7 +12,14 @@ import Experience from '@/components/landing/experience';
 import Qualification from '@/components/landing/qualification';
 
 export default async function Home() {
-  const { about, frontend, backend } = await getData();
+  const {
+    about,
+    frontend,
+    backend,
+    seooptimization,
+    webdevelopment,
+    contentcreation
+  } = await getData();
 
   return (
     <>
@@ -24,7 +31,11 @@ export default async function Home() {
         <Header />
         <About about={about} />
         <Experience frontend={frontend} backend={backend} />
-        <Expertise />
+        <Expertise
+          seooptimization={seooptimization}
+          webdevelopment={webdevelopment}
+          contentcreation={contentcreation}
+        />
         <Qualification />
         <Portfolio />
         <Tool />
