@@ -12,12 +12,12 @@ export default async function getData(): Promise<Data> {
     prismadb.about.findFirst(),
     prismadb.experience.findMany({
       where: {
-        type: 'frontend'
+        type: 'FRONTEND'
       }
     }),
     prismadb.experience.findMany({
       where: {
-        type: 'backend'
+        type: 'BACKEND'
       }
     })
   ]);

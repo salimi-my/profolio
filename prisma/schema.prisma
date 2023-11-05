@@ -22,6 +22,7 @@ model User {
 
   about           About?
   experience      Experience[]
+  expertise       Expertise[]
 }
 
 model Account {
@@ -81,21 +82,41 @@ model About {
 }
 
 enum SkillType {
-  frontend
-  backend
+  FRONTEND
+  BACKEND
 }
 
 model Experience {
   id          String     @id @default(cuid())
   skill       String
   level       String
-  type        SkillType  @default(frontend)
+  type        SkillType  @default(FRONTEND)
 
   userId      String    
   user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+
+  @@index([userId])
+}
+
+enum ServiceType {
+  SEOOPTIMIZATION
+  WEBDEVELOPMENT
+  CONTENTCREATION
+}
+
+model Expertise {
+  id          String       @id @default(cuid())
+  service     String
+  type        ServiceType  @default(SEOOPTIMIZATION)
+
+  userId      String    
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 
   @@index([userId])
 }
