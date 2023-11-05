@@ -31,9 +31,9 @@ const formSchema = z.object({
   items: z
     .array(
       z.object({
-        type: z.string().min(1, { message: 'Please enter type.' }),
         skill: z.string().min(1, { message: 'Please enter skill.' }),
-        level: z.string().min(1, { message: 'Please select level.' })
+        level: z.string().min(1, { message: 'Please select level.' }),
+        type: z.string().min(1, { message: 'Please enter type.' })
       })
     )
     .optional()
@@ -48,9 +48,9 @@ export default function FrontendForm() {
     defaultValues: {
       items: [
         {
-          type: 'frontend',
           skill: '',
-          level: ''
+          level: '',
+          type: 'frontend'
         }
       ]
     },
@@ -87,18 +87,6 @@ export default function FrontendForm() {
             <div className='grow grid grid-cols-2 gap-2 sm:gap-3'>
               <FormField
                 control={form.control}
-                name={`items.${index}.type`}
-                render={({ field }) => (
-                  <FormItem className='hidden'>
-                    <FormControl>
-                      <Input type='hidden' {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
                 name={`items.${index}.skill`}
                 render={({ field }) => (
                   <FormItem className='space-y-1'>
@@ -131,6 +119,18 @@ export default function FrontendForm() {
                         <SelectItem value='experienced'>Experienced</SelectItem>
                       </SelectContent>
                     </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name={`items.${index}.type`}
+                render={({ field }) => (
+                  <FormItem className='hidden'>
+                    <FormControl>
+                      <Input type='hidden' {...field} />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
