@@ -1,6 +1,8 @@
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
+import ExpertiseForm from '@/components/secured/expertise-form';
 import {
   Card,
   CardContent,
@@ -16,6 +18,27 @@ export default async function ExpertisePage() {
     redirect('/api/auth/signin');
   }
 
+  const seoOptimizationItems = await prismadb.expertise.findMany({
+    where: {
+      userId: session?.user?.id!,
+      type: 'SEOOPTIMIZATION'
+    }
+  });
+
+  const webDevelopmentItems = await prismadb.expertise.findMany({
+    where: {
+      userId: session?.user?.id!,
+      type: 'WEBDEVELOPMENT'
+    }
+  });
+
+  const contentCreationItems = await prismadb.expertise.findMany({
+    where: {
+      userId: session?.user?.id!,
+      type: 'CONTENTCREATION'
+    }
+  });
+
   return (
     <div className='grid lg:grid-cols-2 gap-4'>
       <Card className='rounded-lg border-none'>
@@ -25,7 +48,12 @@ export default async function ExpertisePage() {
             Manage your SEO optimization section informations.
           </CardDescription>
         </CardHeader>
-        <CardContent>SeoOptimazationForm</CardContent>
+        <CardContent>
+          <ExpertiseForm
+            expertiseType='SEOOPTIMIZATION'
+            expertiseItems={seoOptimizationItems}
+          />
+        </CardContent>
       </Card>
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -34,7 +62,12 @@ export default async function ExpertisePage() {
             Manage your web development section informations.
           </CardDescription>
         </CardHeader>
-        <CardContent>WebDevelopmentForm</CardContent>
+        <CardContent>
+          <ExpertiseForm
+            expertiseType='WEBDEVELOPMENT'
+            expertiseItems={webDevelopmentItems}
+          />
+        </CardContent>
       </Card>
       <Card className='lg:col-span-2 rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -43,7 +76,12 @@ export default async function ExpertisePage() {
             Manage your content creation section informations.
           </CardDescription>
         </CardHeader>
-        <CardContent>ContentCreationForm</CardContent>
+        <CardContent>
+          <ExpertiseForm
+            expertiseType='CONTENTCREATION'
+            expertiseItems={contentCreationItems}
+          />
+        </CardContent>
       </Card>
     </div>
   );
