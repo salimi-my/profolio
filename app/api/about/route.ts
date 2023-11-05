@@ -12,7 +12,7 @@ export async function POST(req: Request) {
 
     if (!experience) {
       return NextResponse.json(
-        { success: false, error: 'Wxperience is required.' },
+        { success: false, error: 'Experience is required.' },
         { status: 400 }
       );
     }
