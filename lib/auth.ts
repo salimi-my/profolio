@@ -66,7 +66,21 @@ export const config = {
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET
   },
-  secret: process.env.NEXTAUTH_SECRET
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.sub;
+      }
+      return session;
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    }
+  }
 } satisfies NextAuthOptions;
 
 export function auth(
