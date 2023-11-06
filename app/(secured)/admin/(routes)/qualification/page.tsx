@@ -2,8 +2,9 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
-import { columns } from '@/components/secured/qualification/columns';
 import { DataTable } from '@/components/data-table/data-table';
+import { columns } from '@/components/secured/qualification/columns';
+import { AddButton } from '@/components/secured/qualification/buttons';
 import {
   Card,
   CardContent,
@@ -48,7 +49,12 @@ export default async function QualificationPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <DataTable data={qualifications} columns={columns} options={options} />
+        <DataTable
+          data={qualifications}
+          columns={columns}
+          options={options}
+          AddButton={<AddButton />}
+        />
       </CardContent>
     </Card>
   );

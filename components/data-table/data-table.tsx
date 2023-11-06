@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -35,12 +35,14 @@ interface DataTableProps<TData, TValue> {
     value: string;
     icon?: React.ComponentType<{ className?: string }>;
   }[];
+  AddButton?: ReactNode;
 }
 
 export function DataTable<TData, TValue>({
   data,
   columns,
-  options
+  options,
+  AddButton
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -74,7 +76,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className='space-y-4'>
-      <DataTableToolbar table={table} options={options} />
+      <DataTableToolbar table={table} options={options} AddButton={AddButton} />
       <div className='rounded-md border'>
         <Table>
           <TableHeader>

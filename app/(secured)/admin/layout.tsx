@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
+import ModalProvider from '@/providers/modal-provider';
 
 export default async function AdminLayout({
   children
@@ -13,5 +14,10 @@ export default async function AdminLayout({
     redirect('/api/auth/signin');
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      <ModalProvider />
+      {children}
+    </>
+  );
 }
