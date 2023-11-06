@@ -67,7 +67,7 @@ export default function Portfolio() {
       <h1 className='text-center text-sm text-muted-foreground font-medium'>
         My Recent Work
       </h1>
-      <h2 className='text-center text-2xl font-medium pt-1'>Portfolio</h2>
+      <h2 className='text-center text-2xl font-semibold pt-1'>Portfolio</h2>
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8'>
         {data_portfolio.toReversed().map((portfolio) => (
           <article

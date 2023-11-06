@@ -10,7 +10,7 @@ export default function Contact() {
       <h1 className='text-center text-sm text-muted-foreground font-medium'>
         Get in Touch
       </h1>
-      <h2 className='text-center text-2xl font-medium pt-1'>Contact Me</h2>
+      <h2 className='text-center text-2xl font-semibold pt-1'>Contact Me</h2>
       <div className='w-full max-w-xl lg:max-w-6xl mx-auto grid lg:grid-cols-5 gap-16 pt-8'>
         <div className='lg:col-span-2 flex flex-col gap-6'>
           <article className='rounded-2xl bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-4 px-4 md:px-10'>

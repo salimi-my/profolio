@@ -43,7 +43,9 @@ export default async function ExpertisePage() {
     <div className='grid lg:grid-cols-2 gap-4'>
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
-          <CardTitle className='text-xl font-bold'>SEO Optimization</CardTitle>
+          <CardTitle className='text-xl font-semibold'>
+            SEO Optimization
+          </CardTitle>
           <CardDescription>
             Manage your SEO optimization section informations.
           </CardDescription>
@@ -57,7 +59,9 @@ export default async function ExpertisePage() {
       </Card>
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
-          <CardTitle className='text-xl font-bold'>Web Development</CardTitle>
+          <CardTitle className='text-xl font-semibold'>
+            Web Development
+          </CardTitle>
           <CardDescription>
             Manage your web development section informations.
           </CardDescription>
@@ -71,7 +75,9 @@ export default async function ExpertisePage() {
       </Card>
       <Card className='lg:col-span-2 rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
-          <CardTitle className='text-xl font-bold'>Content Creation</CardTitle>
+          <CardTitle className='text-xl font-semibold'>
+            Content Creation
+          </CardTitle>
           <CardDescription>
             Manage your content creation section informations.
           </CardDescription>
