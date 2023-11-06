@@ -23,6 +23,7 @@ model User {
   about           About?
   experience      Experience[]
   expertise       Expertise[]
+  qualification   Qualification[]
 }
 
 model Account {
@@ -98,7 +99,7 @@ model Experience {
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
 
-  @@index([userId])
+  @@index([userId, type])
 }
 
 enum ServiceType {
@@ -118,5 +119,29 @@ model Expertise {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
-  @@index([userId])
+  @@index([userId, type])
+}
+
+enum QualificationType {
+  EDUCATION
+  EXPERIENCE
+}
+
+model Qualification {
+  id          String             @id @default(cuid())
+  type        QualificationType  @default(EDUCATION)
+  degree      String?
+  school      String?
+  position    String?
+  company     String?
+  startYear   String
+  endYear     String
+
+  userId      String    
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+  @@index([userId, type])
 }
