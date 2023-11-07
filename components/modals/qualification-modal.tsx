@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Modal } from '@/components/ui/modal';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 import { useQualificationModal } from '@/hooks/use-qualification-modal';
 import {
   Form,
@@ -73,8 +74,11 @@ const formSchema = z
   });
 
 export default function QualificationModal() {
-  const qualificationModal = useQualificationModal();
+  const router = useRouter();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
+
+  const qualificationModal = useQualificationModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -91,7 +95,28 @@ export default function QualificationModal() {
 
   const qualificationType = form.watch('type');
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/qualification', values);
+
+      if (response.data.success) {
+        form.reset();
+        qualificationModal.onClose();
+        router.refresh();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Data has been successfully saved.'
+        });
+      }
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Modal
