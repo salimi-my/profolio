@@ -4,7 +4,7 @@ import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/secured/qualification/columns';
-import { AddButton } from '@/components/secured/qualification/buttons';
+import AddButton from '@/components/secured/qualification/add-button';
 import {
   Card,
   CardContent,

@@ -5,7 +5,7 @@ import { PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useQualificationModal } from '@/hooks/use-qualification-modal';
 
-export function AddButton() {
+export default function AddButton() {
   const qualificationModal = useQualificationModal();
   return (
     <Button
