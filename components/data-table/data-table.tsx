@@ -36,13 +36,15 @@ interface DataTableProps<TData, TValue> {
     icon?: React.ComponentType<{ className?: string }>;
   }[];
   AddButton?: ReactNode;
+  page: string;
 }
 
 export function DataTable<TData, TValue>({
   data,
   columns,
   options,
-  AddButton
+  AddButton,
+  page
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -76,7 +78,12 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className='space-y-4'>
-      <DataTableToolbar table={table} options={options} AddButton={AddButton} />
+      <DataTableToolbar
+        table={table}
+        options={options}
+        AddButton={AddButton}
+        page={page}
+      />
       <div className='rounded-md border'>
         <Table>
           <TableHeader>

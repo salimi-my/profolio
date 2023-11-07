@@ -54,6 +54,7 @@ export default async function QualificationPage() {
           columns={columns}
           options={options}
           AddButton={<AddButton />}
+          page='qualification'
         />
       </CardContent>
     </Card>
