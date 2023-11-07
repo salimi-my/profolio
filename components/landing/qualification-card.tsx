@@ -1,18 +1,12 @@
 import { Calendar, LucideIcon } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
+import type { Qualification } from '@prisma/client';
 
 interface QualificationCardProps {
   icon: LucideIcon;
   qualificationType: string;
-  data: {
-    start_year: string;
-    end_year: string;
-    school?: string | undefined;
-    degree?: string | undefined;
-    company?: string | undefined;
-    position?: string | undefined;
-  }[];
+  data: Qualification[] | undefined;
 }
 
 export default function QualificationCard({
@@ -30,7 +24,7 @@ export default function QualificationCard({
       </div>
       <div className='relative wrap overflow-hidden h-full'>
         <div className='absolute border border-opacity-20 border-primary-foreground/80 group-hover:border-primary h-full left-[50%]'></div>
-        {data.toReversed().map((value, index) => (
+        {data?.map((value, index) => (
           <div
             key={index}
             className={cn(
@@ -52,7 +46,7 @@ export default function QualificationCard({
                 </div>
                 <div className='rounded-lg bg-primary-foreground group-hover:bg-primary px-2 py-1'>
                   <p className='text-xs font-medium'>
-                    {value.start_year} - {value.end_year}
+                    {value.startYear} - {value.endYear}
                   </p>
                 </div>
               </div>

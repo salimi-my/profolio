@@ -18,7 +18,9 @@ export default async function Home() {
     backend,
     seooptimization,
     webdevelopment,
-    contentcreation
+    contentcreation,
+    education,
+    experience
   } = await getData();
 
   return (
@@ -36,7 +38,7 @@ export default async function Home() {
           webdevelopment={webdevelopment}
           contentcreation={contentcreation}
         />
-        <Qualification />
+        <Qualification education={education} experience={experience} />
         <Portfolio />
         <Tool />
         <Contact />

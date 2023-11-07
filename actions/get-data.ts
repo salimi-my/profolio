@@ -1,5 +1,10 @@
 import prismadb from '@/lib/prismadb';
-import type { About, Experience, Expertise } from '@prisma/client';
+import type {
+  About,
+  Experience,
+  Expertise,
+  Qualification
+} from '@prisma/client';
 
 interface Data {
   about: About | null;
@@ -8,6 +13,8 @@ interface Data {
   seooptimization: Expertise[];
   webdevelopment: Expertise[];
   contentcreation: Expertise[];
+  education: Qualification[];
+  experience: Qualification[];
 }
 
 export default async function getData(): Promise<Data> {
@@ -17,7 +24,9 @@ export default async function getData(): Promise<Data> {
     backend,
     seooptimization,
     webdevelopment,
-    contentcreation
+    contentcreation,
+    education,
+    experience
   ] = await prismadb.$transaction([
     prismadb.about.findFirst(),
     prismadb.experience.findMany({
@@ -44,6 +53,22 @@ export default async function getData(): Promise<Data> {
       where: {
         type: 'CONTENTCREATION'
       }
+    }),
+    prismadb.qualification.findMany({
+      where: {
+        type: 'EDUCATION'
+      },
+      orderBy: {
+        id: 'desc'
+      }
+    }),
+    prismadb.qualification.findMany({
+      where: {
+        type: 'EXPERIENCE'
+      },
+      orderBy: {
+        id: 'desc'
+      }
     })
   ]);
 
@@ -53,6 +78,8 @@ export default async function getData(): Promise<Data> {
     backend,
     seooptimization,
     webdevelopment,
-    contentcreation
+    contentcreation,
+    education,
+    experience
   };
 }
