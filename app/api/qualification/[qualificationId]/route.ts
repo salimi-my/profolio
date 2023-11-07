@@ -95,10 +95,10 @@ export async function PATCH(
       },
       data: {
         type,
-        degree,
-        school,
-        position,
-        company,
+        degree: degree === '' ? null : degree,
+        school: school === '' ? null : school,
+        position: position === '' ? null : position,
+        company: company === '' ? null : company,
         startYear,
         endYear
       }
