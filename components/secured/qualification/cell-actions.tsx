@@ -11,6 +11,7 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import AlertModal from '@/components/modals/alert-modal';
+import { useQualificationModal } from '@/hooks/use-qualification-modal';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,7 +22,13 @@ import {
 
 export const qualificationSchema = z.object({
   id: z.string(),
-  type: z.string()
+  type: z.enum(['EDUCATION', 'EXPERIENCE']),
+  degree: z.string().nullable(),
+  school: z.string().nullable(),
+  position: z.string().nullable(),
+  company: z.string().nullable(),
+  startYear: z.string(),
+  endYear: z.string()
 });
 
 interface CellActionsProps<TData> {
@@ -35,6 +42,8 @@ export function CellActions<TData>({ row }: CellActionsProps<TData>) {
   const [loading, setLoading] = useState(false);
 
   const qualification = qualificationSchema.parse(row.original);
+
+  const qualificationModal = useQualificationModal();
 
   const onDelete = async () => {
     try {
@@ -81,7 +90,26 @@ export function CellActions<TData>({ row }: CellActionsProps<TData>) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align='end'>
-          <DropdownMenuItem className='hover:cursor-pointer'>
+          <DropdownMenuItem
+            className='hover:cursor-pointer'
+            onClick={() => {
+              qualificationModal.setTitle('Edit Qualification');
+              qualificationModal.setDescription(
+                'Update information on your qualification section.'
+              );
+              qualificationModal.setQualification({
+                id: qualification.id,
+                type: qualification.type,
+                degree: qualification.degree,
+                school: qualification.school,
+                position: qualification.position,
+                company: qualification.company,
+                startYear: qualification.startYear,
+                endYear: qualification.endYear
+              });
+              qualificationModal.onOpen();
+            }}
+          >
             <Edit className='mr-2' size={14} />
             Edit
           </DropdownMenuItem>
