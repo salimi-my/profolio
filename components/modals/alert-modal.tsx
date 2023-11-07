@@ -47,7 +47,7 @@ export default function AlertModal({
               Deleting...
             </>
           )}
-          {!loading && <>Continue</>}
+          {!loading && <>Delete</>}
         </Button>
       </div>
     </Modal>
