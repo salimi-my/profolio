@@ -1,3 +1,7 @@
+import { redirect } from 'next/navigation';
+
+import { auth } from '@/lib/auth';
+import prismadb from '@/lib/prismadb';
 import AboutForm from '@/components/secured/about-form';
 import {
   Card,
@@ -6,9 +10,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { auth } from '@/lib/auth';
-import prismadb from '@/lib/prismadb';
-import { redirect } from 'next/navigation';
 
 export default async function AboutPage() {
   const session = await auth();
