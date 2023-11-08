@@ -45,6 +45,10 @@ export function DataTableViewOptions<TData>({
               columnName = 'Start';
             } else if (column.id === 'endYear') {
               columnName = 'End';
+            } else if (column.id === 'demoUrl') {
+              columnName = 'Demo';
+            } else if (column.id === 'githubUrl') {
+              columnName = 'GitHub';
             }
 
             return (

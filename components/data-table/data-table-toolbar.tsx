@@ -41,7 +41,7 @@ export function DataTableToolbar<TData>({
             className='h-8 w-[120px] lg:w-[250px] border-none shadow-none pl-0 focus-visible:ring-0'
           />
         </div>
-        {table.getColumn('type') && (
+        {page === 'qualification' && table.getColumn('type') && (
           <DataTableFacetedFilter
             column={table.getColumn('type')}
             title='Type'
