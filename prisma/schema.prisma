@@ -130,10 +130,10 @@ enum QualificationType {
 model Qualification {
   id          String             @id @default(cuid())
   type        QualificationType  @default(EDUCATION)
-  degree      String?
-  school      String?
-  position    String?
-  company     String?
+  degree      String
+  school      String
+  position    String
+  company     String
   startYear   String
   endYear     String
 

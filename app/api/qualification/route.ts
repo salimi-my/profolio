@@ -70,10 +70,10 @@ export async function POST(req: Request) {
     const qualification = await prismadb.qualification.create({
       data: {
         type,
-        degree: degree === '' ? null : degree,
-        school: school === '' ? null : school,
-        position: position === '' ? null : position,
-        company: company === '' ? null : company,
+        degree,
+        school,
+        position,
+        company,
         startYear,
         endYear,
         userId: session?.user?.id!

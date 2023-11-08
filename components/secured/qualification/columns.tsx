@@ -50,7 +50,7 @@ export const columns: ColumnDef<Qualification>[] = [
     cell: ({ row }) => (
       <div className='flex'>
         <span className='max-w-[200px] truncate'>
-          {row.getValue('degree') ?? 'N/A'}
+          {row.getValue('degree') === '' ? 'N/A' : row.getValue('degree')}
         </span>
       </div>
     )
@@ -63,7 +63,7 @@ export const columns: ColumnDef<Qualification>[] = [
     cell: ({ row }) => (
       <div className='flex'>
         <span className='max-w-[200px] truncate'>
-          {row.getValue('school') ?? 'N/A'}
+          {row.getValue('school') === '' ? 'N/A' : row.getValue('school')}
         </span>
       </div>
     )
@@ -76,7 +76,7 @@ export const columns: ColumnDef<Qualification>[] = [
     cell: ({ row }) => (
       <div className='flex'>
         <span className='max-w-[200px] truncate'>
-          {row.getValue('position') ?? 'N/A'}
+          {row.getValue('position') === '' ? 'N/A' : row.getValue('position')}
         </span>
       </div>
     )
@@ -89,7 +89,7 @@ export const columns: ColumnDef<Qualification>[] = [
     cell: ({ row }) => (
       <div className='flex'>
         <span className='max-w-[200px] truncate'>
-          {row.getValue('company') ?? 'N/A'}
+          {row.getValue('company') === '' ? 'N/A' : row.getValue('company')}
         </span>
       </div>
     )

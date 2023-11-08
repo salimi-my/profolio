@@ -23,10 +23,10 @@ import {
 export const qualificationSchema = z.object({
   id: z.string(),
   type: z.enum(['EDUCATION', 'EXPERIENCE']),
-  degree: z.string().nullable(),
-  school: z.string().nullable(),
-  position: z.string().nullable(),
-  company: z.string().nullable(),
+  degree: z.string(),
+  school: z.string(),
+  position: z.string(),
+  company: z.string(),
   startYear: z.string(),
   endYear: z.string()
 });
