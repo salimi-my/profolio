@@ -21,9 +21,10 @@ model User {
   sessions        Session[]
 
   about           About?
-  experience      Experience[]
-  expertise       Expertise[]
-  qualification   Qualification[]
+  experiences     Experience[]
+  expertises      Expertise[]
+  qualifications  Qualification[]
+  portfolios      Portfolio[]
 }
 
 model Account {
@@ -144,4 +145,36 @@ model Qualification {
   updatedAt   DateTime           @updatedAt
 
   @@index([userId, type])
+}
+
+model Portfolio {
+  id           String    @id @default(cuid())
+  image        String?
+  title        String
+  description  String
+  githubUrl    String
+  demoUrl      String
+
+  userId       String    
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  tags         Tag[]
+
+  @@index([userId])
+}
+
+model Tag {
+  id            String     @id @default(cuid())
+  name          String
+
+  portfolioId   String
+  portfolio     Portfolio  @relation(fields: [portfolioId], references: [id], onDelete: Cascade)
+
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@index([portfolioId])
 }
