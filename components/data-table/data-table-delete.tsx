@@ -22,12 +22,6 @@ export default function DataTableDelete<TData>({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleClick = () => {
-    console.log(
-      table.getFilteredSelectedRowModel().flatRows.map((row) => row.original)
-    );
-  };
-
   const onDelete = async () => {
     try {
       setLoading(true);

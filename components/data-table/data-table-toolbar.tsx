@@ -30,8 +30,8 @@ export function DataTableToolbar<TData>({
   const isFiltered = table.getState().columnFilters.length > 0;
 
   return (
-    <div className='flex items-center justify-between'>
-      <div className='flex flex-1 items-center space-x-2'>
+    <div className='flex items-start md:items-center justify-between'>
+      <div className='flex flex-col md:flex-row items-start md:flex-1 md:items-center gap-2 md:gap-0 md:space-x-2'>
         <div className='flex justify-between items-center h-[32px] rounded-md border border-input shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring'>
           <MagnifyingGlassIcon className='h-4 w-4 mx-2 text-muted-foreground' />
           <Input
@@ -59,7 +59,7 @@ export function DataTableToolbar<TData>({
           </Button>
         )}
       </div>
-      <div className='flex items-center space-x-2'>
+      <div className='flex flex-col-reverse md:flex-row items-center gap-2 md:gap-0 md:space-x-2'>
         {table.getFilteredSelectedRowModel().rows.length > 0 && (
           <DeleteButton table={table} page={page} />
         )}
