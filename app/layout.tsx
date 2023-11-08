@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
+import { EdgeStoreProvider } from '@/lib/edgestore';
 import ToastProvider from '@/providers/toast-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
 
@@ -22,10 +23,12 @@ export default async function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          {children}
-          <ToastProvider />
-        </ThemeProvider>
+        <EdgeStoreProvider>
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+            {children}
+            <ToastProvider />
+          </ThemeProvider>
+        </EdgeStoreProvider>
       </body>
     </html>
   );
