@@ -125,3 +125,59 @@ export async function PATCH(
     );
   }
 }
+
+export async function DELETE(
+  _req: Request,
+  { params }: { params: { portfolioId: string } }
+) {
+  try {
+    const session = await auth();
+
+    if (!session || !session.user) {
+      return NextResponse.json(
+        { success: false, error: 'Unauthenticated.' },
+        { status: 401 }
+      );
+    }
+
+    if (!params.portfolioId) {
+      return NextResponse.json(
+        { success: false, error: 'Portfolio ID is required.' },
+        { status: 400 }
+      );
+    }
+
+    const portfolioFound = await prismadb.portfolio.findUnique({
+      where: {
+        id: params.portfolioId
+      }
+    });
+
+    if (!portfolioFound) {
+      return NextResponse.json(
+        { success: false, error: 'Portfolio not found.' },
+        { status: 400 }
+      );
+    }
+
+    const portfolio = await prismadb.portfolio.delete({
+      where: {
+        id: params.portfolioId
+      }
+    });
+
+    const tagsDeleted = await prismadb.tag.deleteMany({
+      where: {
+        portfolioId: params.portfolioId
+      }
+    });
+
+    return NextResponse.json({ success: true, portfolio, tagsDeleted });
+  } catch (error: any) {
+    console.log('[PORTFOLIO_DELETE]', error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}

@@ -9,6 +9,7 @@ import { Edit, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { DotsHorizontalIcon } from '@radix-ui/react-icons';
 
+import { useEdgeStore } from '@/lib/edgestore';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 import AlertModal from '@/components/modals/alert-modal';
@@ -39,9 +40,39 @@ export function CellActions<TData>({ row }: CellActionsProps<TData>) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const { edgestore } = useEdgeStore();
+
   const portfolio = portfolioSchema.parse(row.original);
 
-  const onDelete = async () => {};
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+
+      await edgestore.publicImages.delete({
+        url: portfolio.image
+      });
+
+      await axios.delete(`/api/portfolio/${portfolio.id}`);
+
+      router.refresh();
+      toast({
+        variant: 'default',
+        title: 'Success!',
+        description: 'Data has been successfully deleted.'
+      });
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
 
   return (
     <>
