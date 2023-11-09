@@ -2,6 +2,9 @@ import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 import prismadb from '@/lib/prismadb';
+import { DataTable } from '@/components/data-table/data-table';
+import { columns } from '@/components/secured/portfolio/columns';
+import AddButton from '@/components/secured/portfolio/add-button';
 import {
   Card,
   CardContent,
@@ -9,9 +12,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { DataTable } from '@/components/data-table/data-table';
-import { columns } from '@/components/secured/portfolio/columns';
-import AddButton from '@/components/secured/portfolio/add-button';
 
 export const options = [];
 
