@@ -166,13 +166,7 @@ export async function DELETE(
       }
     });
 
-    const tagsDeleted = await prismadb.tag.deleteMany({
-      where: {
-        portfolioId: params.portfolioId
-      }
-    });
-
-    return NextResponse.json({ success: true, portfolio, tagsDeleted });
+    return NextResponse.json({ success: true, portfolio });
   } catch (error: any) {
     console.log('[PORTFOLIO_DELETE]', error);
     return NextResponse.json(
