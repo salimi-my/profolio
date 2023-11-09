@@ -27,7 +27,7 @@ export default async function PortfolioPage() {
       userId: session?.user?.id!
     },
     orderBy: {
-      createdAt: 'asc'
+      createdAt: 'desc'
     },
     include: {
       tags: true
