@@ -3,8 +3,13 @@ import type {
   About,
   Experience,
   Expertise,
+  Prisma,
   Qualification
 } from '@prisma/client';
+
+type PortfolioWithTags = Prisma.PortfolioGetPayload<{
+  include: { tags: true };
+}>;
 
 interface Data {
   about: About | null;
@@ -15,6 +20,8 @@ interface Data {
   contentcreation: Expertise[];
   education: Qualification[];
   experience: Qualification[];
+  portfolio: PortfolioWithTags[];
+  portfolioCount: number;
 }
 
 export default async function getData(): Promise<Data> {
@@ -26,7 +33,9 @@ export default async function getData(): Promise<Data> {
     webdevelopment,
     contentcreation,
     education,
-    experience
+    experience,
+    portfolio,
+    portfolioCount
   ] = await prismadb.$transaction([
     prismadb.about.findFirst(),
     prismadb.experience.findMany({
@@ -69,7 +78,17 @@ export default async function getData(): Promise<Data> {
       orderBy: {
         id: 'desc'
       }
-    })
+    }),
+    prismadb.portfolio.findMany({
+      take: 6,
+      include: {
+        tags: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    }),
+    prismadb.portfolio.count()
   ]);
 
   return {
@@ -80,6 +99,8 @@ export default async function getData(): Promise<Data> {
     webdevelopment,
     contentcreation,
     education,
-    experience
+    experience,
+    portfolio,
+    portfolioCount
   };
 }

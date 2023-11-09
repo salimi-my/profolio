@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
@@ -89,6 +89,32 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true, portfolio, tagsCreated });
   } catch (error: any) {
     console.log('[PORTFOLIO_POST]', error);
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET(req: NextRequest) {
+  try {
+    const searchParams = req.nextUrl.searchParams;
+    const offset = searchParams.get('offset');
+
+    const portfolios = await prismadb.portfolio.findMany({
+      skip: typeof offset === 'string' ? parseInt(offset) : 0,
+      take: 3,
+      orderBy: {
+        createdAt: 'desc'
+      },
+      include: {
+        tags: true
+      }
+    });
+
+    return NextResponse.json(portfolios);
+  } catch (error: any) {
+    console.log('[PORTFOLIO_GET]', error);
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }

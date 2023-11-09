@@ -20,7 +20,9 @@ export default async function Home() {
     webdevelopment,
     contentcreation,
     education,
-    experience
+    experience,
+    portfolio,
+    portfolioCount
   } = await getData();
 
   return (
@@ -39,7 +41,7 @@ export default async function Home() {
           contentcreation={contentcreation}
         />
         <Qualification education={education} experience={experience} />
-        <Portfolio />
+        <Portfolio portfolio={portfolio} portfolioCount={portfolioCount} />
         <Tool />
         <Contact />
       </main>

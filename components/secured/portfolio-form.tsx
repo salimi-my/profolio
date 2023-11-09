@@ -6,15 +6,15 @@ import { useState } from 'react';
 import { Prisma } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { Loader2, Trash } from 'lucide-react';
-import { useEdgeStore } from '@/lib/edgestore';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { SingleImageDropzone } from '@/components/secured/single-image-dropzone';
 
 import { Input } from '@/components/ui/input';
+import { useEdgeStore } from '@/lib/edgestore';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import { SingleImageDropzone } from '@/components/secured/single-image-dropzone';
 import {
   Form,
   FormControl,

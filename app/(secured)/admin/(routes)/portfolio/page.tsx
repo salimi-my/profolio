@@ -1,6 +1,6 @@
-import { auth } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
+import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/secured/portfolio/columns';
