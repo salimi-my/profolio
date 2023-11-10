@@ -9,7 +9,7 @@ import {
   FolderGit2,
   GraduationCap,
   LayoutGrid,
-  LinkIcon,
+  List,
   LogOut,
   Text
 } from 'lucide-react';
@@ -71,7 +71,7 @@ export default function Menu({ isOpen }: MenuProps) {
       href: '/admin/miscellaneous',
       label: 'Miscellaneous',
       active: pathname.includes('/admin/miscellaneous'),
-      icon: <LinkIcon size={18} />
+      icon: <List size={18} />
     }
   ];
 
