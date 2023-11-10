@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
 
 export default function Portfolio({
-  portfolio,
+  portfolioWithBlur,
   portfolioCount
 }: Partial<Awaited<ReturnType<typeof getData>>>) {
   const { toast } = useToast();
@@ -20,7 +20,7 @@ export default function Portfolio({
   const [hide, setHide] = useState(false);
   const [offset, setOffset] = useState(6);
   const [loading, setLoading] = useState(false);
-  const [portfolios, setPortfolios] = useState(portfolio);
+  const [portfolios, setPortfolios] = useState(portfolioWithBlur);
 
   const onLoadMore = async () => {
     try {
@@ -73,14 +73,26 @@ export default function Portfolio({
             className='relative w-full h-min rounded-2xl flex flex-col group'
           >
             <div className='relative w-full h-[250px] lg:h-[300px] overflow-hidden'>
-              {portfolio.image && (
+              {portfolio.image && portfolio.blurredDataUrl ? (
                 <Image
                   src={portfolio.image}
                   alt='portfolio'
                   fill
+                  placeholder='blur'
+                  blurDataURL={portfolio.blurredDataUrl}
                   sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
                   className='object-cover object-top group-hover:object-bottom transition-all duration-6000 ease-in-out rounded-t-2xl border-t border-x'
                 />
+              ) : (
+                portfolio.image && (
+                  <Image
+                    src={portfolio.image}
+                    alt='portfolio'
+                    fill
+                    sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                    className='object-cover object-top group-hover:object-bottom transition-all duration-6000 ease-in-out rounded-t-2xl border-t border-x'
+                  />
+                )
               )}
             </div>
             <div className='flex flex-col gap-4 rounded-b-2xl py-9 px-6 md:px-6 border border-t-primary dark:border-t-zinc-100 group-hover:border-t-zinc-200 dark:group-hover:border-t-zinc-800 bg-primary group-hover:bg-primary-foreground transition-colors duration-300 ease-in-out'>
