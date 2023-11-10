@@ -4,7 +4,7 @@ import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
 import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
-import profileBg from '@/public/web-developer-bg.jpg';
+import profileBg from '@/public/web-developer-bg.webp';
 
 export default function About({
   about

@@ -6,7 +6,7 @@ import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import profile from '@/public/web-developer.png';
+import profile from '@/public/web-developer.webp';
 
 export default function Header() {
   const [text] = useTypewriter({
