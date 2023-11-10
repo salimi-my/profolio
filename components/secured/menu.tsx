@@ -40,37 +40,37 @@ export default function Menu({ isOpen }: MenuProps) {
     {
       href: '/admin/about',
       label: 'About',
-      active: pathname === '/admin/about',
+      active: pathname.includes('/admin/about'),
       icon: <Text size={18} />
     },
     {
       href: '/admin/experience',
       label: 'Experience',
-      active: pathname === '/admin/experience',
+      active: pathname.includes('/admin/experience'),
       icon: <Book size={18} />
     },
     {
       href: '/admin/expertise',
       label: 'Expertise',
-      active: pathname === '/admin/expertise',
+      active: pathname.includes('/admin/expertise'),
       icon: <ClipboardCheck size={18} />
     },
     {
       href: '/admin/qualification',
       label: 'Qualification',
-      active: pathname === '/admin/qualification',
+      active: pathname.includes('/admin/qualification'),
       icon: <GraduationCap size={20} />
     },
     {
       href: '/admin/portfolio',
       label: 'Portfolio',
-      active: pathname === '/admin/portfolio',
+      active: pathname.includes('/admin/portfolio'),
       icon: <FolderGit2 size={18} />
     },
     {
-      href: '/admin/link',
-      label: 'Link',
-      active: pathname === '/admin/link',
+      href: '/admin/miscellaneous',
+      label: 'Miscellaneous',
+      active: pathname.includes('/admin/miscellaneous'),
       icon: <LinkIcon size={18} />
     }
   ];
