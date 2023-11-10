@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import BackButton from '@/components/back-button';
 import PortfolioForm from '@/components/secured/portfolio-form';
 import {
   Card,
@@ -32,16 +33,21 @@ export default async function PortfolioIdPage({
   });
 
   return (
-    <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px] pb-9'>
-        <CardTitle className='text-xl font-semibold'>Edit Portfolio</CardTitle>
-        <CardDescription>
-          Edit project information on your portfolio section.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <PortfolioForm portfolio={portfolio} />
-      </CardContent>
-    </Card>
+    <>
+      <BackButton slug='/admin/portfolio' />
+      <Card className='rounded-lg border-none'>
+        <CardHeader className='mx-[1px] pb-9'>
+          <CardTitle className='text-xl font-semibold'>
+            Edit Portfolio
+          </CardTitle>
+          <CardDescription>
+            Edit project information on your portfolio section.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <PortfolioForm portfolio={portfolio} />
+        </CardContent>
+      </Card>
+    </>
   );
 }
