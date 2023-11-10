@@ -25,6 +25,8 @@ model User {
   expertises      Expertise[]
   qualifications  Qualification[]
   portfolios      Portfolio[]
+  miscellaneous   Miscellaneous?
+  titles          Title[]
 }
 
 model Account {
@@ -178,4 +180,40 @@ model Tag {
   updatedAt     DateTime   @updatedAt
 
   @@index([portfolioId])
+}
+
+model Miscellaneous {
+  id               String   @id @default(cuid())
+  email            String
+  messengerName    String
+  messengerUrl     String
+  discordUsername  String
+  discordUrl       String
+  facebookUrl      String
+  instagramUrl     String
+  twitterUrl       String
+  linkedinUrl      String
+  githubUrl        String
+  csvUrl           String
+
+  userId           String    @unique
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Title {
+  id               String    @id @default(cuid())
+  name             String
+
+  userId           String    @unique
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([userId])
 }
