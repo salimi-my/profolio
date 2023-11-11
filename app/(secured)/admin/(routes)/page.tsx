@@ -1,7 +1,11 @@
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Book, Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { Button } from '@/components/ui/button';
+import QualificationTab from '@/components/secured/qualification-tab';
 import {
   Card,
   CardContent,
@@ -9,10 +13,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { Book, Briefcase, FolderGit2, Laptop } from 'lucide-react';
-import QualificationTab from '@/components/secured/qualification-tab';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -21,25 +21,42 @@ export default async function DashboardPage() {
     redirect('/api/auth/signin');
   }
 
-  const [portfolioCount, education, experience] = await prismadb.$transaction([
-    prismadb.portfolio.count(),
-    prismadb.qualification.findMany({
-      where: {
-        type: 'EDUCATION'
-      },
-      orderBy: {
-        id: 'desc'
-      }
-    }),
-    prismadb.qualification.findMany({
-      where: {
-        type: 'EXPERIENCE'
-      },
-      orderBy: {
-        id: 'desc'
-      }
-    })
-  ]);
+  const [portfolioCount, workingStart, education, experience] =
+    await prismadb.$transaction([
+      prismadb.portfolio.count(),
+      prismadb.qualification.findFirst({
+        select: {
+          startYear: true
+        },
+        where: {
+          type: 'EXPERIENCE'
+        },
+        orderBy: {
+          id: 'asc'
+        }
+      }),
+      prismadb.qualification.findMany({
+        where: {
+          type: 'EDUCATION'
+        },
+        orderBy: {
+          id: 'desc'
+        }
+      }),
+      prismadb.qualification.findMany({
+        where: {
+          type: 'EXPERIENCE'
+        },
+        orderBy: {
+          id: 'desc'
+        }
+      })
+    ]);
+
+  const workingYears =
+    typeof workingStart?.startYear === 'string'
+      ? new Date().getFullYear() - parseInt(workingStart?.startYear)
+      : 0;
 
   return (
     <>
@@ -70,7 +87,7 @@ export default async function DashboardPage() {
             <Book className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
           <CardContent>
-            <div className='text-2xl font-bold'>5+</div>
+            <div className='text-2xl font-bold'>{workingYears}</div>
             <p className='text-xs text-muted-foreground'>years of working</p>
           </CardContent>
         </Card>
