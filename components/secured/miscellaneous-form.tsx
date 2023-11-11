@@ -48,7 +48,7 @@ const formSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter valid Twitter URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter valid LinkedIn URL.' }),
   githubUrl: z.string().url({ message: 'Please enter valid GitHub URL.' }),
-  csvUrl: z.string().url({ message: 'Please enter valid CSV URL.' }),
+  cvUrl: z.string().url({ message: 'Please enter valid CV URL.' }),
   titles: z
     .array(
       z.object({
@@ -85,7 +85,7 @@ export default function MiscellaneousForm({
       twitterUrl: miscellaneous?.twitterUrl ?? '',
       linkedinUrl: miscellaneous?.linkedinUrl ?? '',
       githubUrl: miscellaneous?.githubUrl ?? '',
-      csvUrl: miscellaneous?.csvUrl ?? '',
+      cvUrl: miscellaneous?.cvUrl ?? '',
       titles: initialValues
     },
     mode: 'onChange'
@@ -100,19 +100,45 @@ export default function MiscellaneousForm({
     formState: { errors }
   } = form;
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/miscellaneous', values);
+
+      if (response.data.success) {
+        router.refresh();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Data has been successfully saved.'
+        });
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-4'
+        className='grid lg:grid-cols-2 gap-4'
       >
         <FormField
           control={form.control}
           name='email'
           render={({ field }) => (
-            <FormItem className='space-y-1'>
+            <FormItem className='space-y-1 lg:col-span-2'>
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder='Enter email' {...field} />
@@ -240,18 +266,18 @@ export default function MiscellaneousForm({
         />
         <FormField
           control={form.control}
-          name='csvUrl'
+          name='cvUrl'
           render={({ field }) => (
             <FormItem className='space-y-1'>
               <FormLabel>CSV URL</FormLabel>
               <FormControl>
-                <Input placeholder='Enter CSV URL' {...field} />
+                <Input placeholder='Enter CV URL' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div>
+        <div className='lg:col-span-2 mt-6'>
           {fields.map((field, index) => (
             <div
               key={field.id}
