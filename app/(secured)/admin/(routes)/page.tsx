@@ -11,6 +11,8 @@ import {
 } from '@/components/ui/card';
 import { Book, Briefcase, FolderGit2, Laptop } from 'lucide-react';
 import QualificationTab from '@/components/secured/qualification-tab';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -41,6 +43,16 @@ export default async function DashboardPage() {
 
   return (
     <>
+      <div className='flex items-center justify-between mb-4'>
+        <h2 className='text-2xl md:text-3xl font-bold tracking-tight'>
+          Welcome {session.user.name}
+        </h2>
+        <div className='flex items-center'>
+          <Button size='sm' asChild>
+            <Link href='/admin/portfolio/create'>Add project</Link>
+          </Button>
+        </div>
+      </div>
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
         <Card className='rounded-lg border-none'>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
