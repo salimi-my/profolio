@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import AccountForm from '@/components/secured/account-form';
 import {
   Card,
   CardContent,
@@ -20,6 +21,10 @@ export default async function AccountPage() {
   const user = await prismadb.user.findUnique({
     where: {
       id: session?.user?.id!
+    },
+    select: {
+      name: true,
+      email: true
     }
   });
 
@@ -31,7 +36,9 @@ export default async function AccountPage() {
           Manage your account profile informations.
         </CardDescription>
       </CardHeader>
-      <CardContent>ProfileForm</CardContent>
+      <CardContent>
+        <AccountForm user={user} />
+      </CardContent>
     </Card>
   );
 }
