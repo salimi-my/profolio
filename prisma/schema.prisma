@@ -193,7 +193,7 @@ model Miscellaneous {
   twitterUrl       String
   linkedinUrl      String
   githubUrl        String
-  csvUrl           String
+  cvUrl            String
 
   userId           String    @unique
   user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
