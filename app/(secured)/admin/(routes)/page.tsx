@@ -21,7 +21,7 @@ export default async function DashboardPage() {
     redirect('/api/auth/signin');
   }
 
-  const [portfolioCount, workingStart, education, experience] =
+  const [portfolioCount, workingStart, currentJob, education, experience] =
     await prismadb.$transaction([
       prismadb.portfolio.count(),
       prismadb.qualification.findFirst({
@@ -33,6 +33,12 @@ export default async function DashboardPage() {
         },
         orderBy: {
           id: 'asc'
+        }
+      }),
+      prismadb.qualification.findFirst({
+        where: {
+          type: 'EXPERIENCE',
+          endYear: 'Present'
         }
       }),
       prismadb.qualification.findMany({
@@ -97,10 +103,12 @@ export default async function DashboardPage() {
             <Briefcase className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
           <CardContent>
-            <div className='text-2xl font-bold max-w-[206px] truncate'>
-              Web Developer
+            <div className='text-xl leading-8 font-bold max-w-[206px] truncate'>
+              {currentJob?.position}
             </div>
-            <p className='text-xs text-muted-foreground'>Logicwise Sdn Bhd</p>
+            <p className='text-xs text-muted-foreground'>
+              {currentJob?.company}
+            </p>
           </CardContent>
         </Card>
         <Card className='rounded-lg border-none'>
@@ -109,7 +117,7 @@ export default async function DashboardPage() {
             <Laptop className='h-4 w-4 text-muted-foreground' />
           </CardHeader>
           <CardContent>
-            <div className='text-2xl font-bold max-w-[206px] truncate'>
+            <div className='text-xl leading-8 font-bold max-w-[206px] truncate'>
               Worldwide
             </div>
             <p className='text-xs text-muted-foreground'>remotely available</p>
