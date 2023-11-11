@@ -26,11 +26,10 @@ model User {
   qualifications  Qualification[]
   portfolios      Portfolio[]
   miscellaneous   Miscellaneous?
-  titles          Title[]
 }
 
 model Account {
-  id                 String  @id @default(cuid())
+  id                 String   @id @default(cuid())
   userId             String
   type               String
   provider           String
@@ -202,18 +201,20 @@ model Miscellaneous {
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
 
+  titles           Title[]
+
   @@index([userId])
 }
 
 model Title {
-  id               String    @id @default(cuid())
+  id               String         @id @default(cuid())
   name             String
 
-  userId           String    @unique
-  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  miscellaneousId  String
+  miscellaneous    Miscellaneous  @relation(fields: [miscellaneousId], references: [id], onDelete: Cascade)
 
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 
-  @@index([userId])
+  @@index([miscellaneousId])
 }
