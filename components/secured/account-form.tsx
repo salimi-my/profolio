@@ -7,6 +7,7 @@ import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import type { Prisma } from '@prisma/client';
+import { useSession } from 'next-auth/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Input } from '@/components/ui/input';
@@ -56,6 +57,8 @@ export default function AccountForm({ user }: AccountFormProps) {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
+  const { update } = useSession();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,7 +70,52 @@ export default function AccountForm({ user }: AccountFormProps) {
     }
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.post('/api/account', values);
+
+      if (response.data.success) {
+        update({
+          name: response.data.user.name,
+          email: response.data.user.email
+        });
+
+        form.resetField('current');
+        form.resetField('password');
+        form.resetField('confirm');
+        router.refresh();
+
+        toast({
+          variant: 'default',
+          title: 'Success!',
+          description: 'Data has been successfully saved.'
+        });
+      }
+    } catch (error: any) {
+      if (error.response.data.error === 'Passwords does not match.') {
+        form.setError('confirm', {
+          type: 'manual',
+          message: error.response.data.error
+        });
+      } else if (error.response.data.error === 'Wrong current password.') {
+        form.setError('current', {
+          type: 'manual',
+          message: error.response.data.error
+        });
+      } else {
+        console.log(error);
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>

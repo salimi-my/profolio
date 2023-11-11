@@ -68,16 +68,28 @@ export const config = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    session: async ({ session, token }) => {
+    session: async ({ session, token, trigger, newSession }) => {
       if (session?.user) {
         session.user.id = token.sub;
       }
+
+      if (trigger === 'update' && newSession?.name && newSession?.email) {
+        session.user.name = newSession.name;
+        session.user.email = newSession.email;
+      }
+
       return session;
     },
-    jwt: async ({ user, token }) => {
+    jwt: async ({ user, token, trigger, session }) => {
       if (user) {
         token.sub = user.id;
       }
+
+      if (trigger === 'update' && session?.name && session?.email) {
+        token.name = session.name;
+        token.email = session.email;
+      }
+
       return token;
     }
   }
