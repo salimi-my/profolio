@@ -5,12 +5,17 @@ import Image from 'next/image';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 
+import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import profile from '@/public/web-developer.webp';
 
-export default function Header() {
+export default function Header({
+  miscellaneous
+}: Partial<Awaited<ReturnType<typeof getData>>>) {
   const [text] = useTypewriter({
-    words: ['Web Developer', 'Frontend Developer'],
+    words: miscellaneous
+      ? miscellaneous?.titles.map((title) => title.name)
+      : [],
     loop: true
   });
 
@@ -37,11 +42,11 @@ export default function Header() {
         <div className='inline-flex space-x-3 pt-9'>
           <Button variant='outline' asChild>
             <Link
-              href='https://share.salimi.my/share/file/f1a0b3050e57a7dec2a94499bd4f8524'
+              href={miscellaneous ? miscellaneous.cvUrl : '#'}
               target='_blank'
               rel='noopener noreferrer'
             >
-              Download CSV
+              Download CV
             </Link>
           </Button>
           <Button variant='default' asChild>
@@ -53,7 +58,7 @@ export default function Header() {
         <div className='flex justify-between items-end'>
           <div className='flex flex-col items-center gap-4 after:content-[""] after:w-[1px] after:h-[2rem] after:bg-primary'>
             <Link
-              href='https://www.facebook.com/mysalimi'
+              href={miscellaneous ? miscellaneous.facebookUrl : '#'}
               aria-label='Facebook'
               target='_blank'
               rel='noopener noreferrer'
@@ -62,7 +67,7 @@ export default function Header() {
               <Facebook className='text-white dark:text-zinc-950 w-4 h-4' />
             </Link>
             <Link
-              href='https://www.linkedin.com/in/mohamad-salimi'
+              href={miscellaneous ? miscellaneous.linkedinUrl : '#'}
               aria-label='LinkedIn'
               target='_blank'
               rel='noopener noreferrer'
@@ -71,7 +76,7 @@ export default function Header() {
               <Linkedin className='text-white dark:text-zinc-950 w-4 h-4' />
             </Link>
             <Link
-              href='https://github.com/salimi-my'
+              href={miscellaneous ? miscellaneous.githubUrl : '#'}
               aria-label='GitHub'
               target='_blank'
               rel='noopener noreferrer'

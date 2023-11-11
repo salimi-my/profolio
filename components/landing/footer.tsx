@@ -1,9 +1,12 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
+import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 
-export default function Footer() {
+export default function Footer({
+  miscellaneous
+}: Partial<Awaited<ReturnType<typeof getData>>>) {
   return (
     <footer id='footer' className='mt-32 bg-primary'>
       <div className='container px-4 md:px-8 mx-auto w-full flex flex-col py-12'>
@@ -61,7 +64,8 @@ export default function Footer() {
         <div className='flex justify-center gap-4 mt-8'>
           <Button variant='secondary' size='icon' asChild>
             <Link
-              href='https://www.facebook.com/mysalimi'
+              href={`${miscellaneous ? miscellaneous.facebookUrl : '#'}`}
+              aria-label='Facebook'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -70,7 +74,8 @@ export default function Footer() {
           </Button>
           <Button variant='secondary' size='icon' asChild>
             <Link
-              href='https://www.instagram.com/salimi.my'
+              href={`${miscellaneous ? miscellaneous.instagramUrl : '#'}`}
+              aria-label='Instagram'
               target='_blank'
               rel='noopener noreferrer'
             >
@@ -79,11 +84,22 @@ export default function Footer() {
           </Button>
           <Button variant='secondary' size='icon' asChild>
             <Link
-              href='https://twitter.com/mysalimi'
+              href={`${miscellaneous ? miscellaneous.twitterUrl : '#'}`}
+              aria-label='Twitter'
               target='_blank'
               rel='noopener noreferrer'
             >
               <Twitter className='w-5 h-5' />
+            </Link>
+          </Button>
+          <Button variant='secondary' size='icon' asChild>
+            <Link
+              href={`${miscellaneous ? miscellaneous.linkedinUrl : '#'}`}
+              aria-label='LinkedIn'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Linkedin className='w-5 h-5' />
             </Link>
           </Button>
         </div>

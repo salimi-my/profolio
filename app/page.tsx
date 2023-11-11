@@ -22,7 +22,8 @@ export default async function Home() {
     education,
     experience,
     portfolioWithBlur,
-    portfolioCount
+    portfolioCount,
+    miscellaneous
   } = await getData();
 
   return (
@@ -32,7 +33,7 @@ export default async function Home() {
       </div>
       <Nav />
       <main className='container px-4 md:px-8 mx-auto relative -mt-14'>
-        <Header />
+        <Header miscellaneous={miscellaneous} />
         <About about={about} />
         <Experience frontend={frontend} backend={backend} />
         <Expertise
@@ -46,9 +47,9 @@ export default async function Home() {
           portfolioCount={portfolioCount}
         />
         <Tool />
-        <Contact />
+        <Contact miscellaneous={miscellaneous} />
       </main>
-      <Footer />
+      <Footer miscellaneous={miscellaneous} />
     </>
   );
 }

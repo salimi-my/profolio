@@ -1,10 +1,13 @@
 import Link from 'next/link';
 
+import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/landing/icons';
 import ContactForm from '@/components/landing/contact-form';
 
-export default function Contact() {
+export default function Contact({
+  miscellaneous
+}: Partial<Awaited<ReturnType<typeof getData>>>) {
   return (
     <section id='contact' className='mt-32'>
       <h1 className='text-center text-sm text-muted-foreground font-medium'>
@@ -18,7 +21,7 @@ export default function Contact() {
               <Icons.email className='w-7 h-7 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Email</h3>
               <h4 className='text-sm text-muted-foreground pb-1'>
-                contact@salimi.my
+                {miscellaneous?.email}
               </h4>
               <Button
                 variant='link'
@@ -26,9 +29,9 @@ export default function Contact() {
                 asChild
               >
                 <Link
-                  href='mailto:contact@salimi.my'
-                  target='_blank'
-                  rel='noopener noreferer'
+                  href={`${
+                    miscellaneous ? 'mailto:' + miscellaneous.email : '#'
+                  }`}
                 >
                   Email me
                 </Link>
@@ -40,7 +43,7 @@ export default function Contact() {
               <Icons.messenger className='w-7 h-7 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Messenger</h3>
               <h4 className='text-sm text-muted-foreground pb-1'>
-                Mohamad Salimi
+                {miscellaneous?.messengerName}
               </h4>
               <Button
                 variant='link'
@@ -48,7 +51,7 @@ export default function Contact() {
                 asChild
               >
                 <Link
-                  href='https://m.me/mysalimi'
+                  href={`${miscellaneous ? miscellaneous.messengerUrl : '#'}`}
                   target='_blank'
                   rel='noopener noreferer'
                 >
@@ -61,14 +64,16 @@ export default function Contact() {
             <div className='flex flex-col items-center text-primary-foreground group-hover:text-primary'>
               <Icons.discord className='w-8 h-8 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Discord</h3>
-              <h4 className='text-sm text-muted-foreground pb-1'>salimi.my</h4>
+              <h4 className='text-sm text-muted-foreground pb-1'>
+                {miscellaneous?.discordUsername}
+              </h4>
               <Button
                 variant='link'
                 className='text-primary-foreground group-hover:text-primary'
                 asChild
               >
                 <Link
-                  href='https://discordapp.com/users/216541962147332096'
+                  href={`${miscellaneous ? miscellaneous.discordUrl : '#'}`}
                   target='_blank'
                   rel='noopener noreferer'
                 >
