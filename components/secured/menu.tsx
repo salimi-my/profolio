@@ -11,7 +11,8 @@ import {
   LayoutGrid,
   List,
   LogOut,
-  Text
+  Text,
+  User
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
@@ -72,6 +73,12 @@ export default function Menu({ isOpen }: MenuProps) {
       label: 'Miscellaneous',
       active: pathname.includes('/admin/miscellaneous'),
       icon: <List size={18} />
+    },
+    {
+      href: '/admin/profile',
+      label: 'Account',
+      active: pathname.includes('/admin/profile'),
+      icon: <User size={18} />
     }
   ];
 
