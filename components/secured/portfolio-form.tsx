@@ -9,6 +9,7 @@ import { Loader2, Trash } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
 
+import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { useEdgeStore } from '@/lib/edgestore';
 import { Button } from '@/components/ui/button';
@@ -18,6 +19,7 @@ import { SingleImageDropzone } from '@/components/secured/single-image-dropzone'
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -83,6 +85,10 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
     name: 'tags',
     control: form.control
   });
+
+  const {
+    formState: { errors }
+  } = form;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -166,7 +172,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             control={form.control}
             name='title'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
+              <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
                   <Input placeholder='Enter title' {...field} />
@@ -179,7 +185,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             control={form.control}
             name='description'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
+              <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
                   <Textarea
@@ -197,7 +203,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             control={form.control}
             name='githubUrl'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
+              <FormItem>
                 <FormLabel>GitHub URL</FormLabel>
                 <FormControl>
                   <Input placeholder='Enter GitHub URL' {...field} />
@@ -210,7 +216,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             control={form.control}
             name='demoUrl'
             render={({ field }) => (
-              <FormItem className='space-y-1'>
+              <FormItem>
                 <FormLabel>Demo URL</FormLabel>
                 <FormControl>
                   <Input placeholder='Enter demo URL' {...field} />
@@ -219,54 +225,68 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
               </FormItem>
             )}
           />
-          <FormLabel className='pt-2'>Tags</FormLabel>
-          {fields.map((field, index) => (
-            <div
-              key={field.id}
-              className='flex items-start gap-2 sm:gap-3 justify-between'
-            >
-              <div className='grow'>
-                <FormField
-                  control={form.control}
-                  name={`tags.${index}.name`}
-                  render={({ field }) => (
-                    <FormItem className='space-y-1'>
-                      <FormControl>
-                        <Input placeholder='Enter tag' {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+          <div>
+            {fields.map((field, index) => (
+              <div
+                key={field.id}
+                className='flex items-end gap-2 sm:gap-3 justify-between'
+              >
+                <div className='grow'>
+                  <FormField
+                    control={form.control}
+                    name={`tags.${index}.name`}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className={cn(index !== 0 && 'sr-only')}>
+                          Tags
+                        </FormLabel>
+                        <FormDescription
+                          className={cn(index !== 0 && 'sr-only')}
+                        >
+                          Add list of techs used in this this project.
+                        </FormDescription>
+                        <FormControl>
+                          <Input placeholder='Enter tag' {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div
+                  className={cn(
+                    'grow-0',
+                    !!errors.tags?.at?.(index) && 'self-end mb-[1.7rem]'
                   )}
-                />
-              </div>
-              <div className='grow-0'>
-                <Button
-                  onClick={() => remove(index)}
-                  variant='outline'
-                  size='icon'
                 >
-                  <Trash className='w-4 h-4' />
-                </Button>
+                  <Button
+                    onClick={() => remove(index)}
+                    variant='outline'
+                    size='icon'
+                  >
+                    <Trash className='w-4 h-4' />
+                  </Button>
+                </div>
               </div>
+            ))}
+            <div>
+              <Button
+                type='button'
+                variant='outline'
+                size='sm'
+                className='mt-2'
+                onClick={() => append({ name: '' })}
+              >
+                Add tag
+              </Button>
             </div>
-          ))}
-          <div className='mb-1 sm:mb-2 -mt-2'>
-            <Button
-              type='button'
-              variant='outline'
-              size='sm'
-              className='mt-2'
-              onClick={() => append({ name: '' })}
-            >
-              Add tag
-            </Button>
           </div>
           <div>
             <Button
               disabled={loading}
               type='submit'
               variant='default'
-              className='mt-2'
+              className='mt-4'
             >
               {loading && (
                 <>

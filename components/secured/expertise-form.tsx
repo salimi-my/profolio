@@ -8,6 +8,7 @@ import { Loader2, Trash } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useFieldArray, useForm } from 'react-hook-form';
 
+import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import type { Expertise } from '@prisma/client';
@@ -15,6 +16,7 @@ import { useToast } from '@/components/ui/use-toast';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -69,6 +71,10 @@ export default function ExpertiseForm({
     control: form.control
   });
 
+  const {
+    formState: { errors }
+  } = form;
+
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setLoading(true);
@@ -99,22 +105,24 @@ export default function ExpertiseForm({
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className='flex flex-col gap-2 sm:gap-3'
-      >
-        <FormLabel>Service</FormLabel>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='flex flex-col'>
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className='flex items-start gap-2 sm:gap-3 justify-between'
+            className='flex items-end gap-2 sm:gap-3 justify-between'
           >
             <div className='grow'>
               <FormField
                 control={form.control}
                 name={`items.${index}.service`}
                 render={({ field }) => (
-                  <FormItem className='space-y-1'>
+                  <FormItem>
+                    <FormLabel className={cn(index !== 0 && 'sr-only')}>
+                      Service
+                    </FormLabel>
+                    <FormDescription className={cn(index !== 0 && 'sr-only')}>
+                      Add list services and expertises you offer.
+                    </FormDescription>
                     <FormControl>
                       <Input placeholder='Enter service' {...field} />
                     </FormControl>
@@ -135,7 +143,12 @@ export default function ExpertiseForm({
                 )}
               />
             </div>
-            <div className='grow-0'>
+            <div
+              className={cn(
+                'grow-0',
+                !!errors.items?.at?.(index) && 'self-end mb-[1.7rem]'
+              )}
+            >
               <Button
                 onClick={() => remove(index)}
                 variant='outline'
@@ -146,7 +159,7 @@ export default function ExpertiseForm({
             </div>
           </div>
         ))}
-        <div className='mb-1 sm:mb-2 -mt-2'>
+        <div>
           <Button
             type='button'
             variant='outline'
@@ -162,7 +175,7 @@ export default function ExpertiseForm({
             disabled={loading}
             type='submit'
             variant='default'
-            className='mt-2'
+            className='mt-6'
           >
             {loading && (
               <>
