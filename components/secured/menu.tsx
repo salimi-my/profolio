@@ -75,9 +75,9 @@ export default function Menu({ isOpen }: MenuProps) {
       icon: <List size={18} />
     },
     {
-      href: '/admin/profile',
+      href: '/admin/account',
       label: 'Account',
-      active: pathname.includes('/admin/profile'),
+      active: pathname.includes('/admin/account'),
       icon: <User size={18} />
     }
   ];
