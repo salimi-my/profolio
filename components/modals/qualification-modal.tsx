@@ -311,10 +311,22 @@ export default function QualificationModal() {
                 {loading && (
                   <>
                     <Loader2 className='animate-spin mr-2' size={18} />
-                    Submitting...
+                    {!!qualificationModal.qualification ? (
+                      <p>Updating...</p>
+                    ) : (
+                      <p>Creating...</p>
+                    )}
                   </>
                 )}
-                {!loading && <>Submit</>}
+                {!loading && (
+                  <>
+                    {!!qualificationModal.qualification ? (
+                      <p>Update</p>
+                    ) : (
+                      <p>Create</p>
+                    )}
+                  </>
+                )}
               </Button>
             </div>
           </form>
