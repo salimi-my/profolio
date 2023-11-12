@@ -24,7 +24,8 @@ export default function RecentProject({ projects }: RecentProjectProps) {
               <Image
                 src={project.thumbnail!}
                 alt={project.title}
-                fill
+                width={80}
+                height={80}
                 className='border rounded-md group-hover:opacity-70 transition-opacity ease-in-out duration-300 object-cover object-top'
               />
             </Link>

@@ -44,12 +44,13 @@ export const columns: ColumnDef<Portfolio>[] = [
         href={row.getValue('image')}
         target='_blank'
         rel='noopener noreferrer'
-        className='relative group flex w-24 h-24'
+        className='relative group flex w-20 h-20'
       >
         <Image
           src={row.original.thumbnail!}
           alt='portfolio image'
-          fill
+          width={80}
+          height={80}
           className='border rounded-md group-hover:border-zinc-400 dark:group-hover:border-zinc-600 object-cover object-top'
         />
       </Link>
