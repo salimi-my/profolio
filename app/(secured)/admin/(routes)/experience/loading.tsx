@@ -29,7 +29,7 @@ export default function ExperienceLoading() {
               >
                 <div className='grow grid grid-cols-2 gap-2 sm:gap-3'>
                   <div className='space-y-2'>
-                    <Skeleton className={cn('h-5 w-7', i !== 0 && 'hidden')} />
+                    <Skeleton className={cn('h-6 w-7', i !== 0 && 'hidden')} />
                     <Skeleton className='h-9 w-full' />
                   </div>
                   <div className='space-y-2'>
