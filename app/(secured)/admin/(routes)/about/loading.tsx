@@ -1,11 +1,5 @@
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function AboutLoading() {
   return (
@@ -14,9 +8,7 @@ export default function AboutLoading() {
         <CardTitle className='text-xl font-semibold'>
           <Skeleton className='h-7 w-[100px]' />
         </CardTitle>
-        <CardDescription>
-          <Skeleton className='h-5 w-[300px]' />
-        </CardDescription>
+        <Skeleton className='h-5 w-[300px]' />
       </CardHeader>
       <CardContent>
         <div className='flex flex-col gap-4'>

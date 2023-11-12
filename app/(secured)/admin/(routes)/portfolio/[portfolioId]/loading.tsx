@@ -1,13 +1,7 @@
 import { cn } from '@/lib/utils';
 import BackButton from '@/components/back-button';
 import { Skeleton } from '@/components/ui/skeleton';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function PortfolioIdLoading() {
   return (
@@ -18,9 +12,7 @@ export default function PortfolioIdLoading() {
           <CardTitle className='text-xl font-semibold'>
             <Skeleton className='h-7 w-[100px]' />
           </CardTitle>
-          <CardDescription>
-            <Skeleton className='h-5 w-[300px]' />
-          </CardDescription>
+          <Skeleton className='h-5 w-[300px]' />
         </CardHeader>
         <CardContent>
           <div className='grid lg:grid-cols-2 gap-8'>
