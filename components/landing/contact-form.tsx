@@ -82,7 +82,11 @@ export default function ContactForm() {
             <FormItem>
               <FormLabel className='text-base'>Name</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your name' {...field} />
+                <Input
+                  placeholder='Enter your name'
+                  {...field}
+                  autoComplete='name'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,7 +99,11 @@ export default function ContactForm() {
             <FormItem>
               <FormLabel className='text-base'>Email</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your email' {...field} />
+                <Input
+                  placeholder='Enter your email'
+                  {...field}
+                  autoComplete='email'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
