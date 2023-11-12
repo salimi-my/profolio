@@ -130,7 +130,11 @@ export default function AccountForm({ user }: AccountFormProps) {
             <FormItem className='space-y-1'>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your name' {...field} />
+                <Input
+                  placeholder='Enter your name'
+                  {...field}
+                  autoComplete='name'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -143,7 +147,11 @@ export default function AccountForm({ user }: AccountFormProps) {
             <FormItem className='space-y-1'>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='Enter your email address' {...field} />
+                <Input
+                  placeholder='Enter your email address'
+                  {...field}
+                  autoComplete='email'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

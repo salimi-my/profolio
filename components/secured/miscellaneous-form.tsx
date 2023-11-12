@@ -141,7 +141,11 @@ export default function MiscellaneousForm({
             <FormItem className='space-y-1 lg:col-span-2'>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder='Enter email' {...field} />
+                <Input
+                  placeholder='Enter email'
+                  {...field}
+                  autoComplete='email'
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
