@@ -130,7 +130,17 @@ export default async function DashboardPage() {
       <div className='grid xl:grid-cols-5 gap-4 mt-4'>
         <Card className='rounded-lg border-none xl:col-span-3'>
           <CardHeader className='relative mx-[1px]'>
-            <CardTitle className='text-xl font-bold'>Qualification</CardTitle>
+            <CardTitle className='text-xl font-bold items-center flex justify-between'>
+              Qualification
+              <Button
+                variant='link'
+                size='default'
+                className='h-5 px-0'
+                asChild
+              >
+                <Link href='/admin/qualification'>View all</Link>
+              </Button>
+            </CardTitle>
             <CardDescription>
               My personal journey on education & working experience
             </CardDescription>
