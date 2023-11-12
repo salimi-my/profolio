@@ -14,13 +14,13 @@ import {
 export default async function AccountPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const user = await prismadb.user.findUnique({
     where: {
-      id: session?.user?.id!
+      id: session?.user?.id
     },
     select: {
       name: true,

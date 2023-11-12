@@ -27,13 +27,13 @@ export const options = [
 export default async function QualificationPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const qualifications = await prismadb.qualification.findMany({
     where: {
-      userId: session?.user?.id!
+      userId: session?.user?.id
     },
     orderBy: {
       createdAt: 'asc'

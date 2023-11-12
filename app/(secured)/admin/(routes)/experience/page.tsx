@@ -14,20 +14,20 @@ import {
 export default async function ExperiencePage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const frontendItems = await prismadb.experience.findMany({
     where: {
-      userId: session?.user?.id!,
+      userId: session?.user?.id,
       type: 'FRONTEND'
     }
   });
 
   const backendItems = await prismadb.experience.findMany({
     where: {
-      userId: session?.user?.id!,
+      userId: session?.user?.id,
       type: 'BACKEND'
     }
   });

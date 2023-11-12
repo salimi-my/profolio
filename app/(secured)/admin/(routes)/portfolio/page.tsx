@@ -18,13 +18,13 @@ export const options = [];
 export default async function PortfolioPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const portfolios = await prismadb.portfolio.findMany({
     where: {
-      userId: session?.user?.id!
+      userId: session?.user?.id
     },
     orderBy: {
       createdAt: 'desc'

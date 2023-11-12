@@ -19,13 +19,14 @@ export default async function PortfolioIdPage({
 }) {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const portfolio = await prismadb.portfolio.findUnique({
     where: {
-      id: params.portfolioId
+      id: params.portfolioId,
+      userId: session.user.id
     },
     include: {
       tags: true

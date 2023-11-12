@@ -14,13 +14,13 @@ import {
 export default async function AboutPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const about = await prismadb.about.findFirst({
     where: {
-      userId: session?.user?.id!
+      userId: session?.user?.id
     }
   });
 

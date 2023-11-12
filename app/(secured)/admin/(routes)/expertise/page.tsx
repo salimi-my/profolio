@@ -14,27 +14,27 @@ import {
 export default async function ExpertisePage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const seoOptimizationItems = await prismadb.expertise.findMany({
     where: {
-      userId: session?.user?.id!,
+      userId: session?.user?.id,
       type: 'SEOOPTIMIZATION'
     }
   });
 
   const webDevelopmentItems = await prismadb.expertise.findMany({
     where: {
-      userId: session?.user?.id!,
+      userId: session?.user?.id,
       type: 'WEBDEVELOPMENT'
     }
   });
 
   const contentCreationItems = await prismadb.expertise.findMany({
     where: {
-      userId: session?.user?.id!,
+      userId: session?.user?.id,
       type: 'CONTENTCREATION'
     }
   });

@@ -14,13 +14,13 @@ import {
 export default async function MiscellaneousPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
   const miscellaneous = await prismadb.miscellaneous.findFirst({
     where: {
-      userId: session?.user?.id!
+      userId: session?.user?.id
     },
     include: {
       titles: true
