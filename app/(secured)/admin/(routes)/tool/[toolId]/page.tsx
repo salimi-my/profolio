@@ -35,9 +35,9 @@ export default async function ToolId({
       <BackButton slug='/admin/tool' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
-          <CardTitle className='text-xl font-semibold'>Add Tool</CardTitle>
+          <CardTitle className='text-xl font-semibold'>Edit Tool</CardTitle>
           <CardDescription>
-            Add more tool / app on your tool section.
+            Edit tool or app information on your tool and apps section.
           </CardDescription>
         </CardHeader>
         <CardContent>

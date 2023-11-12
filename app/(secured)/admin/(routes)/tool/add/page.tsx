@@ -16,7 +16,7 @@ export default function AddPage() {
         <CardHeader className='mx-[1px] pb-9'>
           <CardTitle className='text-xl font-semibold'>Add Tool</CardTitle>
           <CardDescription>
-            Add more tool or app on your tool section.
+            Add more tool or app on your tool and apps section.
           </CardDescription>
         </CardHeader>
         <CardContent>
