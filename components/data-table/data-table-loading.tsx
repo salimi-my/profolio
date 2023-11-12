@@ -10,20 +10,27 @@ import {
 } from '@/components/ui/table';
 
 interface DataTableLoadingProps {
+  tableType?: string;
   columnCount?: number;
   rowCount?: number;
 }
 
 export function DataTableLoading({
+  tableType = 'qualification',
   columnCount = 10,
   rowCount = 10
 }: DataTableLoadingProps) {
   return (
     <div className='w-full space-y-3 overflow-auto'>
-      <div className='flex w-full items-center justify-between space-x-2 overflow-auto p-1'>
+      <div className='flex w-full items-start justify-between space-x-2 overflow-auto p-1'>
         <div className='flex flex-col md:flex-row items-start md:flex-1 md:items-center gap-2 md:gap-0 md:space-x-2'>
           <Skeleton className='h-8 w-[120px] lg:w-[250px]' />
-          <Skeleton className='h-8 w-[70px] border-dashed' />
+          <Skeleton
+            className={cn(
+              'h-8 w-[70px] border-dashed',
+              tableType === 'portfolio' && 'hidden'
+            )}
+          />
         </div>
         <div className='flex flex-col-reverse md:flex-row items-center gap-2 md:gap-0 md:space-x-2'>
           <Skeleton className='ml-auto h-8 w-[70px] flex' />
@@ -36,11 +43,21 @@ export function DataTableLoading({
             {Array.from({ length: 1 }).map((_, i) => (
               <TableRow key={i} className='hover:bg-transparent'>
                 {Array.from({ length: columnCount }).map((_, i) => (
-                  <TableHead key={i} className={cn(i === 0 && 'w-6')}>
+                  <TableHead
+                    key={i}
+                    className={cn(
+                      i === 0 && 'w-6',
+                      i === 1 && tableType === 'portfolio' && 'w-24'
+                    )}
+                  >
                     <Skeleton
                       className={cn(
                         'h-6',
-                        i === 0 ? 'w-6' : 'w-full max-lg:min-w-[100px]'
+                        i === 0
+                          ? 'w-6'
+                          : i === 1 && tableType === 'portfolio'
+                          ? 'w-24'
+                          : 'w-full max-lg:min-w-[100px]'
                       )}
                     />
                   </TableHead>
@@ -53,7 +70,12 @@ export function DataTableLoading({
               <TableRow key={i} className='hover:bg-transparent'>
                 {Array.from({ length: columnCount }).map((_, i) => (
                   <TableCell key={i}>
-                    <Skeleton className='h-6 w-full' />
+                    <Skeleton
+                      className={cn(
+                        'h-6 w-full',
+                        i === 1 && tableType === 'portfolio' && 'h-24 w-24'
+                      )}
+                    />
                   </TableCell>
                 ))}
               </TableRow>
