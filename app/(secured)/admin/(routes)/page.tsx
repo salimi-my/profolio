@@ -141,7 +141,17 @@ export default async function DashboardPage() {
         </Card>
         <Card className='rounded-lg border-none xl:col-span-2'>
           <CardHeader className='relative mx-[1px]'>
-            <CardTitle className='text-xl font-bold'>Recent Projects</CardTitle>
+            <CardTitle className='text-xl font-bold items-center flex justify-between'>
+              Recent Projects
+              <Button
+                variant='link'
+                size='default'
+                className='h-5 px-0'
+                asChild
+              >
+                <Link href='/admin/portfolio'>View all</Link>
+              </Button>
+            </CardTitle>
             <CardDescription>
               My latest 5 completed projects list
             </CardDescription>
