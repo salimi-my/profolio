@@ -31,11 +31,11 @@ export default function EmailTemplate({
       <Tailwind>
         <Body className='bg-white my-auto mx-auto'>
           <Container className='border border-solid border-[#eaeaea] rounded-lg my-[40px] mx-auto p-[20px] w-[500px]'>
-            <Heading className='text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0'>
+            <Heading className='text-black text-[24px] font-normal text-start p-0 my-[30px] mx-0'>
               New <strong>Message</strong> from <strong>Contact Form</strong>
             </Heading>
             <Text className='text-black text-[14px] leading-[24px]'>
-              Hi Salimi,
+              <p className='text-base font-semibold'>Hi Salimi,</p>
             </Text>
             <Text className='text-black text-[14px] leading-[24px]'>
               You got a new message from {name}. Check it below:
