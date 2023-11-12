@@ -5,6 +5,7 @@ import { Book, Briefcase, FolderGit2, Laptop } from 'lucide-react';
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import { Button } from '@/components/ui/button';
+import MiniCard from '@/components/secured/mini-card';
 import QualificationTab from '@/components/secured/qualification-tab';
 import {
   Card,
@@ -17,47 +18,70 @@ import {
 export default async function DashboardPage() {
   const session = await auth();
 
-  if (!session || !session.user) {
+  if (!session || !session.user || !session.user.id) {
     redirect('/api/auth/signin');
   }
 
-  const [portfolioCount, workingStart, currentJob, education, experience] =
-    await prismadb.$transaction([
-      prismadb.portfolio.count(),
-      prismadb.qualification.findFirst({
-        select: {
-          startYear: true
-        },
-        where: {
-          type: 'EXPERIENCE'
-        },
-        orderBy: {
-          id: 'asc'
-        }
-      }),
-      prismadb.qualification.findFirst({
-        where: {
-          type: 'EXPERIENCE',
-          endYear: 'Present'
-        }
-      }),
-      prismadb.qualification.findMany({
-        where: {
-          type: 'EDUCATION'
-        },
-        orderBy: {
-          id: 'desc'
-        }
-      }),
-      prismadb.qualification.findMany({
-        where: {
-          type: 'EXPERIENCE'
-        },
-        orderBy: {
-          id: 'desc'
-        }
-      })
-    ]);
+  const [
+    portfolioCount,
+    workingStart,
+    currentJob,
+    education,
+    experience,
+    projects
+  ] = await prismadb.$transaction([
+    prismadb.portfolio.count({
+      where: {
+        userId: session.user.id
+      }
+    }),
+    prismadb.qualification.findFirst({
+      select: {
+        startYear: true
+      },
+      where: {
+        userId: session.user.id,
+        type: 'EXPERIENCE'
+      },
+      orderBy: {
+        id: 'asc'
+      }
+    }),
+    prismadb.qualification.findFirst({
+      where: {
+        userId: session.user.id,
+        type: 'EXPERIENCE',
+        endYear: 'Present'
+      }
+    }),
+    prismadb.qualification.findMany({
+      where: {
+        userId: session.user.id,
+        type: 'EDUCATION'
+      },
+      orderBy: {
+        id: 'desc'
+      }
+    }),
+    prismadb.qualification.findMany({
+      where: {
+        userId: session.user.id,
+        type: 'EXPERIENCE'
+      },
+      orderBy: {
+        id: 'desc'
+      }
+    }),
+    prismadb.portfolio.findMany({
+      take: 5,
+      where: {
+        userId: session.user.id
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
+  ]);
 
   const workingYears =
     typeof workingStart?.startYear === 'string'
@@ -77,52 +101,30 @@ export default async function DashboardPage() {
         </div>
       </div>
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
-        <Card className='rounded-lg border-none'>
-          <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Portfolio</CardTitle>
-            <FolderGit2 className='h-4 w-4 text-muted-foreground' />
-          </CardHeader>
-          <CardContent>
-            <div className='text-2xl font-bold'>{portfolioCount}</div>
-            <p className='text-xs text-muted-foreground'>completed projects</p>
-          </CardContent>
-        </Card>
-        <Card className='rounded-lg border-none'>
-          <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Experience</CardTitle>
-            <Book className='h-4 w-4 text-muted-foreground' />
-          </CardHeader>
-          <CardContent>
-            <div className='text-2xl font-bold'>{workingYears}</div>
-            <p className='text-xs text-muted-foreground'>years of working</p>
-          </CardContent>
-        </Card>
-        <Card className='rounded-lg border-none'>
-          <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Current Job</CardTitle>
-            <Briefcase className='h-4 w-4 text-muted-foreground' />
-          </CardHeader>
-          <CardContent>
-            <div className='text-xl leading-8 font-bold max-w-[206px] truncate'>
-              {currentJob?.position}
-            </div>
-            <p className='text-xs text-muted-foreground'>
-              {currentJob?.company}
-            </p>
-          </CardContent>
-        </Card>
-        <Card className='rounded-lg border-none'>
-          <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
-            <CardTitle className='text-sm font-medium'>Location</CardTitle>
-            <Laptop className='h-4 w-4 text-muted-foreground' />
-          </CardHeader>
-          <CardContent>
-            <div className='text-xl leading-8 font-bold max-w-[206px] truncate'>
-              Worldwide
-            </div>
-            <p className='text-xs text-muted-foreground'>remotely available</p>
-          </CardContent>
-        </Card>
+        <MiniCard
+          icon={FolderGit2}
+          title='Portfolio'
+          content={portfolioCount}
+          desc='completed projects'
+        />
+        <MiniCard
+          icon={Book}
+          title='Experience'
+          content={workingYears}
+          desc='years of working'
+        />
+        <MiniCard
+          icon={Briefcase}
+          title='Current Job'
+          content={!!currentJob ? currentJob.position : ''}
+          desc={!!currentJob ? currentJob.company : ''}
+        />
+        <MiniCard
+          icon={Laptop}
+          title='Location'
+          content='Worldwide'
+          desc='remotely available'
+        />
       </div>
       <div className='grid xl:grid-cols-5 gap-4 mt-4'>
         <Card className='rounded-lg border-none col-span-3'>
