@@ -21,6 +21,8 @@ export default function PageTitle() {
     pageTitle = 'Portfolio';
   } else if (pathname.includes('/admin/miscellaneous')) {
     pageTitle = 'Miscellaneous';
+  } else if (pathname.includes('/admin/tool')) {
+    pageTitle = 'Tool';
   } else if (pathname.includes('/admin/account')) {
     pageTitle = 'Account';
   }

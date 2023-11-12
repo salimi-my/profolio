@@ -11,6 +11,7 @@ import {
   LayoutGrid,
   List,
   LogOut,
+  TerminalSquare,
   Text,
   User
 } from 'lucide-react';
@@ -73,6 +74,12 @@ export default function Menu({ isOpen }: MenuProps) {
       label: 'Miscellaneous',
       active: pathname.includes('/admin/miscellaneous'),
       icon: <List size={18} />
+    },
+    {
+      href: '/admin/tool',
+      label: 'Tool',
+      active: pathname.includes('/admin/tool'),
+      icon: <TerminalSquare size={18} />
     },
     {
       href: '/admin/account',
