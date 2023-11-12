@@ -157,8 +157,8 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
         onSubmit={form.handleSubmit(onSubmit)}
         className='grid lg:grid-cols-2 gap-8'
       >
-        <div className='flex flex-col'>
-          <FormLabel className='py-2'>Image</FormLabel>
+        <div className='flex flex-col gap-4'>
+          <FormLabel>Image</FormLabel>
           <SingleImageDropzone
             className='w-full h-full'
             value={file}
