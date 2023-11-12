@@ -2,7 +2,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { DataTableLoading } from '@/components/data-table/data-table-loading';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function PortfolioLoading() {
+export default function ToolLoading() {
   return (
     <Card className='rounded-lg border-none'>
       <CardHeader className='mx-[1px] pb-9'>
@@ -12,7 +12,7 @@ export default function PortfolioLoading() {
         <Skeleton className='h-5 w-[300px]' />
       </CardHeader>
       <CardContent>
-        <DataTableLoading tableType='portfolio' columnCount={8} rowCount={10} />
+        <DataTableLoading tableType='tool' columnCount={5} rowCount={10} />
       </CardContent>
     </Card>
   );

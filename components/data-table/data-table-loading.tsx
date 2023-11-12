@@ -47,7 +47,8 @@ export function DataTableLoading({
                     key={i}
                     className={cn(
                       i === 0 && 'w-6',
-                      i === 1 && tableType === 'portfolio' && 'w-20'
+                      i === 1 && tableType === 'portfolio' && 'w-20',
+                      i === 1 && tableType === 'tool' && 'w-12'
                     )}
                   >
                     <Skeleton
@@ -73,7 +74,8 @@ export function DataTableLoading({
                     <Skeleton
                       className={cn(
                         'h-6 w-full',
-                        i === 1 && tableType === 'portfolio' && 'h-20 w-20'
+                        i === 1 && tableType === 'portfolio' && 'h-20 w-20',
+                        i === 1 && tableType === 'tool' && 'h-12 w-12'
                       )}
                     />
                   </TableCell>
