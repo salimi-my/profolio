@@ -26,6 +26,7 @@ model User {
   qualifications  Qualification[]
   portfolios      Portfolio[]
   miscellaneous   Miscellaneous?
+  tools           Tool[]
 }
 
 model Account {
@@ -217,4 +218,25 @@ model Title {
   updatedAt        DateTime       @updatedAt
 
   @@index([miscellaneousId])
+}
+
+enum ToolType {
+  LIGHT
+  DARK
+}
+
+model Tool {
+  id           String    @id @default(cuid())
+  image        String?
+  thumbnail    String?
+  name         String
+  color       ToolType  @default(LIGHT)
+
+  userId       String    
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([userId])
 }
