@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import type { Portfolio } from '@prisma/client';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-import { CellActions } from '@/components/secured/portfolio/cell-actions';
+import { CellActions } from '@/components/secured/portfolio-table/cell-actions';
 import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
 
 export const columns: ColumnDef<Portfolio>[] = [

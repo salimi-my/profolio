@@ -3,8 +3,8 @@ import { redirect } from 'next/navigation';
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import { DataTable } from '@/components/data-table/data-table';
-import { columns } from '@/components/secured/qualification/columns';
-import AddButton from '@/components/secured/qualification/add-button';
+import { columns } from '@/components/secured/qualification-table/columns';
+import AddButton from '@/components/secured/qualification-table/add-button';
 import {
   Card,
   CardContent,

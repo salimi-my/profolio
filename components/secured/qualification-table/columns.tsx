@@ -6,7 +6,7 @@ import type { Qualification } from '@prisma/client';
 
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
-import { CellActions } from '@/components/secured/qualification/cell-actions';
+import { CellActions } from '@/components/secured/qualification-table/cell-actions';
 import { DataTableColumnHeader } from '@/components/data-table/data-table-column-header';
 
 export const columns: ColumnDef<Qualification>[] = [
