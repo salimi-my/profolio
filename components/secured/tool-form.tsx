@@ -61,7 +61,63 @@ export default function ToolForm({ tool }: ToolFormProps) {
     }
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setLoading(true);
+
+      let imageURL = tool?.image ?? '';
+      let thumbnailURL = tool?.thumbnail ?? '';
+      if (file && file instanceof File) {
+        const res = await edgestore.publicImages.upload({
+          file,
+          options: {
+            replaceTargetUrl: tool?.image ?? undefined
+          }
+        });
+
+        if (res.url && res.thumbnailUrl) {
+          imageURL = res.url;
+          thumbnailURL = res.thumbnailUrl;
+        }
+      }
+
+      const newValues = { ...values, image: imageURL, thumbnail: thumbnailURL };
+
+      if (tool) {
+        const response = await axios.patch(`/api/tool/${tool.id}`, newValues);
+
+        if (response.data.success) {
+          toast({
+            variant: 'default',
+            title: 'Success!',
+            description: 'Data has been successfully saved.'
+          });
+          router.push(response.data.tool.id);
+        }
+      } else {
+        const response = await axios.post('/api/tool', newValues);
+
+        if (response.data.success) {
+          toast({
+            variant: 'default',
+            title: 'Success!',
+            description: 'Data has been successfully saved.'
+          });
+          router.push(response.data.tool.id);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.'
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>
