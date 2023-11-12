@@ -20,7 +20,7 @@ export default function ViewWebsite() {
             className='h-8 w-8 rounded-full bg-background'
             asChild
           >
-            <Link href='/'>
+            <Link href='/' target='_blank' rel='noopener noreferer'>
               <PanelTop className='w-5 h-5' />
             </Link>
           </Button>
