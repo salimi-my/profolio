@@ -6,6 +6,7 @@ import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import { Button } from '@/components/ui/button';
 import MiniCard from '@/components/secured/mini-card';
+import RecentProject from '@/components/secured/recent-project';
 import QualificationTab from '@/components/secured/qualification-tab';
 import {
   Card,
@@ -127,7 +128,7 @@ export default async function DashboardPage() {
         />
       </div>
       <div className='grid xl:grid-cols-5 gap-4 mt-4'>
-        <Card className='rounded-lg border-none col-span-3'>
+        <Card className='rounded-lg border-none xl:col-span-3'>
           <CardHeader className='relative mx-[1px]'>
             <CardTitle className='text-xl font-bold'>Qualification</CardTitle>
             <CardDescription>
@@ -136,6 +137,17 @@ export default async function DashboardPage() {
           </CardHeader>
           <CardContent className='pb-9'>
             <QualificationTab education={education} experience={experience} />
+          </CardContent>
+        </Card>
+        <Card className='rounded-lg border-none xl:col-span-2'>
+          <CardHeader className='relative mx-[1px]'>
+            <CardTitle className='text-xl font-bold'>Recent Projects</CardTitle>
+            <CardDescription>
+              My latest 5 completed projects list
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='pb-9'>
+            <RecentProject projects={projects} />
           </CardContent>
         </Card>
       </div>
