@@ -168,6 +168,7 @@ export default function QualificationModal() {
                   <Select
                     onValueChange={field.onChange}
                     defaultValue={field.value}
+                    name={field.name}
                   >
                     <FormControl>
                       <SelectTrigger>
