@@ -4,7 +4,7 @@ import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
 import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
-import profileBg from '@/public/web-developer-bg.webp';
+import tilted from '@/public/web-developer-tilted.webp';
 
 export default function About({
   about
@@ -18,7 +18,7 @@ export default function About({
       <div className='grid lg:grid-cols-7 gap-12 md:gap-24 lg:gap-48 pt-12'>
         <div className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'>
           <div className='rounded-2xl overflow-hidden rotate-[10deg] transition duration-300 ease-in-out hover:rotate-0 relative'>
-            <Image src={profileBg} alt='about' priority />
+            <Image src={tilted} alt='about' priority />
           </div>
         </div>
         <div className='lg:col-span-4 flex flex-col gap-8'>
