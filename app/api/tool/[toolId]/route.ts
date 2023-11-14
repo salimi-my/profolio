@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
@@ -79,6 +80,8 @@ export async function PATCH(
       }
     });
 
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, tool });
   } catch (error: any) {
     console.log('[TOOL_PATCH]', error);
@@ -128,6 +131,8 @@ export async function DELETE(
         id: params.toolId
       }
     });
+
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, tool });
   } catch (error: any) {

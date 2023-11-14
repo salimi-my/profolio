@@ -1,3 +1,4 @@
+import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { auth } from '@/lib/auth';
@@ -86,6 +87,8 @@ export async function POST(req: Request) {
         portfolioId: portfolio.id
       }))
     });
+
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, portfolio, tagsCreated });
   } catch (error: any) {

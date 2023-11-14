@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
@@ -64,6 +65,8 @@ export async function POST(req: Request) {
         }
       });
 
+      revalidatePath('/');
+
       return NextResponse.json({ success: true, about });
     } else {
       const about = await prismadb.about.create({
@@ -75,6 +78,8 @@ export async function POST(req: Request) {
           userId: session.user.id!
         }
       });
+
+      revalidatePath('/');
 
       return NextResponse.json({ success: true, about });
     }

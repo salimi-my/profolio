@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
@@ -32,6 +33,8 @@ export async function POST(req: Request) {
         }
       }
     });
+
+    revalidatePath('/');
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

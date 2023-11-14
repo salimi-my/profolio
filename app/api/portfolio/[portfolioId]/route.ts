@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 
 import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
@@ -116,6 +117,8 @@ export async function PATCH(
       }))
     });
 
+    revalidatePath('/');
+
     return NextResponse.json({ success: true, portfolio, tagsCreated });
   } catch (error: any) {
     console.log('[PORTFOLIO_PATCH]', error);
@@ -165,6 +168,8 @@ export async function DELETE(
         id: params.portfolioId
       }
     });
+
+    revalidatePath('/');
 
     return NextResponse.json({ success: true, portfolio });
   } catch (error: any) {
