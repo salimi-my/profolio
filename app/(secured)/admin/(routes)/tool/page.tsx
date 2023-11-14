@@ -13,7 +13,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-export const options = [
+const filterOptions = [
   {
     label: 'Light',
     value: 'LIGHT'
@@ -52,7 +52,7 @@ export default async function ToolPage() {
         <DataTable
           data={tools}
           columns={columns}
-          options={options}
+          options={filterOptions}
           AddButton={<AddButton />}
           page='tool'
         />

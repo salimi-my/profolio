@@ -13,7 +13,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-export const options = [
+const filterOptions = [
   {
     label: 'Education',
     value: 'EDUCATION'
@@ -52,7 +52,7 @@ export default async function QualificationPage() {
         <DataTable
           data={qualifications}
           columns={columns}
-          options={options}
+          options={filterOptions}
           AddButton={<AddButton />}
           page='qualification'
         />
