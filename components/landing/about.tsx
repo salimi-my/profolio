@@ -28,7 +28,7 @@ export default function About({
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Experience
               </h3>
-              <small className='text-xs font-normal text-muted-foreground'>
+              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.experience}
               </small>
             </article>
@@ -37,7 +37,7 @@ export default function About({
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Projects
               </h3>
-              <small className='text-xs font-normal text-muted-foreground'>
+              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.project}
               </small>
             </article>
@@ -46,7 +46,7 @@ export default function About({
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Worlwide
               </h3>
-              <small className='text-xs font-normal text-muted-foreground'>
+              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.worldwide}
               </small>
             </article>

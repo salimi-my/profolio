@@ -20,7 +20,7 @@ export default function Contact({
             <div className='flex flex-col items-center text-primary-foreground group-hover:text-primary'>
               <Icons.email className='w-7 h-7 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Email</h3>
-              <h4 className='text-sm text-muted-foreground pb-1'>
+              <h4 className='text-sm text-muted/60 group-hover:text-primary/80 pb-1'>
                 {miscellaneous?.email}
               </h4>
               <Button
@@ -42,7 +42,7 @@ export default function Contact({
             <div className='flex flex-col items-center text-primary-foreground group-hover:text-primary'>
               <Icons.messenger className='w-7 h-7 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Messenger</h3>
-              <h4 className='text-sm text-muted-foreground pb-1'>
+              <h4 className='text-sm text-muted/60 group-hover:text-primary/80 pb-1'>
                 {miscellaneous?.messengerName}
               </h4>
               <Button
@@ -64,7 +64,7 @@ export default function Contact({
             <div className='flex flex-col items-center text-primary-foreground group-hover:text-primary'>
               <Icons.discord className='w-8 h-8 invert group-hover:invert-0 dark:invert-0 dark:group-hover:invert' />
               <h3 className='text-lg font-medium pt-4'>Discord</h3>
-              <h4 className='text-sm text-muted-foreground pb-1'>
+              <h4 className='text-sm text-muted/60 group-hover:text-primary/80 pb-1'>
                 {miscellaneous?.discordUsername}
               </h4>
               <Button

@@ -41,7 +41,7 @@ export default function NavButton({
             )}
             asChild
           >
-            <Link href={anchor}>
+            <Link href={anchor} aria-label={name}>
               <Icon
                 className={cn(name === 'Qualification' ? 'w-6 h-6' : 'w-5 h-5')}
               />
