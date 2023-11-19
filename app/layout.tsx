@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.APP_URL
       ? `${process.env.APP_URL}`
-      : process.env.NEXTAUTH_URL
-      ? `https://${process.env.NEXTAUTH_URL}`
+      : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
       : `http://localhost:${process.env.PORT || 3000}`
   ),
   title: 'Salimi — My Digital Canvas',
