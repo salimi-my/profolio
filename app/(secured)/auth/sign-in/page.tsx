@@ -1,6 +1,7 @@
 'use client';
 
 import * as z from 'zod';
+import Link from 'next/link';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
@@ -26,7 +27,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import Link from 'next/link';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter valid email address.' }),

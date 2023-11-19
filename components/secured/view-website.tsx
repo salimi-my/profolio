@@ -9,7 +9,11 @@ import {
   TooltipTrigger
 } from '@/components/ui/tooltip';
 
-export default function ViewWebsite() {
+interface ViewWebsiteProps {
+  newTab?: boolean;
+}
+
+export default function ViewWebsite({ newTab = false }: ViewWebsiteProps) {
   return (
     <TooltipProvider disableHoverableContent>
       <Tooltip delayDuration={100}>
@@ -20,7 +24,11 @@ export default function ViewWebsite() {
             className='h-8 w-8 rounded-full bg-background'
             asChild
           >
-            <Link href='/' target='_blank' rel='noopener noreferer'>
+            <Link
+              href='/'
+              target={`${!newTab ? '_blank' : '_self'}`}
+              rel='noopener noreferer'
+            >
               <PanelTop className='w-5 h-5' />
             </Link>
           </Button>

@@ -2,6 +2,7 @@
 
 import * as z from 'zod';
 import axios from 'axios';
+import Link from 'next/link';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
@@ -26,7 +27,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import Link from 'next/link';
 
 const formSchema = z
   .object({
