@@ -2,6 +2,8 @@ import { MetadataRoute } from 'next';
 
 import prismadb from '@/lib/prismadb';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.APP_URL
     ? `${process.env.APP_URL}`
