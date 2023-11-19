@@ -26,6 +26,7 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
+import Link from 'next/link';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter valid email address.' }),
@@ -88,7 +89,11 @@ export default function SignInPage() {
                   <FormItem className='space-y-1'>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder='email@example.com' {...field} />
+                      <Input
+                        placeholder='email@example.com'
+                        autoComplete='email'
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -116,7 +121,8 @@ export default function SignInPage() {
                 disabled={loading}
                 type='submit'
                 variant='default'
-                className='mt-2'
+                size='lg'
+                className='mt-4'
               >
                 {loading && (
                   <>
@@ -126,6 +132,12 @@ export default function SignInPage() {
                 )}
                 {!loading && <>Sign in</>}
               </Button>
+              <p className='text-sm font-light text-gray-500 dark:text-gray-400 mt-1'>
+                Don&apos;t have an account yet?
+                <Button variant='link' className='ml-1 px-0' asChild>
+                  <Link href='/auth/sign-up'>Sign up</Link>
+                </Button>
+              </p>
             </form>
           </Form>
         </CardContent>
