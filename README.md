@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [Profolio](https://www.salimi.my) &middot; [![Author Salimi](https://img.shields.io/badge/Author-Salimi-%3C%3E)](https://www.linkedin.com/in/mohamad-salimi/)
 
-## Getting Started
+Profolio is a dynamic personal portfolio website built with Next.js. This fullstack app allow easy customization of portfolio details and project listings. All the informations, skills and projects can be updated effortlessly, ensuring them stays up to date.
 
-First, run the development server:
+## Simple URL shortener tool
+
+- Dynamic informations & project listings
+- Light / dark / system mode
+- Authentication using NextAuth.js
+- MySQL & Prisma for database
+- Zustand for state management
+- EdgeStore for file uploading
+- React Email for email templating
+- Resend for sending email
+
+## Tech/framework used
+
+- Next.js 14
+- Shadcn/ui
+- NextAuth.js
+- Tailwind CSS
+- TypeScript
+- MySQL
+- Prisma
+- Zustand
+- EdgeStore
+- React Email
+- Resend
+
+## Starting the project
+
+Open the [.env.example](/.env.example) and fill in your Database URL, NextAuth, Resend & EdgeStore Configurations then save it as .env the run the following command:
 
 ```bash
+npm install
+npx prisma generate
+npx prisma db push
 npm run dev
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+dlx prisma generate
+dlx prisma db push
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Demo
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Host anywhere you want. [Click here](https://www.salimi.my) to visit.
+<br>
+Direct link: `https://www.salimi.my`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screenshots
 
-## Learn More
+#### Homepage
 
-To learn more about Next.js, take a look at the following resources:
+![Homepage](/screenshots/screenshot-1.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### About
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![About](/screenshots/screenshot-2.png)
 
-## Deploy on Vercel
+#### Portfolio
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Portfolio](/screenshots/screenshot-3.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Contact
+
+![Contact](/screenshots/screenshot-4.png)
+
+#### Sign in
+
+![Sign in](/screenshots/screenshot-5.png)
+
+#### Admin dashboard
+
+![Admin dashboard](/screenshots/screenshot-6.png)
+
+#### Portfolio list
+
+![Portfolio list](/screenshots/screenshot-7.png)
+
+#### Create portfolio
+
+![Create portfolio](/screenshots/screenshot-8.png)
