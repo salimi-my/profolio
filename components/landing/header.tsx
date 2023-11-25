@@ -46,7 +46,7 @@ export default function Header({
               target='_blank'
               rel='noopener noreferrer'
             >
-              Download CVA
+              Download CV
             </Link>
           </Button>
           <Button variant='default' asChild>
