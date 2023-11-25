@@ -38,7 +38,7 @@
     "date-fns": "^2.30.0",
     "lucide-react": "^0.290.0",
     "next": "^14.0.2",
-    "next-auth": "^4.24.4",
+    "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "plaiceholder": "^3.0.0",
     "react": "^18.2.0",
