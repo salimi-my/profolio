@@ -27,4 +27,12 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: 'cd /var/www/www.salimi.my && ./.scripts/deploy.sh'
+          script: |
+            cd /var/www/www.salimi.my
+            git pull origin main
+            git status
+            export PATH=/home/${{ secrets.SSH_USERNAME }}/.nvm/versions/node/20.9.0/bin:/usr/bin:/bin;
+            pnpm install
+            rm -rf .next
+            pnpm build
+            pm2 restart www.salimi.my
