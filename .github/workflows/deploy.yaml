@@ -11,13 +11,15 @@ on:
 # Authenticate to the the server via ssh
 # and run our deployment script
 jobs:
-  install:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: pnpm/action-setup@v2
+      - name: Git checkout
+        uses: actions/checkout@v3
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
         with:
-          version: 8
-      - uses: actions/checkout@v3
+          version: 8.11.0
       - name: Deploy to Server
         uses: appleboy/ssh-action@master
         with:
