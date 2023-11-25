@@ -22,4 +22,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-          script: 'cd /var/www/www.salimi.my && ./.scripts/deploy.sh'
+          script: |
+            exec bash \-l 
+            cd /var/www/www.salimi.my
+            ./.scripts/deploy.sh
