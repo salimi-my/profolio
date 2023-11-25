@@ -8,10 +8,10 @@ git pull origin master
 echo "New changes copied to server!"
 
 echo "Installing Dependencies..."
-pnpm install
+npm install --yes
 
 echo "Creating Production Build..."
-pnpm run build
+npm run build
 
 echo "PM2 Restart"
 pm2 restart www.salimi.my
