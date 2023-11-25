@@ -2,7 +2,7 @@
 
 Profolio is a dynamic personal portfolio website built with Next.js. This fullstack app allow easy customization of portfolio details and project listings. All the informations, skills and projects can be updated effortlessly, ensuring them stays up to date.
 
-## Simple URL shortener tool
+## Dynamic portfolio site
 
 - Dynamic skills & project listings
 - Light / dark / system mode
