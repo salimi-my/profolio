@@ -4,7 +4,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 
 ## Simple URL shortener tool
 
-- Dynamic informations & project listings
+- Dynamic skills & project listings
 - Light / dark / system mode
 - Authentication using NextAuth.js
 - MySQL & Prisma for database
