@@ -3,6 +3,9 @@ set -e
 
 echo "Deployment started..."
 
+export NVM_DIR=~/.nvm
+source ~/.nvm/nvm.sh
+
 # Pull the latest version of the app
 git pull origin master
 echo "New changes copied to server!"
