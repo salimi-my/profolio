@@ -19,7 +19,7 @@ jobs:
           version: 8
       - uses: actions/checkout@v3
       - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v0.1.4
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -27,7 +27,7 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           script: |
             cd /var/www/www.salimi.my
-            git pull origin main
+            git pull origin master
             git status
             export PATH=/home/${{ secrets.SSH_USERNAME }}/.nvm/versions/node/20.9.0/bin:/usr/bin:/bin;
             pnpm install
