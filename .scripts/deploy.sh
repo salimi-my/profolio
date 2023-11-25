@@ -8,7 +8,7 @@ git pull origin master
 echo "New changes copied to server!"
 
 echo "Installing Dependencies..."
-pnpm install --yes
+pnpm install
 
 echo "Creating Production Build..."
 pnpm run build
