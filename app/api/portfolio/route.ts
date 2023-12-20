@@ -107,7 +107,7 @@ export async function GET(req: NextRequest) {
 
     const portfolios = await prismadb.portfolio.findMany({
       skip: typeof offset === 'string' ? parseInt(offset) : 0,
-      take: 3,
+      take: 6,
       orderBy: {
         createdAt: 'desc'
       },

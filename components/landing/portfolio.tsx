@@ -33,8 +33,8 @@ export default function Portfolio({
       });
 
       if (response.status === 200) {
-        if (response.data.length > 2) {
-          setOffset((prev) => prev + 3);
+        if (response.data.length > 5) {
+          setOffset((prev) => prev + 6);
         } else {
           setHide(true);
         }
