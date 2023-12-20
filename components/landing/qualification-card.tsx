@@ -56,7 +56,7 @@ export default function QualificationCard({
                     ? value.degree
                     : value.position}
                 </h4>
-                <p className='font-medium text-xs text-muted-foreground pt-1'>
+                <p className='font-medium text-xs text-muted-foreground group-hover:text-muted/70 pt-1'>
                   {qualificationType === 'education'
                     ? value.school
                     : value.company}

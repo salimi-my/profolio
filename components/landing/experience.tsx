@@ -28,7 +28,7 @@ export default function Experience({
                 <BadgeCheck className='w-5 h-5 mt-[2px]' />
                 <div className='flex flex-col'>
                   <h4 className='text-sm md:text-base'>{skill}</h4>
-                  <small className='text-xs md:text-sm text-muted/60 group-hover:text-primary/80 capitalize'>
+                  <small className='text-xs md:text-sm text-muted/70 group-hover:text-primary/70 capitalize'>
                     {level}
                   </small>
                 </div>
@@ -49,7 +49,7 @@ export default function Experience({
                 <BadgeCheck className='w-5 h-5 mt-[2px]' />
                 <div className='flex flex-col'>
                   <h4 className='text-sm md:text-base'>{skill}</h4>
-                  <small className='text-xs md:text-sm text-muted/60 group-hover:text-primary/80 capitalize'>
+                  <small className='text-xs md:text-sm text-muted/70 group-hover:text-primary/70 capitalize'>
                     {level}
                   </small>
                 </div>
