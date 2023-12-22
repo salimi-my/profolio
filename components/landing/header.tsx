@@ -29,7 +29,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
       initial='hidden'
       animate='visible'
       id='home'
-      className='h-[100svh] pt-28 md:min-h-[900px] max-h-[900px]'
+      className='h-screen pt-28 min-h-[900px] max-h-[900px]'
     >
       <div className='text-center h-full relative'>
         <motion.h1
@@ -125,17 +125,19 @@ export default function Header({ miscellaneous }: HeaderProps) {
               <Image src={profile} alt='me' priority />
             </div>
           </motion.div>
-          <motion.div
-            variants={slideInFromRight(0.5)}
-            className='flex flex-col items-center justify-end gap-4'
-          >
-            <div className='relative'>
+          <div className='flex flex-col items-center justify-end gap-4 transform'>
+            <motion.div variants={slideInFromRight(0.4)} className='relative'>
               <div className='mouse' />
-            </div>
-            <Link href='#contact' className='text-primary hover:opacity-60'>
+            </motion.div>
+            {/* <motion.div variants={slideInFromRight(0.5)}> */}
+            <Link
+              href='#contact'
+              className='text-primary hover:opacity-60 transition-opacity duration-300 ease-in-out'
+            >
               <p className='text-sm [writing-mode:vertical-lr]'>Scroll Down</p>
             </Link>
-          </motion.div>
+            {/* </motion.div> */}
+          </div>
         </div>
       </div>
     </motion.header>
