@@ -29,7 +29,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
       initial='hidden'
       animate='visible'
       id='home'
-      className='h-screen pt-28 min-h-[900px] max-h-[900px]'
+      className='h-[100svh] pt-28 md:min-h-[900px] max-h-[900px]'
     >
       <div className='text-center h-full relative'>
         <motion.h1
