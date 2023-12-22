@@ -21,7 +21,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
       initial='hidden'
       animate={isInView ? 'visible' : 'hidden'}
       id='footer'
-      className='mt-32 bg-primary'
+      className='mt-32 bg-primary overflow-x-hidden'
     >
       <div className='container px-4 md:px-8 mx-auto w-full flex flex-col py-12'>
         <motion.div

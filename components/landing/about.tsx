@@ -41,7 +41,7 @@ export default function About({ about }: AboutProps) {
       >
         About Me
       </motion.h2>
-      <div className='grid lg:grid-cols-7 gap-12 md:gap-24 lg:gap-48 pt-12'>
+      <div className='w-full grid lg:grid-cols-7 gap-12 md:gap-24 2xl:gap-48 pt-12'>
         <motion.div
           variants={slideInFromLeft(0.3)}
           className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'
@@ -60,7 +60,7 @@ export default function About({ about }: AboutProps) {
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Experience
               </h3>
-              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
+              <small className='text-xs text-center font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.experience}
               </small>
             </motion.article>
@@ -72,7 +72,7 @@ export default function About({ about }: AboutProps) {
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Projects
               </h3>
-              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
+              <small className='text-xs text-center font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.project}
               </small>
             </motion.article>
@@ -84,14 +84,14 @@ export default function About({ about }: AboutProps) {
               <h3 className='text-base text-primary-foreground group-hover:text-primary pb-2'>
                 Worlwide
               </h3>
-              <small className='text-xs font-normal text-muted/60 group-hover:text-primary/80'>
+              <small className='text-xs text-center font-normal text-muted/60 group-hover:text-primary/80'>
                 {about?.worldwide}
               </small>
             </motion.article>
           </div>
           <motion.p
             variants={slideInFromRight(0.4)}
-            className='text-muted-foreground font-normal'
+            className='text-muted-foreground font-normal text-justify'
           >
             {about?.summary}
           </motion.p>

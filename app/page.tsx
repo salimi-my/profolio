@@ -32,7 +32,7 @@ export default async function Home() {
         <ModeToggle />
       </div>
       <Nav />
-      <main className='container px-4 md:px-8 mx-auto relative -mt-14'>
+      <main className='container px-4 md:px-8 mx-auto relative -mt-14 overflow-x-hidden'>
         <Header miscellaneous={miscellaneous} />
         <About about={about} />
         <Experience frontend={frontend} backend={backend} />
