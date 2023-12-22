@@ -42,7 +42,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
           variants={slideInFromTop(0.1)}
           className='flex flex-col justify-start items-center'
         >
-          <Link href='/'>
+          <Link href='/' scroll={false}>
             <h2 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
               Mohamad Salimi
             </h2>

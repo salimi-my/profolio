@@ -26,6 +26,7 @@ export default function ViewWebsite({ newTab = false }: ViewWebsiteProps) {
           >
             <Link
               href='/'
+              scroll={false}
               target={`${!newTab ? '_blank' : '_self'}`}
               rel='noopener noreferer'
             >
