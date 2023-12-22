@@ -125,11 +125,14 @@ export default function Header({ miscellaneous }: HeaderProps) {
               <Image src={profile} alt='me' priority />
             </div>
           </motion.div>
-          <div className='flex flex-col items-center justify-end gap-4 transform'>
-            <motion.div variants={slideInFromRight(0.4)} className='relative'>
+          <motion.div
+            variants={slideInFromRight(0.5)}
+            className='flex flex-col items-center justify-end gap-4 transform'
+          >
+            <div className='relative'>
               <div className='mouse' />
-            </motion.div>
-            <motion.div variants={slideInFromRight(0.5)}>
+            </div>
+            <div>
               <Link
                 href='#contact'
                 className='text-primary hover:opacity-60 transition-opacity duration-300 ease-in-out'
@@ -138,8 +141,8 @@ export default function Header({ miscellaneous }: HeaderProps) {
                   Scroll Down
                 </p>
               </Link>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.header>
