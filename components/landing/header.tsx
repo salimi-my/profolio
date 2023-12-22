@@ -132,16 +132,9 @@ export default function Header({ miscellaneous }: HeaderProps) {
             <div className='relative'>
               <div className='mouse' />
             </div>
-            <div>
-              <Link
-                href='#contact'
-                className='text-primary hover:opacity-60 transition-opacity duration-300 ease-in-out'
-              >
-                <p className='text-sm [writing-mode:vertical-lr]'>
-                  Scroll Down
-                </p>
-              </Link>
-            </div>
+            <Link href='#contact' className='text-primary hover:opacity-60'>
+              <p className='text-sm [writing-mode:vertical-lr]'>Scroll Down</p>
+            </Link>
           </motion.div>
         </div>
       </div>
