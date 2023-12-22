@@ -127,7 +127,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
           </motion.div>
           <motion.div
             variants={slideInFromRight(0.5)}
-            className='flex flex-col items-center justify-end gap-4 transform'
+            className='flex flex-col items-center justify-end gap-4'
           >
             <div className='relative'>
               <div className='mouse' />
