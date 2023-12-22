@@ -9,10 +9,15 @@ import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 import QualificationCard from '@/components/landing/qualification-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
+type QualificationProps = Pick<
+  Awaited<ReturnType<typeof getData>>,
+  'education' | 'experience'
+>;
+
 export default function Qualification({
   education,
   experience
-}: Partial<Awaited<ReturnType<typeof getData>>>) {
+}: QualificationProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 

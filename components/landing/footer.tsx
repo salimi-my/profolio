@@ -9,9 +9,9 @@ import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 
-export default function Footer({
-  miscellaneous
-}: Partial<Awaited<ReturnType<typeof getData>>>) {
+type FooterProps = Pick<Awaited<ReturnType<typeof getData>>, 'miscellaneous'>;
+
+export default function Footer({ miscellaneous }: FooterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 

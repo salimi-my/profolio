@@ -14,9 +14,9 @@ import {
   slideInFromTop
 } from '@/lib/motion';
 
-export default function Contact({
-  miscellaneous
-}: Partial<Awaited<ReturnType<typeof getData>>>) {
+type ContactProps = Pick<Awaited<ReturnType<typeof getData>>, 'miscellaneous'>;
+
+export default function Contact({ miscellaneous }: ContactProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
