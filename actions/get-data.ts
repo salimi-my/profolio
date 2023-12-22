@@ -31,7 +31,6 @@ interface Data {
   education: Qualification[];
   experience: Qualification[];
   portfolioWithBlur: PortfolioWithBlur[];
-  portfolioCount: number;
   miscellaneous: MiscellaneousWithTitles | null;
   tool: Tool[];
 }
@@ -47,7 +46,6 @@ export default async function getData(): Promise<Data> {
     education,
     experience,
     portfolio,
-    portfolioCount,
     miscellaneous,
     tool
   ] = await prismadb.$transaction([
@@ -102,7 +100,6 @@ export default async function getData(): Promise<Data> {
         createdAt: 'desc'
       }
     }),
-    prismadb.portfolio.count(),
     prismadb.miscellaneous.findFirst({
       include: {
         titles: true
@@ -127,7 +124,6 @@ export default async function getData(): Promise<Data> {
     education,
     experience,
     portfolioWithBlur,
-    portfolioCount,
     miscellaneous,
     tool
   };

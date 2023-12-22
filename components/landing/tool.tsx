@@ -1,18 +1,43 @@
+'use client';
+
+import { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import type getData from '@/actions/get-data';
+import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 
 export default function Tool({
   tool
 }: Partial<Awaited<ReturnType<typeof getData>>>) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section id='tool' className='mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground font-medium'>
+    <motion.section
+      ref={ref}
+      initial='hidden'
+      animate={isInView ? 'visible' : 'hidden'}
+      id='tool'
+      className='mt-32'
+    >
+      <motion.h1
+        variants={slideInFromTop(0.3)}
+        className='text-center text-sm text-muted-foreground font-medium'
+      >
         What I Use
-      </h1>
-      <h2 className='text-center text-2xl font-semibold pt-1'>Tools & Apps</h2>
-      <div className='w-full max-w-4xl mx-auto pt-8'>
+      </motion.h1>
+      <motion.h2
+        variants={slideInFromTop(0.4)}
+        className='text-center text-2xl font-semibold pt-1'
+      >
+        Tools & Apps
+      </motion.h2>
+      <motion.div
+        variants={slideInFromRight(0.5)}
+        className='w-full max-w-4xl mx-auto pt-8'
+      >
         <div className='w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]'>
           <ul className='flex items-center justify-center md:justify-start [&_li]:mx-5 md:[&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll'>
             {tool?.map((item) => (
@@ -54,7 +79,7 @@ export default function Tool({
             ))}
           </ul>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

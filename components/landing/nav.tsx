@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import {
   Book,
   ClipboardCheck,
@@ -11,6 +12,7 @@ import {
 } from 'lucide-react';
 
 import { useAnchor } from '@/hooks/use-anchor';
+import { slideInFromBottom } from '@/lib/motion';
 import NavButton from '@/components/landing/nav-button';
 
 export default function Nav() {
@@ -18,7 +20,12 @@ export default function Nav() {
 
   return (
     <nav className='w-screen flex justify-center fixed bottom-8 z-30'>
-      <div className='bg-black bg-opacity-30 py-3 px-7 flex gap-3 rounded-full backdrop-blur-lg'>
+      <motion.div
+        initial='hidden'
+        animate='visible'
+        variants={slideInFromBottom(0.5)}
+        className='bg-black bg-opacity-30 py-3 px-7 flex gap-3 rounded-full backdrop-blur-lg'
+      >
         <NavButton
           name='Home'
           anchor='#home'
@@ -64,7 +71,7 @@ export default function Nav() {
           icon={MessageCircle}
           active={currentAnchor === '#contact' ? true : false}
         />
-      </div>
+      </motion.div>
     </nav>
   );
 }

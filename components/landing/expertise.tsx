@@ -1,20 +1,45 @@
+'use client';
+
+import { useRef } from 'react';
 import { Check } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 import type getData from '@/actions/get-data';
+import { slideInFromLeft, slideInFromTop } from '@/lib/motion';
 
 export default function Expertise({
   seooptimization,
   webdevelopment,
   contentcreation
 }: Partial<Awaited<ReturnType<typeof getData>>>) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section id='expertise' className='mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground font-medium'>
+    <motion.section
+      ref={ref}
+      initial='hidden'
+      animate={isInView ? 'visible' : 'hidden'}
+      id='expertise'
+      className='mt-32'
+    >
+      <motion.h1
+        variants={slideInFromTop(0.3)}
+        className='text-center text-sm text-muted-foreground font-medium'
+      >
         What I Offer
-      </h1>
-      <h2 className='text-center text-2xl pt-1 font-semibold'>Expertise</h2>
+      </motion.h1>
+      <motion.h2
+        variants={slideInFromTop(0.4)}
+        className='text-center text-2xl pt-1 font-semibold'
+      >
+        Expertise
+      </motion.h2>
       <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-8 lg:gap-8 pt-12'>
-        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:px-10'>
+        <motion.article
+          variants={slideInFromLeft(0.3)}
+          className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:px-10'
+        >
           <div className='absolute -top-6 left-0 right-0 mx-auto w-fit rounded-full bg-primary-foreground px-4 py-2 border-2 border-primary shadow-md'>
             <h3 className='text-base font-medium text-primary'>
               SEO Optimization
@@ -30,9 +55,12 @@ export default function Expertise({
               </li>
             ))}
           </ul>
-        </article>
+        </motion.article>
 
-        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 lg:px-10'>
+        <motion.article
+          variants={slideInFromLeft(0.4)}
+          className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 lg:px-10'
+        >
           <div className='absolute -top-6 left-0 right-0 mx-auto w-fit rounded-full bg-primary-foreground px-4 py-2 border-2 border-primary shadow-md'>
             <h3 className='text-base font-medium text-primary'>
               Web Development
@@ -48,9 +76,12 @@ export default function Expertise({
               </li>
             ))}
           </ul>
-        </article>
+        </motion.article>
 
-        <article className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:lg-10'>
+        <motion.article
+          variants={slideInFromLeft(0.5)}
+          className='relative w-full rounded-2xl flex flex-col bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:lg-10'
+        >
           <div className='absolute -top-6 left-0 right-0 mx-auto w-fit rounded-full bg-primary-foreground px-4 py-2 border-2 border-primary shadow-md'>
             <h3 className='text-base font-medium text-primary'>
               Content Creation
@@ -66,8 +97,8 @@ export default function Expertise({
               </li>
             ))}
           </ul>
-        </article>
+        </motion.article>
       </div>
-    </section>
+    </motion.section>
   );
 }

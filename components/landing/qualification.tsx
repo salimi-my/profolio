@@ -1,6 +1,11 @@
+'use client';
+
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Briefcase, GraduationCap } from 'lucide-react';
 
 import type getData from '@/actions/get-data';
+import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 import QualificationCard from '@/components/landing/qualification-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -8,13 +13,33 @@ export default function Qualification({
   education,
   experience
 }: Partial<Awaited<ReturnType<typeof getData>>>) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section id='qualification' className='mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground font-medium'>
+    <motion.section
+      ref={ref}
+      initial='hidden'
+      animate={isInView ? 'visible' : 'hidden'}
+      id='qualification'
+      className='mt-32'
+    >
+      <motion.h1
+        variants={slideInFromTop(0.3)}
+        className='text-center text-sm text-muted-foreground font-medium'
+      >
         My Personal Journey
-      </h1>
-      <h2 className='text-center text-2xl font-semibold pt-1'>Qualification</h2>
-      <div className='w-full max-w-[810px] mx-auto pt-8'>
+      </motion.h1>
+      <motion.h2
+        variants={slideInFromTop(0.4)}
+        className='text-center text-2xl font-semibold pt-1'
+      >
+        Qualification
+      </motion.h2>
+      <motion.div
+        variants={slideInFromRight(0.5)}
+        className='w-full max-w-[810px] mx-auto pt-8'
+      >
         <Tabs defaultValue='education' className='w-full'>
           <TabsList className='grid w-full grid-cols-2'>
             <TabsTrigger value='education'>Education</TabsTrigger>
@@ -35,7 +60,7 @@ export default function Qualification({
             />
           </TabsContent>
         </Tabs>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }

@@ -22,7 +22,6 @@ export default async function Home() {
     education,
     experience,
     portfolioWithBlur,
-    portfolioCount,
     miscellaneous,
     tool
   } = await getData();
@@ -43,10 +42,7 @@ export default async function Home() {
           contentcreation={contentcreation}
         />
         <Qualification education={education} experience={experience} />
-        <Portfolio
-          portfolioWithBlur={portfolioWithBlur}
-          portfolioCount={portfolioCount}
-        />
+        <Portfolio portfolioWithBlur={portfolioWithBlur} />
         <Tool tool={tool} />
         <Contact miscellaneous={miscellaneous} />
       </main>

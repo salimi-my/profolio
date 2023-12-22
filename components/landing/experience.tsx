@@ -1,21 +1,48 @@
+'use client';
+
+import { useRef } from 'react';
 import { BadgeCheck } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 import type getData from '@/actions/get-data';
+import {
+  slideInFromLeft,
+  slideInFromRight,
+  slideInFromTop
+} from '@/lib/motion';
 
 export default function Experience({
   frontend,
   backend
 }: Partial<Awaited<ReturnType<typeof getData>>>) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <section id='experience' className='mt-32'>
-      <h1 className='text-center text-sm text-muted-foreground font-medium'>
+    <motion.section
+      ref={ref}
+      initial='hidden'
+      animate={isInView ? 'visible' : 'hidden'}
+      id='experience'
+      className='mt-32'
+    >
+      <motion.h1
+        variants={slideInFromTop(0.3)}
+        className='text-center text-sm text-muted-foreground font-medium'
+      >
         What Skills I have
-      </h1>
-      <h2 className='text-center text-2xl pt-1 font-semibold'>
+      </motion.h1>
+      <motion.h2
+        variants={slideInFromTop(0.4)}
+        className='text-center text-2xl pt-1 font-semibold'
+      >
         Technical Level
-      </h2>
+      </motion.h2>
       <div className='grid lg:grid-cols-2 gap-8 pt-8'>
-        <div className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:py-9 md:px-20'>
+        <motion.div
+          variants={slideInFromLeft(0.5)}
+          className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:py-9 md:px-20'
+        >
           <h3 className='text-lg md:text-xl text-primary-foreground group-hover:text-primary pb-8'>
             Frontend Development
           </h3>
@@ -35,8 +62,11 @@ export default function Experience({
               </article>
             ))}
           </div>
-        </div>
-        <div className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:py-9 md:px-20'>
+        </motion.div>
+        <motion.div
+          variants={slideInFromRight(0.5)}
+          className='w-full rounded-2xl flex flex-col items-center bg-primary group hover:bg-primary-foreground transition-colors duration-300 ease-in-out border border-primary py-9 px-6 md:py-9 md:px-20'
+        >
           <h3 className='text-lg md:text-xl text-primary-foreground group-hover:text-primary pb-8'>
             Backend Development
           </h3>
@@ -56,8 +86,8 @@ export default function Experience({
               </article>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
