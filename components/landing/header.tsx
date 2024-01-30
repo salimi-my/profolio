@@ -9,12 +9,7 @@ import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 import type getData from '@/actions/get-data';
 import { Button } from '@/components/ui/button';
 import profile from '@/public/web-developer.webp';
-import {
-  fadeIn,
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromTop
-} from '@/lib/motion';
+import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 
 type HeaderProps = Pick<Awaited<ReturnType<typeof getData>>, 'miscellaneous'>;
 
@@ -32,31 +27,22 @@ export default function Header({ miscellaneous }: HeaderProps) {
       className='h-screen pt-28 min-h-[900px] max-h-[900px]'
     >
       <div className='text-center h-full relative'>
-        <motion.h1
-          variants={slideInFromTop(0)}
-          className='text-sm text-muted-foreground font-medium'
-        >
+        <h1 className='text-sm text-muted-foreground font-medium'>
           Hello, I am
-        </motion.h1>
-        <motion.div
-          variants={slideInFromTop(0.1)}
-          className='flex flex-col justify-start items-center'
-        >
+        </h1>
+        <div className='flex flex-col justify-start items-center'>
           <Link href='/' scroll={false}>
             <h2 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
               Mohamad Salimi
             </h2>
           </Link>
-        </motion.div>
-        <motion.div
-          variants={fadeIn(0.5)}
-          className='pl-[0.1rem] tracking-[0.4rem]'
-        >
+        </div>
+        <div className='pl-[0.1rem] tracking-[0.4rem]'>
           <span className='text-gradient xs:text-base sm:text-lg font-medium'>
             {text}
           </span>
           <Cursor cursorColor='#444444' cursorStyle='|' />
-        </motion.div>
+        </div>
         <div className='inline-flex space-x-3 pt-9'>
           <motion.div variants={slideInFromLeft(0.5)}>
             <Button variant='outline' asChild>
@@ -117,14 +103,11 @@ export default function Header({ miscellaneous }: HeaderProps) {
               className='flex after:content-[""] after:w-[1px] after:h-[2rem] after:bg-primary'
             />
           </div>
-          <motion.div
-            variants={slideInFromTop(0)}
-            className='grow flex justify-center'
-          >
+          <div className='grow flex justify-center'>
             <div className='me w-60 h-96 xs:w-72 xs:h-96 md:w-[22rem] md:h-[30rem]'>
               <Image src={profile} alt='me' priority />
             </div>
-          </motion.div>
+          </div>
           <div className='flex flex-col items-center justify-center gap-4'>
             <motion.div variants={slideInFromRight(0.4)} className='relative'>
               <div className='mouse' />
