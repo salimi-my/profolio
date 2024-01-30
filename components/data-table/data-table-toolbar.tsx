@@ -37,6 +37,7 @@ export function DataTableToolbar<TData>({
           <Input
             placeholder='Search...'
             name='search'
+            type='search'
             value={(table.getState().globalFilter as string) ?? ''}
             onChange={(event) => table.setGlobalFilter(event.target.value)}
             className='h-8 w-[120px] lg:w-[250px] border-none shadow-none pl-0 focus-visible:ring-0'
