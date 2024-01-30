@@ -34,14 +34,19 @@ export const {
         session.user.id = token.sub;
       }
 
-      if (trigger === 'update' && newSession?.name && newSession?.email) {
-        session.user.name = newSession.name;
-        session.user.email = newSession.email;
-      }
-
       if (session.user) {
         session.user.name = token.name;
         session.user.email = token.email;
+      }
+
+      if (
+        session.user &&
+        trigger === 'update' &&
+        newSession?.name &&
+        newSession?.email
+      ) {
+        session.user.name = newSession.name;
+        session.user.email = newSession.email;
       }
 
       return session;
