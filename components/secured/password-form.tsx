@@ -6,8 +6,6 @@ import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import type { Prisma } from '@prisma/client';
-import { useSession } from 'next-auth/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Input } from '@/components/ui/input';
@@ -22,21 +20,8 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-type User = Prisma.UserGetPayload<{
-  select: {
-    name: true;
-    email: true;
-  };
-}>;
-
-interface AccountFormProps {
-  user: User | null;
-}
-
 const formSchema = z
   .object({
-    name: z.string().min(1, { message: 'Please enter name.' }),
-    email: z.string().email({ message: 'Please enter valid email address.' }),
     current: z
       .string()
       .min(8, { message: 'Please enter at least 8 characters.' }),
@@ -52,18 +37,14 @@ const formSchema = z
     path: ['confirm']
   });
 
-export default function AccountForm({ user }: AccountFormProps) {
+export default function PasswordForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const { update } = useSession();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: user !== null && typeof user.name === 'string' ? user.name : '',
-      email: user !== null && typeof user.email === 'string' ? user.email : '',
       current: '',
       password: '',
       confirm: ''
@@ -74,14 +55,9 @@ export default function AccountForm({ user }: AccountFormProps) {
     try {
       setLoading(true);
 
-      const response = await axios.post('/api/account', values);
+      const response = await axios.post('/api/account/password', values);
 
       if (response.data.success) {
-        update({
-          name: response.data.user.name,
-          email: response.data.user.email
-        });
-
         form.resetField('current');
         form.resetField('password');
         form.resetField('confirm');
@@ -125,40 +101,6 @@ export default function AccountForm({ user }: AccountFormProps) {
       >
         <FormField
           control={form.control}
-          name='name'
-          render={({ field }) => (
-            <FormItem className='space-y-1'>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder='Enter your name'
-                  {...field}
-                  autoComplete='name'
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='email'
-          render={({ field }) => (
-            <FormItem className='space-y-1'>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder='Enter your email address'
-                  {...field}
-                  autoComplete='email'
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
           name='current'
           render={({ field }) => (
             <FormItem className='space-y-1'>
@@ -167,6 +109,7 @@ export default function AccountForm({ user }: AccountFormProps) {
                 <Input
                   type='password'
                   placeholder='Enter current password'
+                  autoComplete='new-password'
                   {...field}
                 />
               </FormControl>

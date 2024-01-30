@@ -7,23 +7,9 @@ import { currentUser } from '@/lib/authentication';
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, current, password, confirm } = body;
+    const { current, password, confirm } = body;
 
     const user = await currentUser();
-
-    if (!name) {
-      return NextResponse.json(
-        { success: false, error: 'Name is required.' },
-        { status: 400 }
-      );
-    }
-
-    if (!email) {
-      return NextResponse.json(
-        { success: false, error: 'Email is required.' },
-        { status: 400 }
-      );
-    }
 
     if (!current) {
       return NextResponse.json(
@@ -92,15 +78,13 @@ export async function POST(req: Request) {
         id: loggedInUser.id
       },
       data: {
-        name,
-        email,
         hashedPassword
       }
     });
 
     return NextResponse.json({ success: true, user: updatedUser });
   } catch (error: any) {
-    console.log('[ACCOUNT_POST]', error);
+    console.log('[PASSWORD_POST]', error);
     return NextResponse.json(
       { success: false, error: error.message },
       { status: 500 }
