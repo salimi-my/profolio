@@ -6,7 +6,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 
 - Dynamic infomations, skills & project listings
 - Light / dark / system mode
-- Authentication using NextAuth.js
+- NextAuth.js v5 / Auth.js for authentication
 - MySQL & Prisma for database
 - Zustand for state management
 - EdgeStore for file uploading
@@ -17,7 +17,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 
 - Next.js 14
 - Shadcn/ui
-- NextAuth.js
+- NextAuth.js v5 / Auth.js
 - Tailwind CSS
 - TypeScript
 - MySQL
@@ -29,7 +29,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 
 ## Starting the project
 
-Open the [.env.example](/.env.example) and fill in your Database URL, NextAuth, Resend & EdgeStore Configurations then save it as .env the run the following command:
+Open the [.env.example](/.env.example) and fill in your Database URL, Auth, Resend & EdgeStore Configurations then save it as .env the run the following command:
 
 ```bash
 npm install
@@ -38,14 +38,14 @@ npx prisma db push
 npm run dev
 # or
 pnpm install
-dlx prisma generate
-dlx prisma db push
+pnpm dlx prisma generate
+pnpm dlx prisma db push
 pnpm run dev
 ```
 
 ## Demo
 
-Host anywhere you want. [Click here](https://www.salimi.my) to visit.
+Hosted privately on personal DigitalOcean Droplet. [Click here](https://www.salimi.my) to visit.
 <br>
 Direct link: `https://www.salimi.my`
 
