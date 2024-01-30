@@ -3,7 +3,12 @@
  * These routes does not require authentication
  * @type {string[]}
  */
-export const publicRoutes = ['/', '/api/edgestore/init'];
+export const publicRoutes = [
+  '/',
+  '/api/edgestore/init',
+  '/api/portfolio',
+  '/api/send'
+];
 
 /**
  * An array of routes that are used for authentication
