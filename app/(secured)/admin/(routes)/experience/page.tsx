@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import ExperienceForm from '@/components/secured/experience-form';
 import {
   Card,
@@ -12,22 +12,22 @@ import {
 } from '@/components/ui/card';
 
 export default async function ExperiencePage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const frontendItems = await prismadb.experience.findMany({
     where: {
-      userId: session?.user?.id,
+      userId: user.id,
       type: 'FRONTEND'
     }
   });
 
   const backendItems = await prismadb.experience.findMany({
     where: {
-      userId: session?.user?.id,
+      userId: user.id,
       type: 'BACKEND'
     }
   });

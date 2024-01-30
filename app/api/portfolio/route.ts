@@ -1,8 +1,8 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import addBlurredDataUrls from '@/lib/get-blur-data';
 
 export async function POST(req: Request) {
@@ -11,7 +11,7 @@ export async function POST(req: Request) {
     const { image, thumbnail, title, description, githubUrl, demoUrl, tags } =
       body;
 
-    const session = await auth();
+    const user = await currentUser();
 
     if (!image) {
       return NextResponse.json(
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!session || !session.user) {
+    if (!user || !user.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthenticated.' },
         { status: 401 }
@@ -77,7 +77,7 @@ export async function POST(req: Request) {
         description,
         githubUrl,
         demoUrl,
-        userId: session?.user?.id!
+        userId: user.id
       }
     });
 

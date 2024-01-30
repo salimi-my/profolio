@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { SessionProvider } from 'next-auth/react';
 
+import { auth } from '@/auth';
 import { EdgeStoreProvider } from '@/lib/edgestore';
 import ToastProvider from '@/providers/toast-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
@@ -11,8 +13,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.APP_URL
-      ? `${process.env.APP_URL}`
+    process.env.AUTH_URL
+      ? `${process.env.AUTH_URL}`
       : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : `http://localhost:${process.env.PORT || 3000}`
@@ -39,16 +41,20 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await auth();
+
   return (
-    <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
-        <EdgeStoreProvider>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-            {children}
-            <ToastProvider />
-          </ThemeProvider>
-        </EdgeStoreProvider>
-      </body>
-    </html>
+    <SessionProvider session={session}>
+      <html lang='en' suppressHydrationWarning>
+        <body className={inter.className}>
+          <EdgeStoreProvider>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+              {children}
+              <ToastProvider />
+            </ThemeProvider>
+          </EdgeStoreProvider>
+        </body>
+      </html>
+    </SessionProvider>
   );
 }

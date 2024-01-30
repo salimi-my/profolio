@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import MiscellaneousForm from '@/components/secured/miscellaneous-form';
 import {
   Card,
@@ -12,15 +12,15 @@ import {
 } from '@/components/ui/card';
 
 export default async function MiscellaneousPage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const miscellaneous = await prismadb.miscellaneous.findFirst({
     where: {
-      userId: session?.user?.id
+      userId: user.id
     },
     include: {
       titles: true

@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 
 export async function POST(req: Request) {
   try {
@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       titles
     } = body;
 
-    const session = await auth();
+    const user = await currentUser();
 
     if (!email) {
       return NextResponse.json(
@@ -108,7 +108,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!session || !session.user) {
+    if (!user || !user.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthenticated.' },
         { status: 401 }
@@ -117,7 +117,7 @@ export async function POST(req: Request) {
 
     const currentMiscellaneous = await prismadb.miscellaneous.findFirst({
       where: {
-        userId: session?.user?.id!
+        userId: user.id
       }
     });
 
@@ -173,7 +173,7 @@ export async function POST(req: Request) {
           linkedinUrl,
           githubUrl,
           cvUrl,
-          userId: session?.user?.id!
+          userId: user.id
         }
       });
 

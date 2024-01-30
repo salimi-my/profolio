@@ -1,15 +1,15 @@
-import bcrypt, { compare } from 'bcrypt';
+import bcrypt, { compare } from 'bcryptjs';
 import { NextResponse } from 'next/server';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, current, password, confirm } = body;
 
-    const session = await auth();
+    const user = await currentUser();
 
     if (!name) {
       return NextResponse.json(
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!session || !session.user || !session.user.id) {
+    if (!user || !user.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthenticated.' },
         { status: 401 }
@@ -60,13 +60,13 @@ export async function POST(req: Request) {
       );
     }
 
-    const currentUser = await prismadb.user.findUnique({
+    const loggedInUser = await prismadb.user.findUnique({
       where: {
-        id: session.user.id
+        id: user.id
       }
     });
 
-    if (!currentUser || !currentUser.hashedPassword) {
+    if (!loggedInUser || !loggedInUser.hashedPassword) {
       return NextResponse.json(
         { success: false, error: 'Account does not exist.' },
         { status: 400 }
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
 
     const isCorrectPassword = await compare(
       current,
-      currentUser.hashedPassword
+      loggedInUser.hashedPassword
     );
 
     if (!isCorrectPassword) {
@@ -87,9 +87,9 @@ export async function POST(req: Request) {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const user = await prismadb.user.update({
+    const updatedUser = await prismadb.user.update({
       where: {
-        id: currentUser.id
+        id: loggedInUser.id
       },
       data: {
         name,
@@ -98,7 +98,7 @@ export async function POST(req: Request) {
       }
     });
 
-    return NextResponse.json({ success: true, user });
+    return NextResponse.json({ success: true, user: updatedUser });
   } catch (error: any) {
     console.log('[ACCOUNT_POST]', error);
     return NextResponse.json(

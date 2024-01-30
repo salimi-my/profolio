@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import BackButton from '@/components/back-button';
+import { currentUser } from '@/lib/authentication';
 import ToolForm from '@/components/secured/tool-form';
 import {
   Card,
@@ -17,16 +17,16 @@ export default async function ToolId({
 }: {
   params: { toolId: string };
 }) {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const tool = await prismadb.tool.findUnique({
     where: {
       id: params.toolId,
-      userId: session.user.id
+      userId: user.id
     }
   });
 

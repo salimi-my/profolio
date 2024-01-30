@@ -1,6 +1,3 @@
-import { redirect } from 'next/navigation';
-
-import { auth } from '@/lib/auth';
 import ModalProvider from '@/providers/modal-provider';
 
 export default async function AdminLayout({
@@ -8,12 +5,6 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
-  }
-
   return (
     <>
       <ModalProvider />

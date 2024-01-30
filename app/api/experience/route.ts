@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { items } = body;
 
-    const session = await auth();
+    const user = await currentUser();
 
     if (items.length < 1) {
       return NextResponse.json(
@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       }
     });
 
-    if (!session || !session.user) {
+    if (!user || !user.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthenticated.' },
         { status: 401 }
@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
     await prismadb.experience.deleteMany({
       where: {
-        userId: session?.user?.id!,
+        userId: user.id,
         type: items[0].type
       }
     });
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
           skill: item.skill,
           level: item.level,
           type: item.type,
-          userId: session.user.id!
+          userId: user.id
         })
       )
     });

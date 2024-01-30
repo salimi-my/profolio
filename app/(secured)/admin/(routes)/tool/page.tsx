@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/secured/tool-table/columns';
 import AddButton from '@/components/secured/tool-table/add-button';
@@ -25,15 +25,15 @@ const filterOptions = [
 ];
 
 export default async function ToolPage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const tools = await prismadb.tool.findMany({
     where: {
-      userId: session?.user?.id
+      userId: user.id
     },
     orderBy: {
       createdAt: 'desc'

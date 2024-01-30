@@ -1,7 +1,8 @@
+import { ComponentType } from 'react';
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/secured/portfolio-table/columns';
 import AddButton from '@/components/secured/portfolio-table/add-button';
@@ -12,7 +13,6 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { ComponentType } from 'react';
 
 const filterOptions: {
   label: string;
@@ -21,15 +21,15 @@ const filterOptions: {
 }[] = [];
 
 export default async function PortfolioPage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const portfolios = await prismadb.portfolio.findMany({
     where: {
-      userId: session?.user?.id
+      userId: user.id
     },
     orderBy: {
       createdAt: 'desc'

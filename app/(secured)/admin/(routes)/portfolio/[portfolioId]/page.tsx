@@ -1,8 +1,8 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
 import BackButton from '@/components/back-button';
+import { currentUser } from '@/lib/authentication';
 import PortfolioForm from '@/components/secured/portfolio-form';
 import {
   Card,
@@ -17,16 +17,16 @@ export default async function PortfolioIdPage({
 }: {
   params: { portfolioId: string };
 }) {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const portfolio = await prismadb.portfolio.findUnique({
     where: {
       id: params.portfolioId,
-      userId: session.user.id
+      userId: user.id
     },
     include: {
       tags: true

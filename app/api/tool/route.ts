@@ -1,15 +1,15 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { image, thumbnail, name, color } = body;
 
-    const session = await auth();
+    const user = await currentUser();
 
     if (!image) {
       return NextResponse.json(
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!session || !session.user || !session.user.id) {
+    if (!user || !user.id) {
       return NextResponse.json(
         { success: false, error: 'Unauthenticated.' },
         { status: 401 }
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
         thumbnail,
         name,
         color,
-        userId: session?.user?.id
+        userId: user.id
       }
     });
 

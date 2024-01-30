@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import AccountForm from '@/components/secured/account-form';
 import {
   Card,
@@ -12,15 +12,15 @@ import {
 } from '@/components/ui/card';
 
 export default async function AccountPage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
-  const user = await prismadb.user.findUnique({
+  const loggedInUser = await prismadb.user.findUnique({
     where: {
-      id: session?.user?.id
+      id: user.id
     },
     select: {
       name: true,
@@ -37,7 +37,7 @@ export default async function AccountPage() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <AccountForm user={user} />
+        <AccountForm user={loggedInUser} />
       </CardContent>
     </Card>
   );

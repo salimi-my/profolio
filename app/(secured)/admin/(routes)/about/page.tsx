@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 
-import { auth } from '@/lib/auth';
 import prismadb from '@/lib/prismadb';
+import { currentUser } from '@/lib/authentication';
 import AboutForm from '@/components/secured/about-form';
 import {
   Card,
@@ -12,15 +12,15 @@ import {
 } from '@/components/ui/card';
 
 export default async function AboutPage() {
-  const session = await auth();
+  const user = await currentUser();
 
-  if (!session || !session.user || !session.user.id) {
-    redirect('/api/auth/signin');
+  if (!user || !user.id) {
+    redirect('/auth/sign-in');
   }
 
   const about = await prismadb.about.findFirst({
     where: {
-      userId: session?.user?.id
+      userId: user.id
     }
   });
 

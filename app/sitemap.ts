@@ -5,8 +5,8 @@ import prismadb from '@/lib/prismadb';
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.APP_URL
-    ? `${process.env.APP_URL}`
+  const baseUrl = process.env.AUTH_URL
+    ? `${process.env.AUTH_URL}`
     : process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : `http://localhost:${process.env.PORT || 3000}`;
