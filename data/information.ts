@@ -1,5 +1,5 @@
 import prismadb from '@/lib/prismadb';
-import addBlurredDataUrls from '@/lib/get-blur-data';
+import addBlurredDataUrls from '@/data/image-blur';
 import type {
   About,
   Experience,
@@ -35,7 +35,7 @@ interface Data {
   tool: Tool[];
 }
 
-export default async function getData(): Promise<Data> {
+export default async function getInformation(): Promise<Data> {
   const [
     about,
     frontend,

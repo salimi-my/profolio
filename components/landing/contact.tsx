@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/landing/icons';
 import ContactForm from '@/components/landing/contact-form';
@@ -14,7 +14,10 @@ import {
   slideInFromTop
 } from '@/lib/motion';
 
-type ContactProps = Pick<Awaited<ReturnType<typeof getData>>, 'miscellaneous'>;
+type ContactProps = Pick<
+  Awaited<ReturnType<typeof getInformation>>,
+  'miscellaneous'
+>;
 
 export default function Contact({ miscellaneous }: ContactProps) {
   const ref = useRef(null);

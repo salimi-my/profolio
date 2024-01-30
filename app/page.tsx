@@ -1,4 +1,4 @@
-import getData from '@/actions/get-data';
+import getInformation from '@/data/information';
 import Nav from '@/components/landing/nav';
 import Tool from '@/components/landing/tool';
 import About from '@/components/landing/about';
@@ -24,7 +24,7 @@ export default async function Home() {
     portfolioWithBlur,
     miscellaneous,
     tool
-  } = await getData();
+  } = await getInformation();
 
   return (
     <>

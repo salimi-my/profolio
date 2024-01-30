@@ -5,10 +5,10 @@ import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 
-type ToolProps = Pick<Awaited<ReturnType<typeof getData>>, 'tool'>;
+type ToolProps = Pick<Awaited<ReturnType<typeof getInformation>>, 'tool'>;
 
 export default function Tool({ tool }: ToolProps) {
   const ref = useRef(null);

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import prismadb from '@/lib/prismadb';
 import { currentUser } from '@/lib/authentication';
-import addBlurredDataUrls from '@/lib/get-blur-data';
+import addBlurredDataUrls from '@/data/image-blur';
 
 export async function POST(req: Request) {
   try {

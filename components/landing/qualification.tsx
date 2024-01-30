@@ -4,13 +4,13 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Briefcase, GraduationCap } from 'lucide-react';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 import QualificationCard from '@/components/landing/qualification-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 type QualificationProps = Pick<
-  Awaited<ReturnType<typeof getData>>,
+  Awaited<ReturnType<typeof getInformation>>,
   'education' | 'experience'
 >;
 

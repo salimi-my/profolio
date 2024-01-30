@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import tilted from '@/public/web-developer-tilted.webp';
 import {
@@ -15,7 +15,7 @@ import {
   slideInFromTop
 } from '@/lib/motion';
 
-type AboutProps = Pick<Awaited<ReturnType<typeof getData>>, 'about'>;
+type AboutProps = Pick<Awaited<ReturnType<typeof getInformation>>, 'about'>;
 
 export default function About({ about }: AboutProps) {
   const ref = useRef(null);

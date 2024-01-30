@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { BadgeCheck } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import {
   slideInFromLeft,
   slideInFromRight,
@@ -12,7 +12,7 @@ import {
 } from '@/lib/motion';
 
 type ExperienceProps = Pick<
-  Awaited<ReturnType<typeof getData>>,
+  Awaited<ReturnType<typeof getInformation>>,
   'frontend' | 'backend'
 >;
 

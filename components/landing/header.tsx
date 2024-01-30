@@ -6,12 +6,15 @@ import { motion } from 'framer-motion';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import profile from '@/public/web-developer.webp';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 
-type HeaderProps = Pick<Awaited<ReturnType<typeof getData>>, 'miscellaneous'>;
+type HeaderProps = Pick<
+  Awaited<ReturnType<typeof getInformation>>,
+  'miscellaneous'
+>;
 
 export default function Header({ miscellaneous }: HeaderProps) {
   const [text] = useTypewriter({

@@ -4,11 +4,11 @@ import { useRef } from 'react';
 import { Check } from 'lucide-react';
 import { motion, useInView } from 'framer-motion';
 
-import type getData from '@/actions/get-data';
+import type getInformation from '@/data/information';
 import { slideInFromLeft, slideInFromTop } from '@/lib/motion';
 
 type ExpertiseProps = Pick<
-  Awaited<ReturnType<typeof getData>>,
+  Awaited<ReturnType<typeof getInformation>>,
   'seooptimization' | 'webdevelopment' | 'contentcreation'
 >;
 
