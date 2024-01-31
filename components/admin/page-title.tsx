@@ -23,6 +23,8 @@ export default function PageTitle() {
     pageTitle = 'Miscellaneous';
   } else if (pathname.includes('/admin/tool')) {
     pageTitle = 'Tool & Apps';
+  } else if (pathname.includes('/admin/resume')) {
+    pageTitle = 'Resume';
   } else if (pathname.includes('/admin/account')) {
     pageTitle = 'Account';
   }
