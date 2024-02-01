@@ -18,7 +18,7 @@ export default function UploadPdfButton({ resume }: UploadPdfButtonProps) {
     <>
       <Button size='sm' onClick={() => setOpen(true)}>
         <Upload className='mr-2 h-4 w-4' />
-        Upload PDF
+        Upload <span className='hidden sm:inline ml-1'>PDF</span>
       </Button>
       <UploadPdfModal
         isOpen={open}
