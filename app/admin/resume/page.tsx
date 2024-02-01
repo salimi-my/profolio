@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation';
 
 import prismadb from '@/lib/prismadb';
 import { currentUser } from '@/lib/authentication';
-import ViewResume from '@/components/admin/view-resume';
+import ResumeIframe from '@/components/admin/resume-iframe';
 import UploadPdfButton from '@/components/admin/upload-pdf-button';
 import {
   Card,
@@ -35,7 +35,7 @@ export default async function AboutPage() {
         <CardDescription>Manage your resume pdf file.</CardDescription>
       </CardHeader>
       <CardContent>
-        <ViewResume url={resume?.pdf ?? null} />
+        <ResumeIframe url={resume?.pdf ?? null} />
       </CardContent>
     </Card>
   );
