@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { Upload } from 'lucide-react';
 import { Resume } from '@prisma/client';
 
+import { Modal } from '@/components/ui/modal';
 import { Button } from '@/components/ui/button';
-import UploadPdfModal from '@/components/modals/upload-pdf-modal';
+import UploadPdfForm from '@/components/admin/upload-pdf-form';
 
 interface UploadPdfButtonProps {
   resume: Resume | null;
@@ -20,11 +21,14 @@ export default function UploadPdfButton({ resume }: UploadPdfButtonProps) {
         <Upload className='mr-2 h-4 w-4' />
         Upload <span className='hidden sm:inline ml-1'>PDF</span>
       </Button>
-      <UploadPdfModal
+      <Modal
+        title='Upload PDF'
+        description='Update and upload your latest resume in PDF format.'
         isOpen={open}
         onClose={() => setOpen(false)}
-        resume={resume}
-      />
+      >
+        <UploadPdfForm onClose={() => setOpen(false)} resume={resume} />
+      </Modal>
     </>
   );
 }
