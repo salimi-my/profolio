@@ -29,18 +29,18 @@ export default function ContactEmail({
       </Head>
       <Preview>{message}</Preview>
       <Tailwind>
-        <Body className='bg-white my-auto mx-auto'>
-          <Container className='border border-solid border-[#eaeaea] rounded-lg my-[40px] mx-auto p-[20px] w-[500px]'>
-            <Heading className='text-black text-[24px] font-normal text-start p-0 my-[30px] mx-0'>
-              New <strong>Message</strong> from <strong>Contact Form</strong>
+        <Body className='bg-white my-auto mx-auto font-sans'>
+          <Container className='border border-solid border-zinc-200 rounded-lg my-10 mx-auto p-5 max-w-[500px]'>
+            <Heading as='h1' className='text-black font-bold text-xl mb-6'>
+              New Message from Contact Form
             </Heading>
-            <Text className='text-black text-[14px] leading-[24px]'>
+            <Text className='text-black text-sm'>
               <p className='text-base font-semibold'>Hi Salimi,</p>
             </Text>
-            <Text className='text-black text-[14px] leading-[24px]'>
+            <Text className='text-black text-sm'>
               You got a new message from {name}. Check it below:
             </Text>
-            <Section className='w-full border rounded-md bg-zinc-100 px-4'>
+            <Section className='w-full border rounded-md bg-zinc-100 px-4 py-1'>
               <Text className='text-zinc-700 text-sm my-2'>
                 <span className='font-medium'>Name:</span> {name}
               </Text>
@@ -51,8 +51,8 @@ export default function ContactEmail({
                 <span className='font-medium'>Message:</span> {message}
               </Text>
             </Section>
-            <Hr className='border border-solid border-[#eaeaea] my-[26px] mx-0 w-full' />
-            <Text className='text-[#666666] text-[12px] leading-[24px]'>
+            <Hr className='border-0 border-t border-solid border-zinc-200 my-6 mx-0 w-full' />
+            <Text className='text-zinc-500 text-xs'>
               This email was sent from Contact Form on your website.
             </Text>
           </Container>
