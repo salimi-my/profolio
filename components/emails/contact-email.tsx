@@ -11,17 +11,17 @@ import {
   Text
 } from '@react-email/components';
 
-interface EmailTemplateProps {
+interface ContactEmailProps {
   email: string;
   name: string;
   message: string;
 }
 
-export default function EmailTemplate({
+export default function ContactEmail({
   email,
   name,
   message
-}: EmailTemplateProps) {
+}: ContactEmailProps) {
   return (
     <Html>
       <Head>
