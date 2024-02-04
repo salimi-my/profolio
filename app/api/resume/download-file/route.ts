@@ -46,9 +46,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const downloadUrl = getDownloadUrl(resume.pdf);
-
-    const response = await fetch(downloadUrl);
+    const response = await fetch(resume.pdf);
 
     return new Response(response.body, {
       headers: {
