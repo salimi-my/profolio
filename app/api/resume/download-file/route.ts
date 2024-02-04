@@ -47,14 +47,17 @@ export async function POST(req: Request) {
     }
 
     const response = await fetch(resume.pdf);
+    const pdfData = await response.arrayBuffer(); // Extract PDF data
 
-    return new Response(response.body, {
-      headers: {
-        ...response.headers,
-        'content-type': 'application/pdf',
-        'content-disposition': `attachment; filename="salimi-resume.pdf";`
-      }
-    });
+    // Create new Response object with PDF data and headers
+    const headers = new Headers(response.headers);
+    headers.set('content-type', 'application/pdf');
+    headers.set(
+      'content-disposition',
+      'attachment; filename="salimi-resume.pdf"'
+    );
+
+    return new Response(pdfData, { headers });
   } catch (error) {
     let message;
 
