@@ -5,9 +5,12 @@
  */
 export const publicRoutes = [
   '/',
-  '/api/edgestore/init',
+  '/download-cv',
+  '/api/send',
   '/api/portfolio',
-  '/api/send'
+  '/api/edgestore/init',
+  '/api/resume/generate-link',
+  '/api/resume/download-file'
 ];
 
 /**

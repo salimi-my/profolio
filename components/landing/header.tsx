@@ -6,10 +6,11 @@ import { motion } from 'framer-motion';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 
-import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import profile from '@/public/web-developer.webp';
+import type getInformation from '@/data/information';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
+import DownloadCvButton from '@/components/landing/download-cv-button';
 
 type HeaderProps = Pick<
   Awaited<ReturnType<typeof getInformation>>,
@@ -48,15 +49,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
         </div>
         <div className='inline-flex space-x-3 pt-9'>
           <motion.div variants={slideInFromLeft(0.5)}>
-            <Button variant='outline' asChild>
-              <Link
-                href={miscellaneous ? miscellaneous.cvUrl : '#'}
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                Download CV
-              </Link>
-            </Button>
+            <DownloadCvButton />
           </motion.div>
           <motion.div variants={slideInFromRight(0.5)}>
             <Button variant='default' asChild>
