@@ -92,6 +92,7 @@ export default function ContactForm() {
                   placeholder='Enter your name'
                   {...field}
                   autoComplete='name'
+                  disabled={loading}
                 />
               </FormControl>
               <FormMessage />
@@ -106,9 +107,11 @@ export default function ContactForm() {
               <FormLabel className='text-base'>Email</FormLabel>
               <FormControl>
                 <Input
+                  type='email'
                   placeholder='Enter your email'
                   {...field}
                   autoComplete='email'
+                  disabled={loading}
                 />
               </FormControl>
               <FormMessage />
@@ -122,7 +125,12 @@ export default function ContactForm() {
             <FormItem>
               <FormLabel className='text-base'>Subject</FormLabel>
               <FormControl>
-                <Input placeholder='Enter subject' {...field} />
+                <Input
+                  placeholder='Enter subject'
+                  {...field}
+                  autoComplete='subject'
+                  disabled={loading}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -140,6 +148,8 @@ export default function ContactForm() {
                   placeholder='Enter your message'
                   className='resize-none'
                   {...field}
+                  autoComplete='message'
+                  disabled={loading}
                 />
               </FormControl>
               <FormMessage />
