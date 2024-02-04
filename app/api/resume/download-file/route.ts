@@ -51,7 +51,8 @@ export async function POST(req: Request) {
     return new Response(response.body, {
       headers: {
         ...response.headers,
-        'content-disposition': `attachment; filename="salimi-resume.pdf"`
+        'content-type': 'application/pdf',
+        'content-disposition': `attachment; filename="salimi-resume.pdf";`
       }
     });
   } catch (error) {
