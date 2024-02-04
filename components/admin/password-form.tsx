@@ -1,9 +1,9 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import axios, { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -69,19 +69,26 @@ export default function PasswordForm() {
           description: 'Data has been successfully saved.'
         });
       }
-    } catch (error: any) {
-      if (error.response.data.error === 'Passwords does not match.') {
-        form.setError('confirm', {
-          type: 'manual',
-          message: error.response.data.error
-        });
-      } else if (error.response.data.error === 'Wrong current password.') {
-        form.setError('current', {
-          type: 'manual',
-          message: error.response.data.error
-        });
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data.error) {
+        if (error.response.data.error === 'Passwords does not match.') {
+          form.setError('confirm', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else if (error.response.data.error === 'Wrong current password.') {
+          form.setError('current', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else {
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: error.response.data.error
+          });
+        }
       } else {
-        console.log(error);
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',

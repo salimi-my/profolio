@@ -1,9 +1,9 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import axios, { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -107,13 +107,19 @@ export default function ToolForm({ tool }: ToolFormProps) {
         }
       }
     } catch (error) {
-      console.log(error);
-
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+      if (error instanceof AxiosError && error.response?.data.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data.error
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
     } finally {
       setLoading(false);
     }

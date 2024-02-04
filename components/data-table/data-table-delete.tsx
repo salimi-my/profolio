@@ -1,7 +1,7 @@
 import { z } from 'zod';
-import axios from 'axios';
 import { useState } from 'react';
 import { Trash } from 'lucide-react';
+import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { Table } from '@tanstack/react-table';
 
@@ -57,19 +57,26 @@ export default function DataTableDelete<TData>({
       );
 
       router.refresh();
+
       toast({
         variant: 'default',
         title: 'Success!',
         description: 'Data has been successfully deleted.'
       });
     } catch (error) {
-      console.log(error);
-
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+      if (error instanceof AxiosError && error.response?.data.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data.error
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
     } finally {
       setLoading(false);
       setOpen(false);

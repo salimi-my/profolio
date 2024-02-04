@@ -1,9 +1,9 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import axios, { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import type { Prisma } from '@prisma/client';
@@ -74,13 +74,20 @@ export default function ProfileForm({ user }: ProfileFormProps) {
           description: 'Data has been successfully saved.'
         });
       }
-    } catch (error: any) {
-      console.log(error);
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data.error
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
     } finally {
       setLoading(false);
     }

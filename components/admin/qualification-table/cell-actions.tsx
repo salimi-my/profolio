@@ -1,8 +1,8 @@
 'use client';
 
 import { z } from 'zod';
-import axios from 'axios';
 import React, { useState } from 'react';
+import axios, { AxiosError } from 'axios';
 import { Row } from '@tanstack/react-table';
 import { Edit, Trash2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -58,13 +58,19 @@ export function CellActions<TData>({ row }: CellActionsProps<TData>) {
         description: 'Data has been successfully deleted.'
       });
     } catch (error) {
-      console.log(error);
-
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+      if (error instanceof AxiosError && error.response?.data.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data.error
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
     } finally {
       setLoading(false);
       setOpen(false);

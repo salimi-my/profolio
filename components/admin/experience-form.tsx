@@ -1,8 +1,8 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { Loader2, Trash } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -100,13 +100,19 @@ export default function ExperienceForm({
         });
       }
     } catch (error) {
-      console.log(error);
-
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-        description: 'There was a problem with your request.'
-      });
+      if (error instanceof AxiosError && error.response?.data.error) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data.error
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: 'There was a problem with your request.'
+        });
+      }
     } finally {
       setLoading(false);
     }

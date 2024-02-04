@@ -1,11 +1,11 @@
 'use client';
 
 import * as z from 'zod';
-import axios from 'axios';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
 import { signIn } from 'next-auth/react';
+import axios, { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -79,35 +79,42 @@ export default function SignUpForm() {
           callbackUrl: '/admin'
         });
       }
-    } catch (error: any) {
-      if (error.response.data.error === 'Name is required.') {
-        form.setError('name', {
-          type: 'manual',
-          message: error.response.data.error
-        });
-      } else if (error.response.data.error === 'Email is required.') {
-        form.setError('email', {
-          type: 'manual',
-          message: error.response.data.error
-        });
-      } else if (error.response.data.error === 'Password is required.') {
-        form.setError('password', {
-          type: 'manual',
-          message: error.response.data.error
-        });
-      } else if (error.response.data.error === 'Passwords does not match.') {
-        form.setError('confirm', {
-          type: 'manual',
-          message: error.response.data.error
-        });
-      } else if (error.response.data.error === 'Cannot register.') {
-        toast({
-          variant: 'destructive',
-          title: 'Uh oh! Sorry.',
-          description: 'Cannot register. There can only be one user.'
-        });
+    } catch (error) {
+      if (error instanceof AxiosError && error.response?.data.error) {
+        if (error.response.data.error === 'Name is required.') {
+          form.setError('name', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else if (error.response.data.error === 'Email is required.') {
+          form.setError('email', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else if (error.response.data.error === 'Password is required.') {
+          form.setError('password', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else if (error.response.data.error === 'Passwords does not match.') {
+          form.setError('confirm', {
+            type: 'manual',
+            message: error.response.data.error
+          });
+        } else if (error.response.data.error === 'Cannot register.') {
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Sorry.',
+            description: 'Cannot register. There can only be one user.'
+          });
+        } else {
+          toast({
+            variant: 'destructive',
+            title: 'Uh oh! Something went wrong.',
+            description: error.response.data.error
+          });
+        }
       } else {
-        console.log(error);
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
