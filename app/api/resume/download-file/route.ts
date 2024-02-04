@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const pdfData = await response.arrayBuffer(); // Extract PDF data
 
     // Create new Response object with PDF data and headers
-    const headers = new Headers(response.headers);
+    const headers = new Headers();
     headers.set('content-type', 'application/pdf');
     headers.set(
       'content-disposition',
