@@ -3,10 +3,10 @@
 import axios, { AxiosError } from 'axios';
 import { BeatLoader } from 'react-spinners';
 import { useSearchParams } from 'next/navigation';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useToast } from '@/components/ui/use-toast';
-import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 export default function DownloadCv() {
   const submit = useRef(false);
@@ -21,11 +21,7 @@ export default function DownloadCv() {
     try {
       setLoading(true);
 
-      const response = await axios.post(
-        '/api/resume/download-file',
-        { token },
-        { responseType: 'blob' }
-      );
+      const response = await axios.post('/api/resume/download-file', { token });
 
       const url = URL.createObjectURL(new Blob([response.data]));
 
