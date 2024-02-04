@@ -56,10 +56,19 @@ export async function POST(req: Request) {
 
       return NextResponse.json({ success: true, resume });
     }
-  } catch (error: any) {
+  } catch (error) {
     console.log('[RESUME_POST]', error);
+
+    let message;
+
+    if (error instanceof Error) {
+      message = error.message;
+    } else {
+      message = String(error);
+    }
+
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: message },
       { status: 500 }
     );
   }

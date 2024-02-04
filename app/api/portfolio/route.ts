@@ -91,10 +91,19 @@ export async function POST(req: Request) {
     revalidatePath('/');
 
     return NextResponse.json({ success: true, portfolio, tagsCreated });
-  } catch (error: any) {
+  } catch (error) {
     console.log('[PORTFOLIO_POST]', error);
+
+    let message;
+
+    if (error instanceof Error) {
+      message = error.message;
+    } else {
+      message = String(error);
+    }
+
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: message },
       { status: 500 }
     );
   }
@@ -119,10 +128,19 @@ export async function GET(req: NextRequest) {
     const photosWithBlur = await addBlurredDataUrls(portfolios);
 
     return NextResponse.json(photosWithBlur);
-  } catch (error: any) {
+  } catch (error) {
     console.log('[PORTFOLIO_GET]', error);
+
+    let message;
+
+    if (error instanceof Error) {
+      message = error.message;
+    } else {
+      message = String(error);
+    }
+
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: message },
       { status: 500 }
     );
   }

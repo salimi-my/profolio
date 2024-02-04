@@ -84,10 +84,19 @@ export async function POST(req: Request) {
     revalidatePath('/');
 
     return NextResponse.json({ success: true, qualification });
-  } catch (error: any) {
+  } catch (error) {
     console.log('[QUALIFICATION_POST]', error);
+
+    let message;
+
+    if (error instanceof Error) {
+      message = error.message;
+    } else {
+      message = String(error);
+    }
+
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: message },
       { status: 500 }
     );
   }

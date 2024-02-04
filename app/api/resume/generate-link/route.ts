@@ -53,6 +53,8 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, data });
   } catch (error) {
+    console.log('[GENERATE_LINK_POST]', error);
+
     let message;
 
     if (error instanceof Error) {
@@ -60,8 +62,6 @@ export async function POST(req: Request) {
     } else {
       message = String(error);
     }
-
-    console.log('[GENERATE_LINK_POST]', error);
 
     return NextResponse.json(
       { success: false, error: message },

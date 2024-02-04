@@ -57,6 +57,8 @@ export async function POST(req: Request) {
 
     return new Response(pdfData, { headers });
   } catch (error) {
+    console.log('[DOWNLOAD_FILE_POST]', error);
+
     let message;
 
     if (error instanceof Error) {
@@ -64,8 +66,6 @@ export async function POST(req: Request) {
     } else {
       message = String(error);
     }
-
-    console.log('[DOWNLOAD_FILE_POST]', error);
 
     return NextResponse.json(
       { success: false, error: message },
