@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { getDownloadUrl } from '@edgestore/react/utils';
 
 import prismadb from '@/lib/prismadb';
 
@@ -47,9 +46,8 @@ export async function POST(req: Request) {
     }
 
     const response = await fetch(resume.pdf);
-    const pdfData = await response.arrayBuffer(); // Extract PDF data
+    const pdfData = await response.arrayBuffer();
 
-    // Create new Response object with PDF data and headers
     const headers = new Headers();
     headers.set('content-type', 'application/pdf');
     headers.set(
