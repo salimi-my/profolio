@@ -85,29 +85,32 @@ export default async function getInformation(): Promise<Data> {
     })
   ]);
 
-  const frontend = experiences.filter(
-    (experience) => experience.type === 'FRONTEND'
-  );
-  const backend = experiences.filter(
-    (experience) => experience.type === 'BACKEND'
-  );
+  const frontend = [];
+  const backend = [];
+  const seooptimization = [];
+  const webdevelopment = [];
+  const contentcreation = [];
+  const education = [];
+  const experience = [];
 
-  const seooptimization = expertises.filter(
-    (expertise) => expertise.type === 'SEOOPTIMIZATION'
-  );
-  const webdevelopment = expertises.filter(
-    (expertise) => expertise.type === 'WEBDEVELOPMENT'
-  );
-  const contentcreation = expertises.filter(
-    (expertise) => expertise.type === 'CONTENTCREATION'
-  );
+  for (const exp of experiences) {
+    if (exp.type === 'FRONTEND') frontend.push(exp);
+    else if (exp.type === 'BACKEND') backend.push(exp);
+  }
 
-  const education = qualifications.filter(
-    (qualification) => qualification.type === 'EDUCATION'
-  );
-  const experience = qualifications.filter(
-    (qualification) => qualification.type === 'EXPERIENCE'
-  );
+  for (const expertise of expertises) {
+    if (expertise.type === 'SEOOPTIMIZATION') seooptimization.push(expertise);
+    else if (expertise.type === 'WEBDEVELOPMENT')
+      webdevelopment.push(expertise);
+    else if (expertise.type === 'CONTENTCREATION')
+      contentcreation.push(expertise);
+  }
+
+  for (const qualification of qualifications) {
+    if (qualification.type === 'EDUCATION') education.push(qualification);
+    else if (qualification.type === 'EXPERIENCE')
+      experience.push(qualification);
+  }
 
   const portfolioWithBlur = await addBlurredDataUrls(portfolio);
 
