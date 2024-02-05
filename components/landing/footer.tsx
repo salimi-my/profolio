@@ -36,7 +36,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
             className='text-primary-foreground text-4xl font-medium uppercase'
             asChild
           >
-            <Link href='#home'>Salimi</Link>
+            <Link href='/#home'>Salimi</Link>
           </Button>
         </motion.div>
         <motion.ul
@@ -45,42 +45,42 @@ export default function Footer({ miscellaneous }: FooterProps) {
         >
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#home'>Home</Link>
+              <Link href='/#home'>Home</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#about'>About</Link>
+              <Link href='/#about'>About</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#experience'>Experience</Link>
+              <Link href='/#experience'>Experience</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#expertise'>Expertise</Link>
+              <Link href='/#expertise'>Expertise</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#qualification'>Qualification</Link>
+              <Link href='/#qualification'>Qualification</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#portfolio'>Portfolio</Link>
+              <Link href='/#portfolio'>Portfolio</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#tool'>Tool</Link>
+              <Link href='/#tool'>Tool</Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='#contact'>Contact</Link>
+              <Link href='/#contact'>Contact</Link>
             </Button>
           </li>
         </motion.ul>
@@ -131,7 +131,28 @@ export default function Footer({ miscellaneous }: FooterProps) {
         </motion.div>
         <motion.div
           variants={slideInFromRight(0.5)}
-          className='flex justify-center my-16'
+          className='flex flex-col md:flex-row justify-center items-center mt-9 gap-4'
+        >
+          <Button variant='outline' className='h-6 w-[146px]' asChild>
+            <Link
+              href='/privacy-policy'
+              className='text-primary-foreground text-xs'
+            >
+              Privacy Policy
+            </Link>
+          </Button>
+          <Button variant='outline' className='h-6 w-[146px]' asChild>
+            <Link
+              href='/terms-and-conditions'
+              className='text-primary-foreground text-xs'
+            >
+              Terms & Conditions
+            </Link>
+          </Button>
+        </motion.div>
+        <motion.div
+          variants={slideInFromLeft(0.6)}
+          className='flex justify-center mt-8 mb-16'
         >
           <small className='text-muted'>
             Created by

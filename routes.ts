@@ -5,6 +5,8 @@
  */
 export const publicRoutes = [
   '/',
+  '/privacy-policy',
+  '/terms-and-conditions',
   '/download-cv',
   '/api/send',
   '/api/portfolio',
