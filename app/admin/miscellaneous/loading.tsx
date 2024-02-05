@@ -13,10 +13,6 @@ export default function MiscellaneousLoading() {
       </CardHeader>
       <CardContent>
         <div className='grid lg:grid-cols-2 gap-4'>
-          <div className='space-y-2 lg:col-span-2'>
-            <Skeleton className='h-5 w-[150px]' />
-            <Skeleton className='h-9 w-full' />
-          </div>
           {[...Array(10)].map((_, i) => (
             <div key={i} className='space-y-2'>
               <Skeleton className='h-5 w-[150px]' />
