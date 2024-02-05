@@ -18,7 +18,6 @@ export async function POST(req: Request) {
       twitterUrl,
       linkedinUrl,
       githubUrl,
-      cvUrl,
       titles
     } = body;
 
@@ -94,13 +93,6 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!cvUrl) {
-      return NextResponse.json(
-        { success: false, error: 'CSV URL is required.' },
-        { status: 400 }
-      );
-    }
-
     if (titles.length < 1) {
       return NextResponse.json(
         { success: false, error: 'Titles is required.' },
@@ -136,8 +128,7 @@ export async function POST(req: Request) {
           instagramUrl,
           twitterUrl,
           linkedinUrl,
-          githubUrl,
-          cvUrl
+          githubUrl
         }
       });
 
@@ -172,7 +163,6 @@ export async function POST(req: Request) {
           twitterUrl,
           linkedinUrl,
           githubUrl,
-          cvUrl,
           userId: user.id
         }
       });

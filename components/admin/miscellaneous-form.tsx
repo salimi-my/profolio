@@ -48,7 +48,6 @@ const formSchema = z.object({
   twitterUrl: z.string().url({ message: 'Please enter valid Twitter URL.' }),
   linkedinUrl: z.string().url({ message: 'Please enter valid LinkedIn URL.' }),
   githubUrl: z.string().url({ message: 'Please enter valid GitHub URL.' }),
-  cvUrl: z.string().url({ message: 'Please enter valid CV URL.' }),
   titles: z
     .array(
       z.object({
@@ -85,7 +84,6 @@ export default function MiscellaneousForm({
       twitterUrl: miscellaneous?.twitterUrl ?? '',
       linkedinUrl: miscellaneous?.linkedinUrl ?? '',
       githubUrl: miscellaneous?.githubUrl ?? '',
-      cvUrl: miscellaneous?.cvUrl ?? '',
       titles: initialValues
     },
     mode: 'onChange'
@@ -144,7 +142,7 @@ export default function MiscellaneousForm({
           control={form.control}
           name='email'
           render={({ field }) => (
-            <FormItem className='space-y-1 lg:col-span-2'>
+            <FormItem className='space-y-1'>
               <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input
@@ -269,19 +267,6 @@ export default function MiscellaneousForm({
               <FormLabel>GitHub URL</FormLabel>
               <FormControl>
                 <Input placeholder='Enter GitHub URL' {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name='cvUrl'
-          render={({ field }) => (
-            <FormItem className='space-y-1'>
-              <FormLabel>CSV URL</FormLabel>
-              <FormControl>
-                <Input placeholder='Enter CV URL' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
