@@ -10,7 +10,6 @@ export const publicRoutes = [
   '/download-cv',
   '/api/send',
   '/api/portfolio',
-  '/api/edgestore/init',
   '/api/resume/generate-link',
   '/api/resume/download-file'
 ];

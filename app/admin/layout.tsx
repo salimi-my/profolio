@@ -5,6 +5,7 @@ import useStore from '@/hooks/use-store';
 import Footer from '@/components/admin/footer';
 import Navbar from '@/components/admin/navbar';
 import Sidebar from '@/components/admin/sidebar';
+import { EdgeStoreProvider } from '@/lib/edgestore';
 import ModalProvider from '@/providers/modal-provider';
 import useSidebarToggle from '@/hooks/use-sidebar-toggle';
 
@@ -16,7 +17,7 @@ export default function AdminLayout({
   const sidebar = useStore(useSidebarToggle, (state) => state);
 
   return (
-    <>
+    <EdgeStoreProvider>
       <Sidebar />
       <main
         className={cn(
@@ -36,6 +37,6 @@ export default function AdminLayout({
         <Footer />
       </footer>
       <ModalProvider />
-    </>
+    </EdgeStoreProvider>
   );
 }

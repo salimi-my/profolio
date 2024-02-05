@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import { SessionProvider } from 'next-auth/react';
 
 import { auth } from '@/auth';
-import { EdgeStoreProvider } from '@/lib/edgestore';
 import ToastProvider from '@/providers/toast-provider';
 import { ThemeProvider } from '@/providers/theme-provider';
 
@@ -51,12 +50,10 @@ export default async function RootLayout({
     <SessionProvider session={session}>
       <html lang='en' suppressHydrationWarning>
         <body className={inter.className}>
-          <EdgeStoreProvider>
-            <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-              {children}
-              <ToastProvider />
-            </ThemeProvider>
-          </EdgeStoreProvider>
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+            {children}
+            <ToastProvider />
+          </ThemeProvider>
         </body>
       </html>
     </SessionProvider>
