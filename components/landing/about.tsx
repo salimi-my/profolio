@@ -29,12 +29,12 @@ export default function About({ about }: AboutProps) {
       id='about'
       className='md:mt-32'
     >
-      <motion.h1
+      <motion.span
         variants={slideInFromTop(0.3)}
-        className='text-center text-sm text-muted-foreground font-medium'
+        className='block text-center text-sm text-muted-foreground font-medium'
       >
         Get To Know
-      </motion.h1>
+      </motion.span>
       <motion.h2
         variants={slideInFromTop(0.4)}
         className='text-center text-2xl font-semibold pt-1'
@@ -47,7 +47,7 @@ export default function About({ about }: AboutProps) {
           className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'
         >
           <div className='rounded-2xl overflow-hidden rotate-[10deg] transition duration-300 ease-in-out hover:rotate-0 relative'>
-            <Image src={tilted} alt='about' placeholder='blur' priority />
+            <Image src={tilted} alt='about' placeholder='blur' />
           </div>
         </motion.div>
         <div className='lg:col-span-4 flex flex-col gap-8'>

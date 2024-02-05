@@ -31,14 +31,14 @@ export default function Header({ miscellaneous }: HeaderProps) {
       className='h-screen pt-28 min-h-[900px] max-h-[900px]'
     >
       <div className='text-center h-full relative'>
-        <h1 className='text-sm text-muted-foreground font-medium'>
+        <span className='text-sm text-muted-foreground font-medium'>
           Hello, I am
-        </h1>
+        </span>
         <div className='flex flex-col justify-start items-center'>
           <Link href='/' scroll={false}>
-            <h2 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
+            <h1 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
               Mohamad Salimi
-            </h2>
+            </h1>
           </Link>
         </div>
         <div className='pl-[0.1rem] tracking-[0.4rem]'>
