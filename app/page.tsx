@@ -1,5 +1,6 @@
 import Nav from '@/components/landing/nav';
 import Tool from '@/components/landing/tool';
+import Footer from '@/components/main/footer';
 import About from '@/components/landing/about';
 import getInformation from '@/data/information';
 import Header from '@/components/landing/header';
@@ -10,7 +11,7 @@ import Portfolio from '@/components/landing/portfolio';
 import Experience from '@/components/landing/experience';
 import Qualification from '@/components/landing/qualification';
 
-export default async function Home() {
+export default async function HomePage() {
   const {
     about,
     frontend,
@@ -45,6 +46,7 @@ export default async function Home() {
         <Tool tool={tool} />
         <Contact miscellaneous={miscellaneous} />
       </main>
+      <Footer miscellaneous={miscellaneous} />
     </>
   );
 }
