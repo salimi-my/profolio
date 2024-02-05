@@ -11,7 +11,15 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { DEFAULT_SIGNIN_REDIRECT } from '@/routes';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card';
 import {
   Form,
   FormControl,
@@ -20,13 +28,6 @@ import {
   FormLabel,
   FormMessage
 } from '@/components/ui/form';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter valid email address.' }),
@@ -35,9 +36,14 @@ const formSchema = z.object({
 
 export default function SignInForm() {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl');
   const [loading, setLoading] = useState(false);
 
-  const error = searchParams.get('error');
+  let error = searchParams.get('error');
+
+  if (error === 'CredentialsSignin') {
+    error = 'Invalid email or password.';
+  }
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,7 +59,7 @@ export default function SignInForm() {
 
       await signIn('credentials', {
         ...values,
-        callbackUrl: '/admin'
+        callbackUrl: callbackUrl || DEFAULT_SIGNIN_REDIRECT
       });
     } catch (error) {
       console.log(error);

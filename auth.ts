@@ -16,19 +16,6 @@ export const {
     error: '/auth/sign-in'
   },
   callbacks: {
-    async signIn({ user }) {
-      const existingUser = await prismadb.user.findUnique({
-        where: {
-          id: user.id
-        }
-      });
-
-      if (!existingUser?.emailVerified) {
-        return false;
-      }
-
-      return true;
-    },
     async session({ token, session, trigger, newSession }) {
       if (token.sub && session.user) {
         session.user.id = token.sub;
@@ -54,6 +41,10 @@ export const {
     async jwt({ user, token, trigger, session }) {
       if (user) {
         token.sub = user.id;
+      }
+
+      if (!user) {
+        return token;
       }
 
       const existingUser = await prismadb.user.findUnique({

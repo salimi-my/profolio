@@ -1,12 +1,12 @@
 import NextAuth from 'next-auth';
 
+import authConfig from '@/auth.config';
 import {
   authRoutes,
   publicRoutes,
   apiAuthPrefix,
   DEFAULT_SIGNIN_REDIRECT
 } from '@/routes';
-import authConfig from '@/auth.config';
 
 export const { auth } = NextAuth(authConfig);
 
@@ -18,7 +18,7 @@ export default auth((req) => {
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-  if (isApiAuthRoute) {
+  if (isApiAuthRoute || isPublicRoute) {
     return null;
   }
 
@@ -26,6 +26,7 @@ export default auth((req) => {
     if (isSignedIn) {
       return Response.redirect(new URL(DEFAULT_SIGNIN_REDIRECT, nextUrl));
     }
+
     return null;
   }
 
