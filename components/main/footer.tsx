@@ -2,17 +2,16 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
+import { Miscellaneous } from '@prisma/client';
 import { motion, useInView } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 
-import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 
-type FooterProps = Pick<
-  Awaited<ReturnType<typeof getInformation>>,
-  'miscellaneous'
->;
+interface FooterProps {
+  miscellaneous: Miscellaneous | null;
+}
 
 export default function Footer({ miscellaneous }: FooterProps) {
   const ref = useRef(null);

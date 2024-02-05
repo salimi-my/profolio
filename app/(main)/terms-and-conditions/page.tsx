@@ -3,8 +3,6 @@ import type { Metadata } from 'next';
 import { ChevronLeft } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import getInformation from '@/data/information';
-import Footer from '@/components/landing/footer';
 import { ModeToggle } from '@/components/mode-toggle';
 
 export const metadata: Metadata = {
@@ -32,9 +30,7 @@ export const metadata: Metadata = {
   }
 };
 
-export default async function TermsAndConditionsPage() {
-  const { miscellaneous } = await getInformation();
-
+export default function TermsAndConditionsPage() {
   return (
     <>
       <div className='inline-block sticky float-right z-30 top-8 xl:top-5 right-5'>
@@ -374,7 +370,6 @@ export default async function TermsAndConditionsPage() {
           </li>
         </ul>
       </main>
-      <Footer miscellaneous={miscellaneous} />
     </>
   );
 }
