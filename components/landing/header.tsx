@@ -101,7 +101,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
           </div>
           <div className='grow flex justify-center'>
             <div className='me w-60 h-96 xs:w-72 xs:h-96 md:w-[22rem] md:h-[30rem]'>
-              <Image src={profile} alt='me' priority />
+              <Image src={profile} alt='me' placeholder='blur' priority />
             </div>
           </div>
           <div className='flex flex-col items-center justify-center gap-4'>

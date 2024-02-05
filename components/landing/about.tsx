@@ -6,8 +6,8 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
-import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
+import type getInformation from '@/data/information';
 import tilted from '@/public/web-developer-tilted.webp';
 import {
   slideInFromLeft,
@@ -47,7 +47,7 @@ export default function About({ about }: AboutProps) {
           className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'
         >
           <div className='rounded-2xl overflow-hidden rotate-[10deg] transition duration-300 ease-in-out hover:rotate-0 relative'>
-            <Image src={tilted} alt='about' priority />
+            <Image src={tilted} alt='about' placeholder='blur' priority />
           </div>
         </motion.div>
         <div className='lg:col-span-4 flex flex-col gap-8'>
