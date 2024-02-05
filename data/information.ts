@@ -36,51 +36,6 @@ interface Data {
 }
 
 export default async function getInformation(): Promise<Data> {
-  const aboutPromise = prismadb.about.findFirst();
-
-  const experiencesPromise = prismadb.experience.findMany({
-    where: {
-      type: { in: ['FRONTEND', 'BACKEND'] }
-    }
-  });
-
-  const expertisesPromise = prismadb.expertise.findMany({
-    where: {
-      type: { in: ['SEOOPTIMIZATION', 'WEBDEVELOPMENT', 'CONTENTCREATION'] }
-    }
-  });
-
-  const qualificationsPromise = prismadb.qualification.findMany({
-    where: {
-      type: { in: ['EDUCATION', 'EXPERIENCE'] }
-    },
-    orderBy: {
-      id: 'desc'
-    }
-  });
-
-  const portfolioPromise = prismadb.portfolio.findMany({
-    take: 6,
-    include: {
-      tags: true
-    },
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
-
-  const miscellaneousPromise = prismadb.miscellaneous.findFirst({
-    include: {
-      titles: true
-    }
-  });
-
-  const toolPromise = prismadb.tool.findMany({
-    orderBy: {
-      createdAt: 'desc'
-    }
-  });
-
   const [
     about,
     experiences,
@@ -90,13 +45,44 @@ export default async function getInformation(): Promise<Data> {
     miscellaneous,
     tool
   ] = await Promise.all([
-    aboutPromise,
-    experiencesPromise,
-    expertisesPromise,
-    qualificationsPromise,
-    portfolioPromise,
-    miscellaneousPromise,
-    toolPromise
+    prismadb.about.findFirst(),
+    prismadb.experience.findMany({
+      where: {
+        type: { in: ['FRONTEND', 'BACKEND'] }
+      }
+    }),
+    prismadb.expertise.findMany({
+      where: {
+        type: { in: ['SEOOPTIMIZATION', 'WEBDEVELOPMENT', 'CONTENTCREATION'] }
+      }
+    }),
+    prismadb.qualification.findMany({
+      where: {
+        type: { in: ['EDUCATION', 'EXPERIENCE'] }
+      },
+      orderBy: {
+        id: 'desc'
+      }
+    }),
+    prismadb.portfolio.findMany({
+      take: 6,
+      include: {
+        tags: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    }),
+    prismadb.miscellaneous.findFirst({
+      include: {
+        titles: true
+      }
+    }),
+    prismadb.tool.findMany({
+      orderBy: {
+        createdAt: 'desc'
+      }
+    })
   ]);
 
   const frontend = experiences.filter(
