@@ -13,8 +13,11 @@ export const metadata: Metadata = {
   title: 'Download CV — Salimi',
   description:
     'Thank you for being interested in my profile. The download of my CV will start shortly.',
+  alternates: {
+    canonical: '/download-cv'
+  },
   openGraph: {
-    url: '/',
+    url: '/download-cv',
     title: 'Download CV — Salimi',
     description:
       'Thank you for being interested in my profile. The download of my CV will start shortly.'

@@ -79,6 +79,7 @@ export default function PortfolioCard({
             <Link
               href={portfolio.githubUrl}
               target='_blank'
+              title='Github'
               rel='noopener noreferrer'
             >
               GitHub
@@ -92,6 +93,7 @@ export default function PortfolioCard({
             <Link
               href={portfolio.demoUrl}
               target='_blank'
+              title='Live Demo'
               rel='noopener noreferrer'
             >
               Live Demo

@@ -35,7 +35,9 @@ export default function Footer({ miscellaneous }: FooterProps) {
             className='text-primary-foreground text-4xl font-medium uppercase'
             asChild
           >
-            <Link href='/#home'>Salimi</Link>
+            <Link href='/#home' title='Salimi'>
+              Salimi
+            </Link>
           </Button>
         </motion.div>
         <motion.ul
@@ -44,42 +46,58 @@ export default function Footer({ miscellaneous }: FooterProps) {
         >
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#home'>Home</Link>
+              <Link href='/#home' title='Home'>
+                Home
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#about'>About</Link>
+              <Link href='/#about' title='About'>
+                About
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#experience'>Experience</Link>
+              <Link href='/#experience' title='Experience'>
+                Experience
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#expertise'>Expertise</Link>
+              <Link href='/#expertise' title='Expertise'>
+                Expertise
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#qualification'>Qualification</Link>
+              <Link href='/#qualification' title='Qualification'>
+                Qualification
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#portfolio'>Portfolio</Link>
+              <Link href='/#portfolio' title='Portfolio'>
+                Portfolio
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#tool'>Tool</Link>
+              <Link href='/#tool' title='Tool'>
+                Tool
+              </Link>
             </Button>
           </li>
           <li>
             <Button variant='ghost' className='text-primary-foreground' asChild>
-              <Link href='/#contact'>Contact</Link>
+              <Link href='/#contact' title='Contact'>
+                Contact
+              </Link>
             </Button>
           </li>
         </motion.ul>
@@ -92,6 +110,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
               href={`${miscellaneous ? miscellaneous.facebookUrl : '#'}`}
               aria-label='Facebook'
               target='_blank'
+              title='Facebook'
               rel='noopener noreferrer'
             >
               <Facebook className='w-5 h-5' />
@@ -102,6 +121,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
               href={`${miscellaneous ? miscellaneous.instagramUrl : '#'}`}
               aria-label='Instagram'
               target='_blank'
+              title='Instagram'
               rel='noopener noreferrer'
             >
               <Instagram className='w-5 h-5' />
@@ -112,6 +132,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
               href={`${miscellaneous ? miscellaneous.twitterUrl : '#'}`}
               aria-label='Twitter'
               target='_blank'
+              title='Twitter'
               rel='noopener noreferrer'
             >
               <Twitter className='w-5 h-5' />
@@ -122,6 +143,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
               href={`${miscellaneous ? miscellaneous.linkedinUrl : '#'}`}
               aria-label='LinkedIn'
               target='_blank'
+              title='LinkedIn'
               rel='noopener noreferrer'
             >
               <Linkedin className='w-5 h-5' />
@@ -136,6 +158,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
             <Link
               href='/privacy-policy'
               className='text-primary-foreground text-xs'
+              title='Privacy Policy'
             >
               Privacy Policy
             </Link>
@@ -144,6 +167,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
             <Link
               href='/terms-and-conditions'
               className='text-primary-foreground text-xs'
+              title='Terms & Conditions'
             >
               Terms & Conditions
             </Link>
@@ -160,6 +184,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
                 href='https://www.linkedin.com/in/mohamad-salimi'
                 target='_blank'
                 rel='noopener noreferrer'
+                title='LinkedIn'
               >
                 Salimi
               </Link>

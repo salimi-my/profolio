@@ -35,7 +35,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
           Hello, I am
         </span>
         <div className='flex flex-col justify-start items-center'>
-          <Link href='/' scroll={false}>
+          <Link href='/' scroll={false} title='Home'>
             <h1 className='text-3xl xs:text-4xl sm:text-[2.5rem] font-medium leading-7 py-4'>
               Mohamad Salimi
             </h1>
@@ -53,7 +53,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
           </motion.div>
           <motion.div variants={slideInFromRight(0.5)}>
             <Button variant='default' asChild>
-              <Link href='#contact'>
+              <Link href='#contact' title="Let's Talk">
                 <MessageCircle className='mr-2 w-5 h-5' /> Let&apos;s Talk
               </Link>
             </Button>
@@ -67,6 +67,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
                 aria-label='Facebook'
                 target='_blank'
                 rel='noopener noreferrer'
+                title='Facebook'
                 className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
               >
                 <Facebook className='text-white dark:text-zinc-950 w-4 h-4' />
@@ -78,6 +79,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
                 aria-label='LinkedIn'
                 target='_blank'
                 rel='noopener noreferrer'
+                title='LinkedIn'
                 className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
               >
                 <Linkedin className='text-white dark:text-zinc-950 w-4 h-4' />
@@ -89,6 +91,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
                 aria-label='GitHub'
                 target='_blank'
                 rel='noopener noreferrer'
+                title='GitHub'
                 className='bg-primary p-1 rounded-md hover:bg-zinc-600 dark:hover:bg-zinc-400 transition-colors duration-300 ease-in-out'
               >
                 <Github className='text-white dark:text-zinc-950 w-4 h-4' />
@@ -111,6 +114,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
             <motion.div variants={slideInFromRight(0.5)}>
               <Link
                 href='#contact'
+                title='Scroll Down'
                 className='text-primary hover:opacity-60 transition-opacity duration-300 ease-in-out flex justify-center items-center'
               >
                 <p className='text-sm [writing-mode:vertical-lr]'>

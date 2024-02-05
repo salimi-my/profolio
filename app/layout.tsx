@@ -21,18 +21,22 @@ export const metadata: Metadata = {
   ),
   title: 'Salimi — My Digital Canvas',
   description:
-    'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Explore now and do contact me.',
+    'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Do check it out.',
+  alternates: {
+    canonical: '/'
+  },
   openGraph: {
     url: '/',
     title: 'Salimi — My Digital Canvas',
     description:
-      'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Explore now and do contact me.'
+      'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Do check it out.',
+    type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Salimi — My Digital Canvas',
     description:
-      'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Explore now and do contact me.'
+      'Hi, I am Salimi. Unveil my skills, projects, and journey on my personal website. A digital portfolio reflecting my passion and expertise. Do check it out.'
   }
 };
 

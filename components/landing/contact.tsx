@@ -64,6 +64,7 @@ export default function Contact({ miscellaneous }: ContactProps) {
                   href={`${
                     miscellaneous ? 'mailto:' + miscellaneous.email : '#'
                   }`}
+                  title='Email me'
                 >
                   Email me
                 </Link>
@@ -89,6 +90,7 @@ export default function Contact({ miscellaneous }: ContactProps) {
                   href={`${miscellaneous ? miscellaneous.messengerUrl : '#'}`}
                   target='_blank'
                   rel='noopener noreferer'
+                  title='Say hello'
                 >
                   Say hello
                 </Link>
@@ -114,6 +116,7 @@ export default function Contact({ miscellaneous }: ContactProps) {
                   href={`${miscellaneous ? miscellaneous.discordUrl : '#'}`}
                   target='_blank'
                   rel='noopener noreferer'
+                  title="Let's chat"
                 >
                   Let&apos;s chat
                 </Link>

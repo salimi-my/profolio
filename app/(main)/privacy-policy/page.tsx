@@ -16,8 +16,11 @@ export const metadata: Metadata = {
   title: 'Privacy Policy — Salimi',
   description:
     'This is the privacy policy page. It explains how your personal data is protected and used.',
+  alternates: {
+    canonical: '/privacy-policy'
+  },
   openGraph: {
-    url: '/',
+    url: '/privacy-policy',
     title: 'Privacy Policy — Salimi',
     description:
       'This is the privacy policy page. It explains how your personal data is protected and used.'
@@ -38,7 +41,7 @@ export default function PrivacyPolicyPage() {
       </div>
       <main className='container max-w-6xl px-4 md:px-8 mx-auto -mt-5 xl:mt-5 relative overflow-x-hidden'>
         <Button variant='outline' size='sm' asChild>
-          <Link href='/' className='flex items-center space-x-2'>
+          <Link href='/' className='flex items-center space-x-2' title='Home'>
             <ChevronLeft className='w-4 h-4' />
             Home
           </Link>

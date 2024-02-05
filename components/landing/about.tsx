@@ -97,7 +97,9 @@ export default function About({ about }: AboutProps) {
           </motion.p>
           <motion.div variants={slideInFromRight(0.5)}>
             <Button variant='default' asChild>
-              <Link href='#contact'>Let&apos;s Talk</Link>
+              <Link href='#contact' title="Let's Talk">
+                Let&apos;s Talk
+              </Link>
             </Button>
           </motion.div>
         </div>

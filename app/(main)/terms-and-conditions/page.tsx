@@ -16,8 +16,11 @@ export const metadata: Metadata = {
   title: 'Terms and Conditions — Salimi',
   description:
     'This is the terms and conditions page. It outlines the rules and guidelines for using our services.',
+  alternates: {
+    canonical: '/terms-and-conditions'
+  },
   openGraph: {
-    url: '/',
+    url: '/terms-and-conditions',
     title: 'Terms and Conditions — Salimi',
     description:
       'This is the terms and conditions page. It outlines the rules and guidelines for using our services.'
@@ -38,7 +41,7 @@ export default function TermsAndConditionsPage() {
       </div>
       <main className='container max-w-6xl px-4 md:px-8 mx-auto -mt-5 xl:mt-5 relative overflow-x-hidden'>
         <Button variant='outline' size='sm' asChild>
-          <Link href='/' className='flex items-center space-x-2'>
+          <Link href='/' className='flex items-center space-x-2' title='Home'>
             <ChevronLeft className='w-4 h-4' />
             Home
           </Link>
