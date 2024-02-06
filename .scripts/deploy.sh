@@ -14,7 +14,7 @@ echo "Installing Dependencies..."
 pnpm install
 
 echo "Creating Production Build..."
-pnpm run build
+pnpm build
 
 echo "PM2 Reload"
 pm2 restart www.salimi.my
