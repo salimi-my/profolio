@@ -51,6 +51,7 @@
     "react-simple-typewriter": "^5.0.1",
     "react-spinners": "^0.13.8",
     "resend": "^3.1.0",
+    "schema-dts": "^1.1.2",
     "sharp": "^0.33.2",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
