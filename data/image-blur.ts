@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import type { Prisma } from '@prisma/client';
 import { getPlaiceholder } from 'plaiceholder';
 
 async function getBase64(imageUrl: string) {
