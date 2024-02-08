@@ -40,7 +40,7 @@ npm run dev
 pnpm install
 pnpm dlx prisma generate
 pnpm dlx prisma db push
-pnpm run dev
+pnpm dev
 ```
 
 ## Demo
