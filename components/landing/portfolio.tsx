@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { CopyPlus, Loader2 } from 'lucide-react';
-import { motion, useInView } from 'framer-motion';
+import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
 
 import type getInformation from '@/data/information';
 import { slideInFromTop } from '@/lib/motion';
@@ -54,52 +54,54 @@ export default function Portfolio({ portfolioWithBlur }: PortfolioProps) {
   };
 
   return (
-    <motion.section
-      ref={ref}
-      initial='hidden'
-      animate={isInView ? 'visible' : 'hidden'}
-      id='portfolio'
-      className='mt-32'
-    >
-      <motion.span
-        variants={slideInFromTop(0.3)}
-        className='block text-center text-sm text-muted-foreground font-medium'
+    <LazyMotion features={domAnimation}>
+      <m.section
+        ref={ref}
+        initial='hidden'
+        animate={isInView ? 'visible' : 'hidden'}
+        id='portfolio'
+        className='mt-32'
       >
-        My Recent Work
-      </motion.span>
-      <motion.h2
-        variants={slideInFromTop(0.4)}
-        className='text-center text-2xl font-semibold pt-1'
-      >
-        Portfolio
-      </motion.h2>
-      <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8'>
-        {portfolios.map((portfolio, index) => (
-          <PortfolioCard
-            key={portfolio.id}
-            portfolio={portfolio}
-            index={index + 1}
-          />
-        ))}
-      </div>
-      {offset % 6 === 0 && (
-        <div className='flex justify-center mt-8'>
-          <Button onClick={onLoadMore} variant='default' disabled={loading}>
-            {!loading && (
-              <>
-                <CopyPlus className='w-4 h-4 mr-2' />
-                Show More
-              </>
-            )}
-            {loading && (
-              <>
-                <Loader2 className='animate-spin w-4 h-4 mr-2' size={18} />
-                Loading...
-              </>
-            )}
-          </Button>
+        <m.span
+          variants={slideInFromTop(0.3)}
+          className='block text-center text-sm text-muted-foreground font-medium'
+        >
+          My Recent Work
+        </m.span>
+        <m.h2
+          variants={slideInFromTop(0.4)}
+          className='text-center text-2xl font-semibold pt-1'
+        >
+          Portfolio
+        </m.h2>
+        <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-8 pt-8'>
+          {portfolios.map((portfolio, index) => (
+            <PortfolioCard
+              key={portfolio.id}
+              portfolio={portfolio}
+              index={index + 1}
+            />
+          ))}
         </div>
-      )}
-    </motion.section>
+        {offset % 6 === 0 && (
+          <div className='flex justify-center mt-8'>
+            <Button onClick={onLoadMore} variant='default' disabled={loading}>
+              {!loading && (
+                <>
+                  <CopyPlus className='w-4 h-4 mr-2' />
+                  Show More
+                </>
+              )}
+              {loading && (
+                <>
+                  <Loader2 className='animate-spin w-4 h-4 mr-2' size={18} />
+                  Loading...
+                </>
+              )}
+            </Button>
+          </div>
+        )}
+      </m.section>
+    </LazyMotion>
   );
 }
