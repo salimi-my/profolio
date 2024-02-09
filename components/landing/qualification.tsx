@@ -1,10 +1,11 @@
 'use client';
 
 import { useRef } from 'react';
+import { m, useInView } from 'framer-motion';
 import { Briefcase, GraduationCap } from 'lucide-react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
 
 import type getInformation from '@/data/information';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 import QualificationCard from '@/components/landing/qualification-card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -22,7 +23,7 @@ export default function Qualification({
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -68,6 +69,6 @@ export default function Qualification({
           </Tabs>
         </m.div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

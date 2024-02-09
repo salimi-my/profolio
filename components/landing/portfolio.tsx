@@ -2,13 +2,14 @@
 
 import axios from 'axios';
 import { useRef, useState } from 'react';
+import { m, useInView } from 'framer-motion';
 import { CopyPlus, Loader2 } from 'lucide-react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
 
-import type getInformation from '@/data/information';
 import { slideInFromTop } from '@/lib/motion';
 import { Button } from '@/components/ui/button';
+import type getInformation from '@/data/information';
 import { useToast } from '@/components/ui/use-toast';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import PortfolioCard from '@/components/landing/portfolio-card';
 
 type PortfolioProps = Pick<
@@ -54,7 +55,7 @@ export default function Portfolio({ portfolioWithBlur }: PortfolioProps) {
   };
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -102,6 +103,6 @@ export default function Portfolio({ portfolioWithBlur }: PortfolioProps) {
           </div>
         )}
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

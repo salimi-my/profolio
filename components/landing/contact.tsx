@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
-import type getInformation from '@/data/information';
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/landing/icons';
+import type getInformation from '@/data/information';
 import ContactForm from '@/components/landing/contact-form';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import {
   slideInFromLeft,
   slideInFromRight,
@@ -24,7 +25,7 @@ export default function Contact({ miscellaneous }: ContactProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -130,6 +131,6 @@ export default function Contact({ miscellaneous }: ContactProps) {
           </m.div>
         </div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

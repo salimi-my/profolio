@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
+import { m, useInView } from 'framer-motion';
 import type { Miscellaneous } from '@prisma/client';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
 
 import { Button } from '@/components/ui/button';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 
 interface FooterProps {
@@ -18,7 +19,7 @@ export default function Footer({ miscellaneous }: FooterProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.footer
         ref={ref}
         initial='hidden'
@@ -231,6 +232,6 @@ export default function Footer({ miscellaneous }: FooterProps) {
           </m.div>
         </div>
       </m.footer>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

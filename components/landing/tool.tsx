@@ -2,10 +2,11 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
 import { cn } from '@/lib/utils';
 import type getInformation from '@/data/information';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import { slideInFromRight, slideInFromTop } from '@/lib/motion';
 
 type ToolProps = Pick<Awaited<ReturnType<typeof getInformation>>, 'tool'>;
@@ -15,7 +16,7 @@ export default function Tool({ tool }: ToolProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -82,6 +83,6 @@ export default function Tool({ tool }: ToolProps) {
           </div>
         </m.div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { LazyMotion, domAnimation, m } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useTypewriter, Cursor } from 'react-simple-typewriter';
 import { MessageCircle, Facebook, Linkedin, Github } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import profile from '@/public/web-developer.webp';
 import type getInformation from '@/data/information';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import { slideInFromLeft, slideInFromRight } from '@/lib/motion';
 import DownloadCvButton from '@/components/landing/download-cv-button';
 
@@ -24,7 +25,7 @@ export default function Header({ miscellaneous }: HeaderProps) {
   });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.header
         initial='hidden'
         animate='visible'
@@ -127,6 +128,6 @@ export default function Header({ miscellaneous }: HeaderProps) {
           </div>
         </div>
       </m.header>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

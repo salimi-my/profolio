@@ -1,6 +1,6 @@
 'use client';
 
-import { LazyMotion, domAnimation, m } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   Book,
   ClipboardCheck,
@@ -14,13 +14,14 @@ import {
 import { useAnchor } from '@/hooks/use-anchor';
 import { slideInFromBottom } from '@/lib/motion';
 import NavButton from '@/components/landing/nav-button';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 
 export default function Nav() {
   const currentAnchor = useAnchor();
 
   return (
     <nav className='w-screen flex justify-center fixed bottom-8 z-30'>
-      <LazyMotion features={domAnimation}>
+      <LazyMotionLayout>
         <m.div
           initial='hidden'
           animate='visible'
@@ -73,7 +74,7 @@ export default function Nav() {
             active={currentAnchor === '#contact' ? true : false}
           />
         </m.div>
-      </LazyMotion>
+      </LazyMotionLayout>
     </nav>
   );
 }

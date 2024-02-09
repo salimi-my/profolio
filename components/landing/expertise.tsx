@@ -2,9 +2,10 @@
 
 import { useRef } from 'react';
 import { Check } from 'lucide-react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
 import type getInformation from '@/data/information';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import { slideInFromLeft, slideInFromTop } from '@/lib/motion';
 
 type ExpertiseProps = Pick<
@@ -21,7 +22,7 @@ export default function Expertise({
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -106,6 +107,6 @@ export default function Expertise({
           </m.article>
         </div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

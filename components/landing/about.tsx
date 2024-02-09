@@ -3,12 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRef } from 'react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 import { Briefcase, FolderGit2, Laptop } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import type getInformation from '@/data/information';
 import tilted from '@/public/web-developer-tilted.webp';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import {
   slideInFromLeft,
   slideInFromRight,
@@ -22,7 +23,7 @@ export default function About({ about }: AboutProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -106,6 +107,6 @@ export default function About({ about }: AboutProps) {
           </div>
         </div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }

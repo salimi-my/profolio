@@ -2,9 +2,10 @@
 
 import { useRef } from 'react';
 import { BadgeCheck } from 'lucide-react';
-import { LazyMotion, domAnimation, m, useInView } from 'framer-motion';
+import { m, useInView } from 'framer-motion';
 
 import type getInformation from '@/data/information';
+import LazyMotionLayout from '@/components/ui/lazy-motion';
 import {
   slideInFromLeft,
   slideInFromRight,
@@ -21,7 +22,7 @@ export default function Experience({ frontend, backend }: ExperienceProps) {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotionLayout>
       <m.section
         ref={ref}
         initial='hidden'
@@ -92,6 +93,6 @@ export default function Experience({ frontend, backend }: ExperienceProps) {
           </m.div>
         </div>
       </m.section>
-    </LazyMotion>
+    </LazyMotionLayout>
   );
 }
