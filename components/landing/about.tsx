@@ -49,7 +49,12 @@ export default function About({ about }: AboutProps) {
             className='lg:col-span-3 w-4/5 md:w-1/2 mx-auto lg:w-full aspect-square rounded-2xl bg-gradient-to-tr from-transparent via-primary to-transparent'
           >
             <div className='rounded-2xl overflow-hidden rotate-[10deg] transition duration-300 ease-in-out hover:rotate-0 relative'>
-              <Image src={tilted} alt='about' placeholder='blur' />
+              <Image
+                src={tilted}
+                alt='about'
+                placeholder='blur'
+                sizes='(max-width: 768px) 50vw, 100vw'
+              />
             </div>
           </m.div>
           <div className='lg:col-span-4 flex flex-col gap-8'>
