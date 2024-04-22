@@ -12,6 +12,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 - EdgeStore for file uploading
 - React Email for email templating
 - Resend for sending email
+- Plaiceholder for generating image placeholder
 
 ## Tech/framework used
 
@@ -26,6 +27,7 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 - EdgeStore
 - React Email
 - Resend
+- Plaiceholder
 
 ## Starting the project
 
