@@ -14,10 +14,10 @@ import PortfolioCard from '@/components/landing/portfolio-card';
 
 type PortfolioProps = Pick<
   Awaited<ReturnType<typeof getInformation>>,
-  'portfolioWithBlur'
+  'portfolioWithTags'
 >;
 
-export default function Portfolio({ portfolioWithBlur }: PortfolioProps) {
+export default function Portfolio({ portfolioWithTags }: PortfolioProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -25,7 +25,7 @@ export default function Portfolio({ portfolioWithBlur }: PortfolioProps) {
 
   const [offset, setOffset] = useState(6);
   const [loading, setLoading] = useState(false);
-  const [portfolios, setPortfolios] = useState(portfolioWithBlur);
+  const [portfolios, setPortfolios] = useState(portfolioWithTags);
 
   const onLoadMore = async () => {
     try {

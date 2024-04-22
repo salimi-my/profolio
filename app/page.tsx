@@ -24,7 +24,7 @@ export default async function HomePage() {
     contentcreation,
     education,
     experience,
-    portfolioWithBlur,
+    portfolioWithTags,
     miscellaneous,
     tool
   } = await getInformation();
@@ -81,7 +81,7 @@ export default async function HomePage() {
           contentcreation={contentcreation}
         />
         <Qualification education={education} experience={experience} />
-        <Portfolio portfolioWithBlur={portfolioWithBlur} />
+        <Portfolio portfolioWithTags={portfolioWithTags} />
         <Tool tool={tool} />
         <Contact miscellaneous={miscellaneous} />
       </main>

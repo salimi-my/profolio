@@ -2,8 +2,8 @@ import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
 import prismadb from '@/lib/prismadb';
+import getBlurDataUrl from '@/data/image-blur';
 import { currentUser } from '@/lib/authentication';
-import addBlurredDataUrls from '@/data/image-blur';
 
 export async function POST(req: Request) {
   try {
@@ -69,10 +69,13 @@ export async function POST(req: Request) {
       );
     }
 
+    const blurDataUrl = await getBlurDataUrl(image);
+
     const portfolio = await prismadb.portfolio.create({
       data: {
         image,
         thumbnail,
+        blurDataUrl,
         title,
         description,
         githubUrl,
@@ -125,9 +128,7 @@ export async function GET(req: NextRequest) {
       }
     });
 
-    const photosWithBlur = await addBlurredDataUrls(portfolios);
-
-    return NextResponse.json(photosWithBlur);
+    return NextResponse.json(portfolios);
   } catch (error) {
     console.log('[PORTFOLIO_GET]', error);
 
