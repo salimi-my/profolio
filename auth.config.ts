@@ -1,32 +1,38 @@
 import { compare } from 'bcryptjs';
 import type { NextAuthConfig } from 'next-auth';
-import credentials from 'next-auth/providers/credentials';
+import Credentials from 'next-auth/providers/credentials';
 
-import prismadb from '@/lib/prismadb';
+import { LoginSchema } from '@/schemas';
+import { getUserByEmail } from '@/data/user';
 
 export default {
   providers: [
-    credentials({
+    Credentials({
+      credentials: {
+        email: {
+          label: 'Email',
+          type: 'email'
+        },
+        password: {
+          label: 'Password',
+          type: 'password'
+        }
+      },
       async authorize(credentials) {
-        if (
-          !credentials.email ||
-          !credentials.password ||
-          typeof credentials.email !== 'string' ||
-          typeof credentials.password !== 'string'
-        ) {
+        const validatedFields = LoginSchema.safeParse(credentials);
+
+        if (!validatedFields.success) {
           return null;
         }
 
-        const user = await prismadb.user.findUnique({
-          where: {
-            email: credentials.email
-          }
-        });
+        const { email, password } = validatedFields.data;
+
+        const user = await getUserByEmail(email);
 
         if (
           !user ||
           !user.hashedPassword ||
-          !(await compare(credentials.password, user.hashedPassword))
+          !(await compare(password, user.hashedPassword))
         ) {
           return null;
         }

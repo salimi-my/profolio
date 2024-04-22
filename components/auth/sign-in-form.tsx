@@ -9,6 +9,7 @@ import { useSearchParams } from 'next/navigation';
 import { AlertTriangle, Loader2 } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { LoginSchema } from '@/schemas';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { DEFAULT_SIGNIN_REDIRECT } from '@/routes';
@@ -29,11 +30,6 @@ import {
   FormMessage
 } from '@/components/ui/form';
 
-const formSchema = z.object({
-  email: z.string().email({ message: 'Please enter valid email address.' }),
-  password: z.string().min(1, { message: 'Please enter password.' })
-});
-
 export default function SignInForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get('callbackUrl');
@@ -45,15 +41,15 @@ export default function SignInForm() {
     error = 'Invalid email or password.';
   }
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof LoginSchema>>({
+    resolver: zodResolver(LoginSchema),
     defaultValues: {
       email: '',
       password: ''
     }
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     try {
       setLoading(true);
 

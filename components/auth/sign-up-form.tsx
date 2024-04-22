@@ -9,6 +9,7 @@ import axios, { AxiosError } from 'axios';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { RegisterSchema } from '@/schemas';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
@@ -28,28 +29,12 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-const formSchema = z
-  .object({
-    name: z.string().min(1, { message: 'Please enter name.' }),
-    email: z.string().email({ message: 'Please enter valid email address.' }),
-    password: z
-      .string()
-      .min(8, { message: 'Please enter at least 8 characters.' }),
-    confirm: z
-      .string()
-      .min(8, { message: 'Please enter at least 8 characters.' })
-  })
-  .refine((data) => data.password === data.confirm, {
-    message: 'Passwords does not match.',
-    path: ['confirm']
-  });
-
 export default function SignUpForm() {
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -58,7 +43,7 @@ export default function SignUpForm() {
     }
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     try {
       setLoading(true);
 
