@@ -1,4 +1,4 @@
-import { Person, WithContext } from 'schema-dts';
+import { WebPage, WithContext } from 'schema-dts';
 
 import Nav from '@/components/landing/nav';
 import Tool from '@/components/landing/tool';
@@ -30,33 +30,111 @@ export default async function HomePage() {
   } = await getInformation();
 
   // create JSON-LD
-  const jsonLd: WithContext<Person> = {
+  const jsonLd: WithContext<WebPage> = {
     '@context': 'https://schema.org',
-    '@type': 'Person',
+    '@type': 'WebPage',
+    '@id': process.env.AUTH_URL,
     name: 'Salimi',
     alternateName: 'Mohamad Salimi',
-    url: 'https://www.salimi.my',
-    image: 'https://www.salimi.my/salimi.png',
-    jobTitle: miscellaneous
-      ? miscellaneous.titles.map((title) => title.name)
-      : ['Web Developer', 'Frontend Developer'],
-    gender: 'Male',
-    workLocation: 'Malaysia',
+    url: process.env.AUTH_URL,
+    image: {
+      '@type': 'ImageObject',
+      '@id': process.env.AUTH_URL + '/salimi.png',
+      url: process.env.AUTH_URL + '/salimi.png',
+      contentUrl: process.env.AUTH_URL + '/salimi.png',
+      width: {
+        '@type': 'QuantitativeValue',
+        value: 512
+      },
+      height: {
+        '@type': 'QuantitativeValue',
+        value: 512
+      }
+    },
     description:
       'Salimi is an enthusiastic and passionate web developer based in Malaysia with more than half a decade of experience dedicated to deliver top-notch solutions and facilitate project success.',
-    sameAs: [
-      miscellaneous
-        ? miscellaneous.facebookUrl
-        : 'https://www.facebook.com/mysalimi',
-      miscellaneous ? miscellaneous.twitterUrl : 'https://twitter.com/mysalimi',
-      miscellaneous
-        ? miscellaneous.linkedinUrl
-        : 'https://www.linkedin.com/in/mohamad-salimi',
-      miscellaneous ? miscellaneous.githubUrl : 'https://github.com/salimi-my',
-      miscellaneous
-        ? miscellaneous.instagramUrl
-        : 'https://www.instagram.com/salimi.my'
-    ]
+    inLanguage: 'en-US',
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': process.env.AUTH_URL,
+      url: process.env.AUTH_URL,
+      name: 'Salimi',
+      description:
+        'Salimi is an enthusiastic and passionate web developer based in Malaysia with more than half a decade of experience dedicated to deliver top-notch solutions and facilitate project success.',
+      inLanguage: 'en-US',
+      publisher: {
+        '@type': 'Person',
+        name: 'Salimi',
+        url: process.env.AUTH_URL,
+        sameAs: [
+          miscellaneous
+            ? miscellaneous.facebookUrl
+            : 'https://www.facebook.com/mysalimi',
+          miscellaneous
+            ? miscellaneous.twitterUrl
+            : 'https://twitter.com/mysalimi',
+          miscellaneous
+            ? miscellaneous.linkedinUrl
+            : 'https://www.linkedin.com/in/mohamad-salimi',
+          miscellaneous
+            ? miscellaneous.githubUrl
+            : 'https://github.com/salimi-my',
+          miscellaneous
+            ? miscellaneous.instagramUrl
+            : 'https://www.instagram.com/salimi.my'
+        ],
+        image: {
+          '@type': 'ImageObject',
+          '@id': process.env.AUTH_URL + '/salimi.png',
+          url: process.env.AUTH_URL + '/salimi.png',
+          contentUrl: process.env.AUTH_URL + '/salimi.png',
+          width: {
+            '@type': 'QuantitativeValue',
+            value: 512
+          },
+          height: {
+            '@type': 'QuantitativeValue',
+            value: 512
+          }
+        }
+      }
+    },
+    about: {
+      '@type': 'Person',
+      name: 'Salimi',
+      url: process.env.AUTH_URL,
+      sameAs: [
+        miscellaneous
+          ? miscellaneous.facebookUrl
+          : 'https://www.facebook.com/mysalimi',
+        miscellaneous
+          ? miscellaneous.twitterUrl
+          : 'https://twitter.com/mysalimi',
+        miscellaneous
+          ? miscellaneous.linkedinUrl
+          : 'https://www.linkedin.com/in/mohamad-salimi',
+        miscellaneous
+          ? miscellaneous.githubUrl
+          : 'https://github.com/salimi-my',
+        miscellaneous
+          ? miscellaneous.instagramUrl
+          : 'https://www.instagram.com/salimi.my'
+      ],
+      image: {
+        '@type': 'ImageObject',
+        '@id': process.env.AUTH_URL + '/salimi.png',
+        url: process.env.AUTH_URL + '/salimi.png',
+        contentUrl: process.env.AUTH_URL + '/salimi.png',
+        width: {
+          '@type': 'QuantitativeValue',
+          value: 512
+        },
+        height: {
+          '@type': 'QuantitativeValue',
+          value: 512
+        }
+      }
+    }
   };
 
   return (
