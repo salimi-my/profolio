@@ -5,13 +5,7 @@ import prismadb from '@/lib/prismadb';
 import authConfig from '@/auth.config';
 import { getUserById } from '@/data/user';
 
-export const {
-  handlers: { GET, POST },
-  auth,
-  signIn,
-  signOut,
-  update
-} = NextAuth({
+export const { handlers, auth, signIn, signOut, unstable_update } = NextAuth({
   pages: {
     signIn: '/auth/sign-in',
     error: '/auth/sign-in'
@@ -24,7 +18,7 @@ export const {
 
       if (session.user) {
         session.user.name = token.name;
-        session.user.email = token.email;
+        session.user.email = token.email as string;
       }
 
       return session;
@@ -46,9 +40,9 @@ export const {
       return token;
     }
   },
-  adapter: PrismaAdapter(prismadb),
-  debug: process.env.NODE_ENV !== 'production',
-  secret: process.env.AUTH_SECRET,
+  ...authConfig,
   session: { strategy: 'jwt' },
-  ...authConfig
+  secret: process.env.AUTH_SECRET,
+  adapter: PrismaAdapter(prismadb),
+  debug: process.env.NODE_ENV !== 'production'
 });
