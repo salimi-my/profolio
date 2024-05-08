@@ -1,8 +1,8 @@
-import UserNav from '@/components/admin/user-nav';
+import ViewWebsite from '@/components/view-website';
 import { ModeToggle } from '@/components/mode-toggle';
-import PageTitle from '@/components/admin/page-title';
-import SheetMenu from '@/components/admin/sheet-menu';
-import ViewWebsite from '@/components/admin/view-website';
+import UserNav from '@/components/admin-panel/user-nav';
+import PageTitle from '@/components/admin-panel/page-title';
+import SheetMenu from '@/components/admin-panel/sheet-menu';
 
 export default function Navbar() {
   return (
