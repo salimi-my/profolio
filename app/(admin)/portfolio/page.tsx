@@ -44,7 +44,7 @@ export default async function PortfolioPage() {
       <CardHeader className='mx-[1px] pb-9'>
         <CardTitle className='text-xl font-semibold'>Portfolio</CardTitle>
         <CardDescription>
-          Manage your portfolio list section informations.
+          Manage your projects list section informations.
         </CardDescription>
       </CardHeader>
       <CardContent>

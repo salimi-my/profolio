@@ -14,9 +14,7 @@ export default function CreatePortfolioPage() {
       <BackButton slug='/portfolio' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
-          <CardTitle className='text-xl font-semibold'>
-            Create Portfolio
-          </CardTitle>
+          <CardTitle className='text-xl font-semibold'>Add Project</CardTitle>
           <CardDescription>
             Add more project on your portfolio section.
           </CardDescription>
