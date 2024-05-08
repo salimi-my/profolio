@@ -6,7 +6,7 @@ interface useSidebarToggleStore {
   setIsOpen: () => void;
 }
 
-const useSidebarToggle = create(
+export const useSidebarToggle = create(
   persist<useSidebarToggleStore>(
     (set, get) => ({
       isOpen: true,
@@ -20,5 +20,3 @@ const useSidebarToggle = create(
     }
   )
 );
-
-export default useSidebarToggle;

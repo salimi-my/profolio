@@ -13,7 +13,7 @@ interface ViewWebsiteProps {
   newTab?: boolean;
 }
 
-export default function ViewWebsite({ newTab = false }: ViewWebsiteProps) {
+export function ViewWebsite({ newTab = false }: ViewWebsiteProps) {
   return (
     <TooltipProvider disableHoverableContent>
       <Tooltip delayDuration={100}>

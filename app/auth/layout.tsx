@@ -1,5 +1,5 @@
-import ViewWebsite from '@/components/view-website';
 import { ModeToggle } from '@/components/mode-toggle';
+import { ViewWebsite } from '@/components/view-website';
 
 export default async function AuthLayout({
   children

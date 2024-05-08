@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { LayoutTemplate, MenuIcon } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import Menu from '@/components/admin-panel/menu';
+import { Menu } from '@/components/admin-panel/menu';
 import {
   Sheet,
   SheetHeader,
@@ -10,7 +10,7 @@ import {
   SheetContent
 } from '@/components/ui/sheet';
 
-export default function SheetMenu() {
+export function SheetMenu() {
   return (
     <Sheet>
       <SheetTrigger className='lg:hidden' asChild>

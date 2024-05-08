@@ -23,7 +23,7 @@ import {
   DropdownMenuSeparator
 } from '@/components/ui/dropdown-menu';
 
-export default function UserNav() {
+export function UserNav() {
   const user = useCurrentUser();
 
   return (

@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { LayoutTemplate } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
-import useStore from '@/hooks/use-store';
+import { useStore } from '@/hooks/use-store';
 import { Button } from '@/components/ui/button';
-import Menu from '@/components/admin-panel/menu';
-import useSidebarToggle from '@/hooks/use-sidebar-toggle';
-import SidebarToggle from '@/components/admin-panel/sidebar-toggle';
+import { Menu } from '@/components/admin-panel/menu';
+import { useSidebarToggle } from '@/hooks/use-sidebar-toggle';
+import { SidebarToggle } from '@/components/admin-panel/sidebar-toggle';
 
 export default function Sidebar() {
   const sidebar = useStore(useSidebarToggle, (state) => state);

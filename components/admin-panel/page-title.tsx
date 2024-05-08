@@ -1,33 +1,18 @@
 'use client';
 
+import { getPages } from '@/lib/pages';
 import { usePathname } from 'next/navigation';
 
-export default function PageTitle() {
+export function PageTitle() {
   const pathname = usePathname();
+  const pages = getPages(pathname);
 
-  let pageTitle = '';
-
-  if (pathname === '/dashboard') {
-    pageTitle = 'Dashboard';
-  } else if (pathname.includes('/about')) {
-    pageTitle = 'About';
-  } else if (pathname.includes('/experience')) {
-    pageTitle = 'Experience';
-  } else if (pathname.includes('/expertise')) {
-    pageTitle = 'Expertise';
-  } else if (pathname.includes('/qualification')) {
-    pageTitle = 'Qualification';
-  } else if (pathname.includes('/portfolio')) {
-    pageTitle = 'Portfolio';
-  } else if (pathname.includes('/miscellaneous')) {
-    pageTitle = 'Miscellaneous';
-  } else if (pathname.includes('/tool')) {
-    pageTitle = 'Tool & Apps';
-  } else if (pathname.includes('/resume')) {
-    pageTitle = 'Resume';
-  } else if (pathname.includes('/account')) {
-    pageTitle = 'Account';
-  }
+  const pageTitle = pages.map(({ menus }) => {
+    const activeMenu = menus.find((menu) => menu.active);
+    return activeMenu?.submenus && activeMenu.submenus.length > 0
+      ? activeMenu.submenus.find((submenu) => submenu.active)?.label
+      : activeMenu?.label ?? '';
+  });
 
   return <h1 className='font-bold'>{pageTitle}</h1>;
 }
