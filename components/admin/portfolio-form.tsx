@@ -124,7 +124,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             title: 'Success!',
             description: 'Data has been successfully saved.'
           });
-          router.push(response.data.portfolio.id);
+          router.push(`/portfolio/${response.data.portfolio.id}/edit`);
         }
       } else {
         const response = await axios.post('/api/portfolio', newValues);
@@ -135,7 +135,7 @@ export default function PortfolioForm({ portfolio }: PortfolioFormProps) {
             title: 'Success!',
             description: 'Data has been successfully saved.'
           });
-          router.push(response.data.portfolio.id);
+          router.push(`/portfolio/${response.data.portfolio.id}/edit`);
         }
       }
     } catch (error) {

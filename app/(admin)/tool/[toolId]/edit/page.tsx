@@ -12,7 +12,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-export default async function ToolId({
+export default async function EditToolPage({
   params
 }: {
   params: { toolId: string };
@@ -32,7 +32,7 @@ export default async function ToolId({
 
   return (
     <>
-      <BackButton slug='/admin/tool' />
+      <BackButton slug='/tool' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
           <CardTitle className='text-xl font-semibold'>Edit Tool</CardTitle>

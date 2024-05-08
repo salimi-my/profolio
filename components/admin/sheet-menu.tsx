@@ -25,7 +25,7 @@ export default function SheetMenu() {
             variant='link'
             asChild
           >
-            <Link href='/admin' className='flex items-center gap-2'>
+            <Link href='/dashboard' className='flex items-center gap-2'>
               <LayoutTemplate />
               <h1 className='font-bold text-lg'>Profolio</h1>
             </Link>

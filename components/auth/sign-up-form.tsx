@@ -61,7 +61,7 @@ export default function SignUpForm() {
         await signIn('credentials', {
           email: values.email,
           password: values.password,
-          callbackUrl: '/admin'
+          callbackUrl: '/dashboard'
         });
       }
     } catch (error) {

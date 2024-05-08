@@ -16,7 +16,7 @@ export const publicRoutes: string[] = [
 
 /**
  * An array of routes that are used for authentication
- * These routes will redirect signed in users to /admin
+ * These routes will redirect signed in users to /dashboard
  * @type {string[]}
  */
 export const authRoutes: string[] = ['/auth/sign-in', '/auth/sign-up'];
@@ -32,4 +32,4 @@ export const apiAuthPrefix: string = '/api/auth';
  * The default redirect path after signing in
  * @type {string}
  */
-export const DEFAULT_SIGNIN_REDIRECT: string = '/admin';
+export const DEFAULT_SIGNIN_REDIRECT: string = '/dashboard';

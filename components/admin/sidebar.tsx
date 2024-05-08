@@ -28,7 +28,7 @@ export default function Sidebar() {
           variant='link'
           asChild
         >
-          <Link href='/admin' className='flex items-center gap-2'>
+          <Link href='/dashboard' className='flex items-center gap-2'>
             <LayoutTemplate />
             <h1
               className={cn(

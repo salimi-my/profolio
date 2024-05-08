@@ -92,7 +92,7 @@ export default function ToolForm({ tool }: ToolFormProps) {
             title: 'Success!',
             description: 'Data has been successfully saved.'
           });
-          router.push(response.data.tool.id);
+          router.push(`/tool/${response.data.tool.id}/edit`);
         }
       } else {
         const response = await axios.post('/api/tool', newValues);
@@ -103,7 +103,7 @@ export default function ToolForm({ tool }: ToolFormProps) {
             title: 'Success!',
             description: 'Data has been successfully saved.'
           });
-          router.push(response.data.tool.id);
+          router.push(`/tool/${response.data.tool.id}/edit`);
         }
       }
     } catch (error) {

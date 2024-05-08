@@ -5,25 +5,25 @@ import { signOut } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 import {
   Book,
-  ClipboardCheck,
+  User,
+  List,
+  Text,
+  LogOut,
   FileText,
   FolderGit2,
-  GraduationCap,
   LayoutGrid,
-  List,
-  LogOut,
-  TerminalSquare,
-  Text,
-  User
+  GraduationCap,
+  ClipboardCheck,
+  TerminalSquare
 } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Tooltip,
+  TooltipTrigger,
   TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
+  TooltipProvider
 } from '@/components/ui/tooltip';
 
 interface MenuProps {
@@ -35,63 +35,63 @@ export default function Menu({ isOpen }: MenuProps) {
 
   const routes = [
     {
-      href: '/admin',
+      href: '/dashboard',
       label: 'Dashboard',
-      active: pathname === '/admin',
+      active: pathname.includes('/dashboard'),
       icon: <LayoutGrid size={18} />
     },
     {
-      href: '/admin/about',
+      href: '/about',
       label: 'About',
-      active: pathname.includes('/admin/about'),
+      active: pathname.includes('/about'),
       icon: <Text size={18} />
     },
     {
-      href: '/admin/experience',
+      href: '/experience',
       label: 'Experience',
-      active: pathname.includes('/admin/experience'),
+      active: pathname.includes('/experience'),
       icon: <Book size={18} />
     },
     {
-      href: '/admin/expertise',
+      href: '/expertise',
       label: 'Expertise',
-      active: pathname.includes('/admin/expertise'),
+      active: pathname.includes('/expertise'),
       icon: <ClipboardCheck size={18} />
     },
     {
-      href: '/admin/qualification',
+      href: '/qualification',
       label: 'Qualification',
-      active: pathname.includes('/admin/qualification'),
+      active: pathname.includes('/qualification'),
       icon: <GraduationCap size={20} />
     },
     {
-      href: '/admin/portfolio',
+      href: '/portfolio',
       label: 'Portfolio',
-      active: pathname.includes('/admin/portfolio'),
+      active: pathname.includes('/portfolio'),
       icon: <FolderGit2 size={18} />
     },
     {
-      href: '/admin/miscellaneous',
+      href: '/miscellaneous',
       label: 'Miscellaneous',
-      active: pathname.includes('/admin/miscellaneous'),
+      active: pathname.includes('/miscellaneous'),
       icon: <List size={18} />
     },
     {
-      href: '/admin/tool',
+      href: '/tool',
       label: 'Tool & Apps',
-      active: pathname.includes('/admin/tool'),
+      active: pathname.includes('/tool'),
       icon: <TerminalSquare size={18} />
     },
     {
-      href: '/admin/resume',
+      href: '/resume',
       label: 'Resume',
-      active: pathname.includes('/admin/resume'),
+      active: pathname.includes('/resume'),
       icon: <FileText size={18} />
     },
     {
-      href: '/admin/account',
+      href: '/account',
       label: 'Account',
-      active: pathname.includes('/admin/account'),
+      active: pathname.includes('/account'),
       icon: <User size={18} />
     }
   ];

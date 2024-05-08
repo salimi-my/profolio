@@ -97,7 +97,7 @@ export default async function DashboardPage() {
         </h2>
         <div className='flex items-center'>
           <Button size='sm' asChild>
-            <Link href='/admin/portfolio/create'>Add project</Link>
+            <Link href='/portfolio/create'>Add project</Link>
           </Button>
         </div>
       </div>
@@ -138,7 +138,7 @@ export default async function DashboardPage() {
                 className='h-5 px-0'
                 asChild
               >
-                <Link href='/admin/qualification'>View all</Link>
+                <Link href='/qualification'>View all</Link>
               </Button>
             </CardTitle>
             <CardDescription>
@@ -159,7 +159,7 @@ export default async function DashboardPage() {
                 className='h-5 px-0'
                 asChild
               >
-                <Link href='/admin/portfolio'>View all</Link>
+                <Link href='/portfolio'>View all</Link>
               </Button>
             </CardTitle>
             <CardDescription>

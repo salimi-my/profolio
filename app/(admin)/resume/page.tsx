@@ -12,7 +12,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-export default async function AboutPage() {
+export default async function ResumePage() {
   const user = await currentUser();
 
   if (!user || !user.id) {

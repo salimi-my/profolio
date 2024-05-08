@@ -12,7 +12,7 @@ import {
   CardTitle
 } from '@/components/ui/card';
 
-export default async function PortfolioIdPage({
+export default async function EditPortfolioPage({
   params
 }: {
   params: { portfolioId: string };
@@ -35,7 +35,7 @@ export default async function PortfolioIdPage({
 
   return (
     <>
-      <BackButton slug='/admin/portfolio' />
+      <BackButton slug='/portfolio' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
           <CardTitle className='text-xl font-semibold'>

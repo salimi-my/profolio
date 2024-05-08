@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-export default function CreateLoading() {
+export default function EditPortfolioLoading() {
   return (
     <>
       <Skeleton className='h-9 w-[85px] mb-4' />

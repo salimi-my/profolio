@@ -7,25 +7,25 @@ export default function PageTitle() {
 
   let pageTitle = '';
 
-  if (pathname === '/admin') {
+  if (pathname === '/dashboard') {
     pageTitle = 'Dashboard';
-  } else if (pathname.includes('/admin/about')) {
+  } else if (pathname.includes('/about')) {
     pageTitle = 'About';
-  } else if (pathname.includes('/admin/experience')) {
+  } else if (pathname.includes('/experience')) {
     pageTitle = 'Experience';
-  } else if (pathname.includes('/admin/expertise')) {
+  } else if (pathname.includes('/expertise')) {
     pageTitle = 'Expertise';
-  } else if (pathname.includes('/admin/qualification')) {
+  } else if (pathname.includes('/qualification')) {
     pageTitle = 'Qualification';
-  } else if (pathname.includes('/admin/portfolio')) {
+  } else if (pathname.includes('/portfolio')) {
     pageTitle = 'Portfolio';
-  } else if (pathname.includes('/admin/miscellaneous')) {
+  } else if (pathname.includes('/miscellaneous')) {
     pageTitle = 'Miscellaneous';
-  } else if (pathname.includes('/admin/tool')) {
+  } else if (pathname.includes('/tool')) {
     pageTitle = 'Tool & Apps';
-  } else if (pathname.includes('/admin/resume')) {
+  } else if (pathname.includes('/resume')) {
     pageTitle = 'Resume';
-  } else if (pathname.includes('/admin/account')) {
+  } else if (pathname.includes('/account')) {
     pageTitle = 'Account';
   }
 
