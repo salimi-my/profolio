@@ -34,11 +34,6 @@ Profolio is a dynamic personal portfolio website built with Next.js. This fullst
 Open the [.env.example](/.env.example) and fill in your Database URL, Auth, Resend & EdgeStore Configurations then save it as .env the run the following command:
 
 ```bash
-npm install
-npx prisma generate
-npx prisma db push
-npm run dev
-# or
 pnpm install
 pnpm dlx prisma generate
 pnpm dlx prisma db push
@@ -81,6 +76,6 @@ Direct link: `https://www.salimi.my`
 
 ![Portfolio list](/screenshots/screenshot-7.png)
 
-#### Create portfolio
+#### Add project
 
 ![Create portfolio](/screenshots/screenshot-8.png)
