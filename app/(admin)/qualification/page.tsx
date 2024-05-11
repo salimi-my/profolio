@@ -3,14 +3,15 @@ import { redirect } from 'next/navigation';
 import prismadb from '@/lib/prismadb';
 import { currentUser } from '@/lib/authentication';
 import { DataTable } from '@/components/data-table/data-table';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import { columns } from '@/components/admin/qualification-table/columns';
 import AddButton from '@/components/admin/qualification-table/add-button';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 const filterOptions = [
@@ -41,22 +42,24 @@ export default async function QualificationPage() {
   });
 
   return (
-    <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px] pb-9'>
-        <CardTitle className='text-xl font-semibold'>Qualification</CardTitle>
-        <CardDescription>
-          Manage your qualification section informations.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <DataTable
-          data={qualifications}
-          columns={columns}
-          options={filterOptions}
-          AddButton={<AddButton />}
-          page='qualification'
-        />
-      </CardContent>
-    </Card>
+    <ContentLayout title='Qualification'>
+      <Card className='rounded-lg border-none'>
+        <CardHeader className='mx-[1px] pb-9'>
+          <CardTitle className='text-xl font-semibold'>Qualification</CardTitle>
+          <CardDescription>
+            Manage your qualification section informations.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            data={qualifications}
+            columns={columns}
+            options={filterOptions}
+            AddButton={<AddButton />}
+            page='qualification'
+          />
+        </CardContent>
+      </Card>
+    </ContentLayout>
   );
 }

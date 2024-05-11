@@ -3,10 +3,9 @@
 import { cn } from '@/lib/utils';
 import { useStore } from '@/hooks/use-store';
 import { EdgeStoreProvider } from '@/lib/edgestore';
-import { Footer } from '@/components/admin-panel/footer';
-import Navbar from '@/components/admin-panel/navbar';
 import Sidebar from '@/components/admin-panel/sidebar';
 import ModalProvider from '@/providers/modal-provider';
+import { Footer } from '@/components/admin-panel/footer';
 import { useSidebarToggle } from '@/hooks/use-sidebar-toggle';
 
 export default function AdminLayout({
@@ -25,8 +24,7 @@ export default function AdminLayout({
           sidebar?.isOpen === false ? 'lg:ml-[90px]' : 'lg:ml-72'
         )}
       >
-        <Navbar />
-        <div className='container pt-8 pb-8 px-4 sm:px-8'>{children}</div>
+        {children}
       </main>
       <footer
         className={cn(

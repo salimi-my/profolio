@@ -3,12 +3,13 @@ import { redirect } from 'next/navigation';
 import prismadb from '@/lib/prismadb';
 import { currentUser } from '@/lib/authentication';
 import AboutForm from '@/components/admin/about-form';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 export default async function AboutPage() {
@@ -25,16 +26,18 @@ export default async function AboutPage() {
   });
 
   return (
-    <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px] pb-9'>
-        <CardTitle className='text-xl font-semibold'>About</CardTitle>
-        <CardDescription>
-          Manage your about section informations.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <AboutForm about={about} />
-      </CardContent>
-    </Card>
+    <ContentLayout title='About'>
+      <Card className='rounded-lg border-none'>
+        <CardHeader className='mx-[1px] pb-9'>
+          <CardTitle className='text-xl font-semibold'>About</CardTitle>
+          <CardDescription>
+            Manage your about section informations.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AboutForm about={about} />
+        </CardContent>
+      </Card>
+    </ContentLayout>
   );
 }

@@ -6,12 +6,13 @@ import { currentUser } from '@/lib/authentication';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/admin/portfolio-table/columns';
 import AddButton from '@/components/admin/portfolio-table/add-button';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 const filterOptions: {
@@ -40,22 +41,24 @@ export default async function PortfolioPage() {
   });
 
   return (
-    <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px] pb-9'>
-        <CardTitle className='text-xl font-semibold'>Portfolio</CardTitle>
-        <CardDescription>
-          Manage your projects list section informations.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <DataTable
-          data={portfolios}
-          columns={columns}
-          options={filterOptions}
-          AddButton={<AddButton />}
-          page='portfolio'
-        />
-      </CardContent>
-    </Card>
+    <ContentLayout title='All Projects'>
+      <Card className='rounded-lg border-none'>
+        <CardHeader className='mx-[1px] pb-9'>
+          <CardTitle className='text-xl font-semibold'>Portfolio</CardTitle>
+          <CardDescription>
+            Manage your projects list section informations.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            data={portfolios}
+            columns={columns}
+            options={filterOptions}
+            AddButton={<AddButton />}
+            page='portfolio'
+          />
+        </CardContent>
+      </Card>
+    </ContentLayout>
   );
 }

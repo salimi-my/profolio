@@ -4,12 +4,13 @@ import prismadb from '@/lib/prismadb';
 import BackButton from '@/components/back-button';
 import { currentUser } from '@/lib/authentication';
 import PortfolioForm from '@/components/admin/portfolio-form';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 export default async function EditPortfolioPage({
@@ -34,7 +35,7 @@ export default async function EditPortfolioPage({
   });
 
   return (
-    <>
+    <ContentLayout title='Edit Project'>
       <BackButton slug='/portfolio' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -47,6 +48,6 @@ export default async function EditPortfolioPage({
           <PortfolioForm portfolio={portfolio} />
         </CardContent>
       </Card>
-    </>
+    </ContentLayout>
   );
 }

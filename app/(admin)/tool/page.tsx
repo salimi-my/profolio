@@ -5,12 +5,13 @@ import { currentUser } from '@/lib/authentication';
 import { DataTable } from '@/components/data-table/data-table';
 import { columns } from '@/components/admin/tool-table/columns';
 import AddButton from '@/components/admin/tool-table/add-button';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 const filterOptions = [
@@ -41,22 +42,24 @@ export default async function ToolPage() {
   });
 
   return (
-    <Card className='rounded-lg border-none'>
-      <CardHeader className='mx-[1px] pb-9'>
-        <CardTitle className='text-xl font-semibold'>Tool & Apps</CardTitle>
-        <CardDescription>
-          Manage your tool and apps list section informations.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <DataTable
-          data={tools}
-          columns={columns}
-          options={filterOptions}
-          AddButton={<AddButton />}
-          page='tool'
-        />
-      </CardContent>
-    </Card>
+    <ContentLayout title='Tool & Apps'>
+      <Card className='rounded-lg border-none'>
+        <CardHeader className='mx-[1px] pb-9'>
+          <CardTitle className='text-xl font-semibold'>Tool & Apps</CardTitle>
+          <CardDescription>
+            Manage your tool and apps list section informations.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <DataTable
+            data={tools}
+            columns={columns}
+            options={filterOptions}
+            AddButton={<AddButton />}
+            page='tool'
+          />
+        </CardContent>
+      </Card>
+    </ContentLayout>
   );
 }

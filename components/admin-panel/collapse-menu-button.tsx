@@ -31,7 +31,6 @@ type Submenu = {
   href: string;
   label: string;
   active: boolean;
-  onlyTitle?: boolean;
 };
 
 interface CollapseMenuButtonProps {
@@ -99,32 +98,30 @@ export function CollapseMenuButton({
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className='overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down'>
-        {submenus
-          .filter((submenu) => !submenu.onlyTitle)
-          .map(({ href, label, active }, index) => (
-            <Button
-              key={index}
-              variant={active ? 'secondary' : 'ghost'}
-              className='w-full justify-start h-10 mb-1'
-              asChild
-            >
-              <Link href={href}>
-                <span className='mr-4 ml-2'>
-                  <Dot size={18} />
-                </span>
-                <p
-                  className={cn(
-                    'max-w-[170px] truncate',
-                    isOpen
-                      ? 'translate-x-0 opacity-100'
-                      : '-translate-x-96 opacity-0'
-                  )}
-                >
-                  {label}
-                </p>
-              </Link>
-            </Button>
-          ))}
+        {submenus.map(({ href, label, active }, index) => (
+          <Button
+            key={index}
+            variant={active ? 'secondary' : 'ghost'}
+            className='w-full justify-start h-10 mb-1'
+            asChild
+          >
+            <Link href={href}>
+              <span className='mr-4 ml-2'>
+                <Dot size={18} />
+              </span>
+              <p
+                className={cn(
+                  'max-w-[170px] truncate',
+                  isOpen
+                    ? 'translate-x-0 opacity-100'
+                    : '-translate-x-96 opacity-0'
+                )}
+              >
+                {label}
+              </p>
+            </Link>
+          </Button>
+        ))}
       </CollapsibleContent>
     </Collapsible>
   ) : (
@@ -165,15 +162,13 @@ export function CollapseMenuButton({
           {label}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        {submenus
-          .filter((submenu) => !submenu.onlyTitle)
-          .map(({ href, label }, index) => (
-            <DropdownMenuItem key={index} asChild>
-              <Link className='cursor-pointer' href={href}>
-                <p className='max-w-[180px] truncate'>{label}</p>
-              </Link>
-            </DropdownMenuItem>
-          ))}
+        {submenus.map(({ href, label }, index) => (
+          <DropdownMenuItem key={index} asChild>
+            <Link className='cursor-pointer' href={href}>
+              <p className='max-w-[180px] truncate'>{label}</p>
+            </Link>
+          </DropdownMenuItem>
+        ))}
         <DropdownMenuArrow className='fill-border' />
       </DropdownMenuContent>
     </DropdownMenu>

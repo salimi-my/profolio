@@ -1,9 +1,10 @@
 import { Skeleton } from '@/components/ui/skeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 
 export default function EditToolLoading() {
   return (
-    <>
+    <ContentLayout title='Edit Tool'>
       <Skeleton className='h-9 w-[85px] mb-4' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -36,6 +37,6 @@ export default function EditToolLoading() {
           </div>
         </CardContent>
       </Card>
-    </>
+    </ContentLayout>
   );
 }

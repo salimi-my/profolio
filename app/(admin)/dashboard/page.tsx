@@ -8,12 +8,13 @@ import { currentUser } from '@/lib/authentication';
 import MiniCard from '@/components/admin/mini-card';
 import RecentProject from '@/components/admin/recent-project';
 import QualificationTab from '@/components/admin/qualification-tab';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 export default async function DashboardPage() {
@@ -90,7 +91,7 @@ export default async function DashboardPage() {
       : 0;
 
   return (
-    <>
+    <ContentLayout title='Dashboard'>
       <div className='flex items-center justify-between mb-4'>
         <h2 className='text-2xl md:text-3xl font-bold tracking-tight'>
           Welcome {user.name}
@@ -171,6 +172,6 @@ export default async function DashboardPage() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </ContentLayout>
   );
 }

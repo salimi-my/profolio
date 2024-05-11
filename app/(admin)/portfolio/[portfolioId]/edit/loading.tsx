@@ -1,10 +1,11 @@
 import { cn } from '@/lib/utils';
 import { Skeleton } from '@/components/ui/skeleton';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function EditPortfolioLoading() {
   return (
-    <>
+    <ContentLayout title='Edit Project'>
       <Skeleton className='h-9 w-[85px] mb-4' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -72,6 +73,6 @@ export default function EditPortfolioLoading() {
           </div>
         </CardContent>
       </Card>
-    </>
+    </ContentLayout>
   );
 }

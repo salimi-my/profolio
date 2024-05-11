@@ -4,12 +4,13 @@ import prismadb from '@/lib/prismadb';
 import BackButton from '@/components/back-button';
 import { currentUser } from '@/lib/authentication';
 import ToolForm from '@/components/admin/tool-form';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import {
   Card,
-  CardContent,
-  CardDescription,
+  CardTitle,
   CardHeader,
-  CardTitle
+  CardContent,
+  CardDescription
 } from '@/components/ui/card';
 
 export default async function EditToolPage({
@@ -31,7 +32,7 @@ export default async function EditToolPage({
   });
 
   return (
-    <>
+    <ContentLayout title='Edit Tool'>
       <BackButton slug='/tool' />
       <Card className='rounded-lg border-none'>
         <CardHeader className='mx-[1px] pb-9'>
@@ -44,6 +45,6 @@ export default async function EditToolPage({
           <ToolForm tool={tool} />
         </CardContent>
       </Card>
-    </>
+    </ContentLayout>
   );
 }

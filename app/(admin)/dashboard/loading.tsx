@@ -1,9 +1,10 @@
 import { Skeleton } from '@/components/ui/skeleton';
+import { ContentLayout } from '@/components/admin-panel/content-layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function DashboardLoading() {
   return (
-    <>
+    <ContentLayout title='Dashboard'>
       <div className='flex items-center justify-between mb-4'>
         <Skeleton className='h-9 w-[222px]' />
         <div className='flex items-center'>
@@ -68,6 +69,6 @@ export default function DashboardLoading() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </ContentLayout>
   );
 }

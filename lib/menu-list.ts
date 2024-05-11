@@ -15,7 +15,6 @@ type Submenu = {
   href: string;
   label: string;
   active: boolean;
-  onlyTitle?: boolean;
 };
 
 type Menu = {
@@ -31,7 +30,7 @@ type Group = {
   menus: Menu[];
 };
 
-export function getPages(pathname: string): Group[] {
+export function getMenuList(pathname: string): Group[] {
   return [
     {
       groupLabel: '',
@@ -101,12 +100,6 @@ export function getPages(pathname: string): Group[] {
               href: '/portfolio/create',
               label: 'New Project',
               active: pathname === '/portfolio/create'
-            },
-            {
-              href: '',
-              label: 'Edit Project',
-              active: new RegExp('^/portfolio/.+/edit$').test(pathname),
-              onlyTitle: true
             }
           ]
         },
@@ -144,12 +137,6 @@ export function getPages(pathname: string): Group[] {
               href: '/tool/create',
               label: 'New Tool',
               active: pathname === '/tool/create'
-            },
-            {
-              href: '',
-              label: 'Edit Tool',
-              active: new RegExp('^/tool/.+/edit$').test(pathname),
-              onlyTitle: true
             }
           ]
         }
