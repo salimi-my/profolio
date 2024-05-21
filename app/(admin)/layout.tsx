@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { useStore } from '@/hooks/use-store';
 import { EdgeStoreProvider } from '@/lib/edgestore';
-import Sidebar from '@/components/admin-panel/sidebar';
+import { Sidebar } from '@/components/admin-panel/sidebar';
 import ModalProvider from '@/providers/modal-provider';
 import { Footer } from '@/components/admin-panel/footer';
 import { useSidebarToggle } from '@/hooks/use-sidebar-toggle';
