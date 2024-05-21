@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import QualificationModal from '@/components/modals/qualification-modal';
 
-export default function ModalProvider() {
+export function ModalProvider() {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
