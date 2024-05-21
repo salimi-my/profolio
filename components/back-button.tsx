@@ -1,6 +1,6 @@
 'use client';
 
-import { ChevronLeft } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
@@ -21,10 +21,10 @@ export default function BackButton({ slug }: BackButtonProps) {
           router.back();
         }
       }}
-      className='bg-white dark:text-primary-foreground dark:hover:text-primary dark:hover:border-slate-500 mb-4'
+      className='bg-card mb-4'
       variant='outline'
     >
-      <ChevronLeft size={18} />
+      <ArrowLeft className='size-4 mr-1' />
       Back
     </Button>
   );
