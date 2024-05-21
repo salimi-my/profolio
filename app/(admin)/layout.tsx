@@ -15,6 +15,8 @@ export default function AdminLayout({
 }) {
   const sidebar = useStore(useSidebarToggle, (state) => state);
 
+  if (!sidebar) return null;
+
   return (
     <EdgeStoreProvider>
       <Sidebar />
