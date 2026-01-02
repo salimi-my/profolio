@@ -35,8 +35,8 @@ Open the [.env.example](/.env.example) and fill in your Database URL, Auth, Rese
 
 ```bash
 pnpm install
-pnpm dlx prisma generate
-pnpm dlx prisma db push
+pnpm prisma generate
+pnpm prisma db push
 pnpm dev
 ```
 
